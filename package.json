@@ -6,5 +6,16 @@
   "author": "Sebastian Blask",
   "license": "MIT",
   "version": "0.1",
-  "homepage": "https://github.com/sblask/firefox-skip-redirect"
+  "homepage": "https://github.com/sblask/firefox-skip-redirect",
+  "preferences-branch": "skipredirect",
+  "preferences": [
+    {
+        "name": "enabled",
+        "title": "Enabled",
+        "description": "You can also use the toolbar button to quickly enable/disable skipping redirects",
+        "type": "bool",
+        "value": true
+    }
+  ],
+  "icon": "data/skip-off-64.png"
 }
