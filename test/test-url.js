@@ -10,6 +10,7 @@ var tests = [
     ["http://some.website.com/?target=" + targetEncoded + "&some=parameter", targetClean],
     ["http://some.website.com/?target=" + targetEncoded + ";some=parameter", targetClean],
     ["http://some.website.com/?target=" + targetEncoded + "#some-fragment", targetClean],
+    ["http://some.website.com/login?continue=" + targetEncoded + "#some-fragment", undefined],
 ];
 
 exports["test no redirect"] = function(assert) {
