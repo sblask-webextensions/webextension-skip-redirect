@@ -3,6 +3,7 @@ var url = require("./url");
 
 var targetClean = "http://redirection.target.com/?some=parameter&some-other=parameter;yet-another=parameter#some-fragment";
 var targetEncoded = encodeURIComponent(targetClean);
+var targetDoubleEncoded = encodeURIComponent(targetEncoded);
 
 var tests = [
     [targetClean, undefined],
@@ -11,6 +12,11 @@ var tests = [
     ["http://some.website.com/?target=" + targetEncoded + ";some=parameter", targetClean],
     ["http://some.website.com/?target=" + targetEncoded + "#some-fragment", targetClean],
     ["http://some.website.com/login?continue=" + targetEncoded + "#some-fragment", undefined],
+    ["http://some.website.com/?target=" + targetDoubleEncoded, targetClean],
+    ["http://some.website.com/?target=" + targetDoubleEncoded + "&some=parameter", targetClean],
+    ["http://some.website.com/?target=" + targetDoubleEncoded + ";some=parameter", targetClean],
+    ["http://some.website.com/?target=" + targetDoubleEncoded + "#some-fragment", targetClean],
+    ["http://some.website.com/login?continue=" + targetDoubleEncoded + "#some-fragment", undefined],
 ];
 
 exports["test no redirect"] = function(assert) {
