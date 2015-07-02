@@ -1,0 +1,6 @@
+{
+    "moz": true,
+    "node": true,
+    "undef": true,
+    "unused": true
+}
