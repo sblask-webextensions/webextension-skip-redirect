@@ -1,0 +1,10 @@
+language: javascript
+install:
+    - npm install -g jshint
+    - wget https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.tar.gz
+    - tar -xf jetpack-sdk-latest.tar.gz
+before_script:
+    - pushd addon-sdk-* && source ./bin/activate && popd
+script:
+    - cfx test
+    - jshint lib test
