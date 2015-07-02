@@ -1,7 +1,15 @@
 var url = require("./url");
 
+
+var targetClean = "http://redirection.target.com/?some=parameter&some-other=parameter;yet-another=parameter#some-fragment";
+var targetEncoded = encodeURIComponent(targetClean);
+
 var tests = [
-    ["www.example.com", undefined]
+    [targetClean, undefined],
+    ["http://some.website.com/?target=" + targetEncoded, targetClean],
+    ["http://some.website.com/?target=" + targetEncoded + "&some=parameter", targetClean],
+    ["http://some.website.com/?target=" + targetEncoded + ";some=parameter", targetClean],
+    ["http://some.website.com/?target=" + targetEncoded + "#some-fragment", targetClean],
 ];
 
 exports["test no redirect"] = function(assert) {
