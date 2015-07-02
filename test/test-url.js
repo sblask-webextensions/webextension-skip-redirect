@@ -7,11 +7,21 @@ var targetDoubleEncoded = encodeURIComponent(targetEncoded);
 
 var tests = [
     [targetClean, undefined],
+
+    ["http://some.website.com/" + targetClean, targetClean],
+    ["http://some.website.com/" + targetEncoded, targetClean],
+    ["http://some.website.com/" + targetDoubleEncoded, targetClean],
+
+    ["http://some.website.com/?" + targetClean, targetClean],
+    ["http://some.website.com/?" + targetEncoded, targetClean],
+    ["http://some.website.com/?" + targetDoubleEncoded, targetClean],
+
     ["http://some.website.com/?target=" + targetEncoded, targetClean],
     ["http://some.website.com/?target=" + targetEncoded + "&some=parameter", targetClean],
     ["http://some.website.com/?target=" + targetEncoded + ";some=parameter", targetClean],
     ["http://some.website.com/?target=" + targetEncoded + "#some-fragment", targetClean],
     ["http://some.website.com/login?continue=" + targetEncoded + "#some-fragment", undefined],
+
     ["http://some.website.com/?target=" + targetDoubleEncoded, targetClean],
     ["http://some.website.com/?target=" + targetDoubleEncoded + "&some=parameter", targetClean],
     ["http://some.website.com/?target=" + targetDoubleEncoded + ";some=parameter", targetClean],
