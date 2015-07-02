@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sblask/firefox-skip-redirect.svg?branch=master)](https://travis-ci.org/sblask/firefox-skip-redirect)
+
 firefox-skip-redirect
 =====================
 Some web pages use intermediary pages before redirecting to a final page. This
