@@ -15,6 +15,13 @@
         "description": "You can also use the toolbar button to quickly enable/disable skipping redirects",
         "type": "bool",
         "value": true
+    },
+    {
+        "name": "indicationDuration",
+        "title": "Indicate skip for",
+        "description": "The toolbar icon will show a little indicator for this many seconds after a redirect was skipped",
+        "type": "integer",
+        "value": 3
     }
   ],
   "icon": "data/skip-off-64.png"
