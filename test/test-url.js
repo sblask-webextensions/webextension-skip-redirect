@@ -33,25 +33,29 @@ var noRedirectTests = [
     ["no5", sourceHTTP + "/login?continue=" + httpTargetDoubleEncoded + "#some-fragment", undefined],
 ];
 
-function cleanTest(source, target, expected) {
+function pathTest(id, source, target, expected) {
     return [
-        ["cl01", source + target.clean, expected],
-        ["cl02", source + target.encoded, expected],
-        ["cl03", source + target.doubleEncoded, expected],
+        ["pa01" + id, source + target.clean, expected],
+        ["pa02" + id, source + target.encoded, expected],
+        ["pa03" + id, source + target.doubleEncoded, expected],
 
-        ["cl04", source + "/?" + target.clean, expected],
-        ["cl05", source + "/?" + target.encoded, expected],
-        ["cl06", source + "/?" + target.doubleEncoded, expected],
+        ["pa04" + id, source + "/?" + target.clean, expected],
+        ["pa05" + id, source + "/?" + target.encoded, expected],
+        ["pa06" + id, source + "/?" + target.doubleEncoded, expected],
+    ];
+}
 
-        ["cl07", source + "/?target=" + target.encoded, expected],
-        ["cl08", source + "/?target=" + target.encoded + "&some=parameter", expected],
-        ["cl09", source + "/?target=" + target.encoded + ";some=parameter", expected],
-        ["cl10", source + "/?target=" + target.encoded + "#some-fragment", expected],
+function queryTest(id, source, target, expected) {
+    return [
+        ["qu07" + id, source + "/?target=" + target.encoded, expected],
+        ["qu08" + id, source + "/?target=" + target.encoded + "&some=parameter", expected],
+        ["qu09" + id, source + "/?target=" + target.encoded + ";some=parameter", expected],
+        ["qu10" + id, source + "/?target=" + target.encoded + "#some-fragment", expected],
 
-        ["cl11", source + "/?target=" + target.doubleEncoded, expected],
-        ["cl12", source + "/?target=" + target.doubleEncoded + "&some=parameter", expected],
-        ["cl13", source + "/?target=" + target.doubleEncoded + ";some=parameter", expected],
-        ["cl14", source + "/?target=" + target.doubleEncoded + "#some-fragment", expected],
+        ["qu11" + id, source + "/?target=" + target.doubleEncoded, expected],
+        ["qu12" + id, source + "/?target=" + target.doubleEncoded + "&some=parameter", expected],
+        ["qu13" + id, source + "/?target=" + target.doubleEncoded + ";some=parameter", expected],
+        ["qu14" + id, source + "/?target=" + target.doubleEncoded + "#some-fragment", expected],
     ];
 }
 
@@ -61,10 +65,14 @@ var otherTests = [
 exports["test no redirect"] = function(assert) {
     var tests =
         noRedirectTests
-            .concat(cleanTest(sourceHTTP, httpTarget, httpTargetClean))
-            .concat(cleanTest(sourceHTTP, wwwTarget, "http://" + wwwTargetClean))
-            .concat(cleanTest(sourceHTTPS, httpTarget, httpTargetClean))
-            .concat(cleanTest(sourceHTTPS, wwwTarget, "http://" + wwwTargetClean))
+            .concat(pathTest("http", sourceHTTP, httpTarget, httpTargetClean))
+            .concat(pathTest("www", sourceHTTP, wwwTarget, "http://" + wwwTargetClean))
+            .concat(pathTest("https", sourceHTTPS, httpTarget, httpTargetClean))
+            .concat(pathTest("wwws", sourceHTTPS, wwwTarget, "http://" + wwwTargetClean))
+            .concat(queryTest("http", sourceHTTP, httpTarget, httpTargetClean))
+            .concat(queryTest("www", sourceHTTP, wwwTarget, "http://" + wwwTargetClean))
+            .concat(queryTest("https", sourceHTTPS, httpTarget, httpTargetClean))
+            .concat(queryTest("wwws", sourceHTTPS, wwwTarget, "http://" + wwwTargetClean))
             .concat(otherTests);
     for (var index = 0; index < tests.length; index++) {
         var testID = tests[index][0];
