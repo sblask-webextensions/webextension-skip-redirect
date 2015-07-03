@@ -27,13 +27,14 @@ var wwwTarget = {
     doubleEncoded: wwwTargetDoubleEncoded,
 };
 
-var noRedirectTests = [
-    ["no1", httpTargetClean, undefined],
-    ["no2", sourceHTTP + wwwTargetClean.replace("www.", "www"), undefined],
-    ["no3", sourceHTTP + "/login?continue=" + httpTargetClean + "#some-fragment", undefined],
-    ["no4", sourceHTTP + "/login?continue=" + httpTargetEncoded + "#some-fragment", undefined],
-    ["no5", sourceHTTP + "/login?continue=" + httpTargetDoubleEncoded + "#some-fragment", undefined],
+var noRedirectUrls = [
+    httpTargetClean,
+    sourceHTTP + wwwTargetClean.replace("www.", "www"),
+    sourceHTTP + "/login?continue=" + httpTargetClean + "#some-fragment",
+    sourceHTTP + "/login?continue=" + httpTargetEncoded + "#some-fragment",
+    sourceHTTP + "/login?continue=" + httpTargetDoubleEncoded + "#some-fragment]",
 ];
+var noRedirectTests = [for (url of noRedirectUrls) ["no", url, url]];
 
 function pathTest(id, source, target, expected) {
     return [
@@ -73,7 +74,7 @@ function queryTest(id, source, target, expected) {
 var otherTests = [
 ];
 
-exports["test no redirect"] = function(assert) {
+exports["test redirects"] = function(assert) {
     var tests =
         noRedirectTests
             .concat(pathTest("http",        sourceHTTP,  httpTarget, httpTargetClean))
@@ -90,9 +91,7 @@ exports["test no redirect"] = function(assert) {
             .concat(cleanQueryTest("wwws",  sourceHTTPS, wwwTarget,  "http://" + wwwTargetUrl))
             .concat(otherTests);
     for (var index = 0; index < tests.length; index++) {
-        var testID = tests[index][0];
-        var from = tests[index][1];
-        var to = tests[index][2];
+        var [ testID, from, to ] = tests[index];
         assert.equal(
            url.getRedirectTarget(from),
            to,
