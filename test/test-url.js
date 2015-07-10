@@ -71,12 +71,16 @@ function queryTest(id, source, target, expected) {
     ];
 }
 
-var otherTests = [
+var someOtherTargetUrl = "www.some.other.website.com";
+var twoTargetsTests = [
+    ["tt1", sourceHTTP + "?url-one=" + wwwTargetUrl + "&url-two=" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
+    ["tt1", sourceHTTP + "?url-one=" + httpTargetUrl + "&url-two=" + "http://" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
 ];
 
 exports["test redirects"] = function(assert) {
     var tests =
-        noRedirectTests
+        []
+            .concat(noRedirectTests)
             .concat(pathTest("http",        sourceHTTP,  httpTarget, httpTargetClean))
             .concat(pathTest("www",         sourceHTTP,  wwwTarget,  "http://" + wwwTargetClean))
             .concat(pathTest("https",       sourceHTTPS, httpTarget, httpTargetClean))
@@ -89,7 +93,8 @@ exports["test redirects"] = function(assert) {
             .concat(cleanQueryTest("www",   sourceHTTP,  wwwTarget,  "http://" + wwwTargetUrl))
             .concat(cleanQueryTest("https", sourceHTTPS, httpTarget, httpTargetUrl))
             .concat(cleanQueryTest("wwws",  sourceHTTPS, wwwTarget,  "http://" + wwwTargetUrl))
-            .concat(otherTests);
+            .concat(twoTargetsTests)
+            .concat([]);
     for (var index = 0; index < tests.length; index++) {
         var [ testID, from, to ] = tests[index];
         assert.equal(
