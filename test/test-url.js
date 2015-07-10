@@ -50,24 +50,28 @@ function pathTest(id, source, target, expected) {
 
 function cleanQueryTest(id, source, target, expected) {
     return [
-        ["cqu01" + id, source + "/?target=" + target.clean, expected],
-        ["cqu02" + id, source + "/?target=" + target.clean + "&some=parameter", expected],
-        ["cqu03" + id, source + "/?target=" + target.clean + ";some=parameter", expected],
-        ["cqu04" + id, source + "/?target=" + target.clean + "#some-fragment", expected],
+        ["quc01" + id, source + "/?target=" + target.clean, expected],
+        ["quc02" + id, source + "/?target=" + target.clean + "&some=parameter", expected],
+        ["quc03" + id, source + "/?target=" + target.clean + ";some=parameter", expected],
+        ["quc04" + id, source + "/?target=" + target.clean + "#some-fragment", expected],
     ];
 }
 
-function queryTest(id, source, target, expected) {
+function encodedQueryTest(id, source, target, expected) {
     return [
-        ["qu01" + id, source + "/?target=" + target.encoded, expected],
-        ["qu02" + id, source + "/?target=" + target.encoded + "&some=parameter", expected],
-        ["qu03" + id, source + "/?target=" + target.encoded + ";some=parameter", expected],
-        ["qu04" + id, source + "/?target=" + target.encoded + "#some-fragment", expected],
+        ["que01" + id, source + "/?target=" + target.encoded, expected],
+        ["que02" + id, source + "/?target=" + target.encoded + "&some=parameter", expected],
+        ["que03" + id, source + "/?target=" + target.encoded + ";some=parameter", expected],
+        ["que04" + id, source + "/?target=" + target.encoded + "#some-fragment", expected],
+    ];
+}
 
-        ["qu05" + id, source + "/?target=" + target.doubleEncoded, expected],
-        ["qu06" + id, source + "/?target=" + target.doubleEncoded + "&some=parameter", expected],
-        ["qu07" + id, source + "/?target=" + target.doubleEncoded + ";some=parameter", expected],
-        ["qu08" + id, source + "/?target=" + target.doubleEncoded + "#some-fragment", expected],
+function doubleEncodedQueryTest(id, source, target, expected) {
+    return [
+        ["qud01" + id, source + "/?target=" + target.doubleEncoded, expected],
+        ["qud02" + id, source + "/?target=" + target.doubleEncoded + "&some=parameter", expected],
+        ["qud03" + id, source + "/?target=" + target.doubleEncoded + ";some=parameter", expected],
+        ["qud04" + id, source + "/?target=" + target.doubleEncoded + "#some-fragment", expected],
     ];
 }
 
@@ -81,18 +85,22 @@ exports["test redirects"] = function(assert) {
     var tests =
         []
             .concat(noRedirectTests)
-            .concat(pathTest("http",        sourceHTTP,  httpTarget, httpTargetClean))
-            .concat(pathTest("www",         sourceHTTP,  wwwTarget,  "http://" + wwwTargetClean))
-            .concat(pathTest("https",       sourceHTTPS, httpTarget, httpTargetClean))
-            .concat(pathTest("wwws",        sourceHTTPS, wwwTarget,  "http://" + wwwTargetClean))
-            .concat(queryTest("http",       sourceHTTP,  httpTarget, httpTargetClean))
-            .concat(queryTest("www",        sourceHTTP,  wwwTarget,  "http://" + wwwTargetClean))
-            .concat(queryTest("https",      sourceHTTPS, httpTarget, httpTargetClean))
-            .concat(queryTest("wwws",       sourceHTTPS, wwwTarget,  "http://" + wwwTargetClean))
-            .concat(cleanQueryTest("http",  sourceHTTP,  httpTarget, httpTargetUrl))
-            .concat(cleanQueryTest("www",   sourceHTTP,  wwwTarget,  "http://" + wwwTargetUrl))
-            .concat(cleanQueryTest("https", sourceHTTPS, httpTarget, httpTargetUrl))
-            .concat(cleanQueryTest("wwws",  sourceHTTPS, wwwTarget,  "http://" + wwwTargetUrl))
+            .concat(pathTest("http",                sourceHTTP,  httpTarget, httpTargetClean))
+            .concat(pathTest("www",                 sourceHTTP,  wwwTarget,  "http://" + wwwTargetClean))
+            .concat(pathTest("https",               sourceHTTPS, httpTarget, httpTargetClean))
+            .concat(pathTest("wwws",                sourceHTTPS, wwwTarget,  "http://" + wwwTargetClean))
+            .concat(cleanQueryTest("http",          sourceHTTP,  httpTarget, httpTargetUrl))
+            .concat(cleanQueryTest("www",           sourceHTTP,  wwwTarget,  "http://" + wwwTargetUrl))
+            .concat(cleanQueryTest("https",         sourceHTTPS, httpTarget, httpTargetUrl))
+            .concat(cleanQueryTest("wwws",          sourceHTTPS, wwwTarget,  "http://" + wwwTargetUrl))
+            .concat(encodedQueryTest("http",        sourceHTTP,  httpTarget, httpTargetUrl))
+            .concat(encodedQueryTest("www",         sourceHTTP,  wwwTarget,  "http://" + wwwTargetUrl))
+            .concat(encodedQueryTest("https",       sourceHTTPS, httpTarget, httpTargetUrl))
+            .concat(encodedQueryTest("wwws",        sourceHTTPS, wwwTarget,  "http://" + wwwTargetUrl))
+            .concat(doubleEncodedQueryTest("http",  sourceHTTP,  httpTarget, httpTargetUrl))
+            .concat(doubleEncodedQueryTest("www",   sourceHTTP,  wwwTarget,  "http://" + wwwTargetUrl))
+            .concat(doubleEncodedQueryTest("https", sourceHTTPS, httpTarget, httpTargetUrl))
+            .concat(doubleEncodedQueryTest("wwws",  sourceHTTPS, wwwTarget,  "http://" + wwwTargetUrl))
             .concat(twoTargetsTests)
             .concat([]);
     for (var index = 0; index < tests.length; index++) {
