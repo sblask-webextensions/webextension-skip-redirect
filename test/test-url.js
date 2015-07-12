@@ -5,7 +5,7 @@ var sourceHTTPS = "https://www.some.website.com/";
 
 var queryAndFragment = "?some=parameter&some-other=parameter;a=parameter-with-?-in-it#some-fragment";
 
-var httpTargetDomain = "http://redirection.target.com/";
+var httpTargetDomain = "http://www.redirection.target.com/";
 var httpTargetUrl = httpTargetDomain + queryAndFragment;
 var httpTargetUrlEncoded = encodeURIComponent(httpTargetUrl);
 var httpTargetUrlDoubleEncoded = encodeURIComponent(httpTargetUrlEncoded);
