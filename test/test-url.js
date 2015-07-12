@@ -5,34 +5,34 @@ var sourceHTTPS = "https://www.some.website.com/";
 
 var queryAndFragment = "?some=parameter&some-other=parameter;a=parameter-with-?-in-it#some-fragment";
 
-var httpTargetUrl = "http://redirection.target.com/";
-var httpTargetClean = httpTargetUrl + queryAndFragment;
-var httpTargetEncoded = encodeURIComponent(httpTargetClean);
-var httpTargetDoubleEncoded = encodeURIComponent(httpTargetEncoded);
+var httpTargetDomain = "http://redirection.target.com/";
+var httpTargetUrl = httpTargetDomain + queryAndFragment;
+var httpTargetUrlEncoded = encodeURIComponent(httpTargetUrl);
+var httTargetUrlDoubleEncoded = encodeURIComponent(httpTargetUrlEncoded);
 
-var httpTarget = {
-    clean: httpTargetClean,
-    encoded: httpTargetEncoded,
-    doubleEncoded: httpTargetDoubleEncoded,
+var httpTargetMapping = {
+    clean: httpTargetUrl,
+    encoded: httpTargetUrlEncoded,
+    doubleEncoded: httTargetUrlDoubleEncoded,
 };
 
-var wwwTargetUrl = "www.redirection.target.com/";
-var wwwTargetClean = wwwTargetUrl + queryAndFragment;
-var wwwTargetEncoded = encodeURIComponent(wwwTargetClean);
-var wwwTargetDoubleEncoded = encodeURIComponent(wwwTargetEncoded);
+var wwwTargetDomain = "www.redirection.target.com/";
+var wwwTargetUrl = wwwTargetDomain + queryAndFragment;
+var wwwTargetUrlEncoded = encodeURIComponent(wwwTargetUrl);
+var wwwTargetUrlDoubleEncoded = encodeURIComponent(wwwTargetUrlEncoded);
 
-var wwwTarget = {
-    clean: wwwTargetClean,
-    encoded: wwwTargetEncoded,
-    doubleEncoded: wwwTargetDoubleEncoded,
+var wwwTargetMapping = {
+    clean: wwwTargetUrl,
+    encoded: wwwTargetUrlEncoded,
+    doubleEncoded: wwwTargetUrlDoubleEncoded,
 };
 
 var noRedirectUrls = [
-    httpTargetClean,
-    sourceHTTP + wwwTargetClean.replace("www.", "www"),
-    sourceHTTP + "/login?continue=" + httpTargetClean + "#some-fragment",
-    sourceHTTP + "/login?continue=" + httpTargetEncoded + "#some-fragment",
-    sourceHTTP + "/login?continue=" + httpTargetDoubleEncoded + "#some-fragment]",
+    httpTargetUrl,
+    sourceHTTP + wwwTargetUrl.replace("www.", "www"),
+    sourceHTTP + "/login?continue=" + httpTargetUrl + "#some-fragment",
+    sourceHTTP + "/login?continue=" + httpTargetUrlEncoded + "#some-fragment",
+    sourceHTTP + "/login?continue=" + httTargetUrlDoubleEncoded + "#some-fragment]",
 ];
 var noRedirectTests = [for (url of noRedirectUrls) ["no", url, url]];
 
@@ -77,30 +77,30 @@ function doubleEncodedQueryTest(id, source, target, expected) {
 
 var someOtherTargetUrl = "www.some.other.website.com";
 var twoTargetsTests = [
-    ["tt1", sourceHTTP + "?url-one=" + wwwTargetUrl + "&url-two=" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
-    ["tt1", sourceHTTP + "?url-one=" + httpTargetUrl + "&url-two=" + "http://" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
+    ["tt1", sourceHTTP + "?url-one=" + wwwTargetDomain + "&url-two=" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
+    ["tt1", sourceHTTP + "?url-one=" + httpTargetDomain + "&url-two=" + "http://" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
 ];
 
 exports["test redirects"] = function(assert) {
     var tests =
         []
             .concat(noRedirectTests)
-            .concat(pathTest("http",                sourceHTTP,  httpTarget, httpTargetClean))
-            .concat(pathTest("www",                 sourceHTTP,  wwwTarget,  "http://" + wwwTargetClean))
-            .concat(pathTest("https",               sourceHTTPS, httpTarget, httpTargetClean))
-            .concat(pathTest("wwws",                sourceHTTPS, wwwTarget,  "http://" + wwwTargetClean))
-            .concat(cleanQueryTest("http",          sourceHTTP,  httpTarget, httpTargetUrl))
-            .concat(cleanQueryTest("www",           sourceHTTP,  wwwTarget,  "http://" + wwwTargetUrl))
-            .concat(cleanQueryTest("https",         sourceHTTPS, httpTarget, httpTargetUrl))
-            .concat(cleanQueryTest("wwws",          sourceHTTPS, wwwTarget,  "http://" + wwwTargetUrl))
-            .concat(encodedQueryTest("http",        sourceHTTP,  httpTarget, httpTargetClean))
-            .concat(encodedQueryTest("www",         sourceHTTP,  wwwTarget,  "http://" + wwwTargetClean))
-            .concat(encodedQueryTest("https",       sourceHTTPS, httpTarget, httpTargetClean))
-            .concat(encodedQueryTest("wwws",        sourceHTTPS, wwwTarget,  "http://" + wwwTargetClean))
-            .concat(doubleEncodedQueryTest("http",  sourceHTTP,  httpTarget, httpTargetClean))
-            .concat(doubleEncodedQueryTest("www",   sourceHTTP,  wwwTarget,  "http://" + wwwTargetClean))
-            .concat(doubleEncodedQueryTest("https", sourceHTTPS, httpTarget, httpTargetClean))
-            .concat(doubleEncodedQueryTest("wwws",  sourceHTTPS, wwwTarget,  "http://" + wwwTargetClean))
+            .concat(pathTest("http",                sourceHTTP,  httpTargetMapping, httpTargetUrl))
+            .concat(pathTest("www",                 sourceHTTP,  wwwTargetMapping,  "http://" + wwwTargetUrl))
+            .concat(pathTest("https",               sourceHTTPS, httpTargetMapping, httpTargetUrl))
+            .concat(pathTest("wwws",                sourceHTTPS, wwwTargetMapping,  "http://" + wwwTargetUrl))
+            .concat(cleanQueryTest("http",          sourceHTTP,  httpTargetMapping, httpTargetDomain))
+            .concat(cleanQueryTest("www",           sourceHTTP,  wwwTargetMapping,  "http://" + wwwTargetDomain))
+            .concat(cleanQueryTest("https",         sourceHTTPS, httpTargetMapping, httpTargetDomain))
+            .concat(cleanQueryTest("wwws",          sourceHTTPS, wwwTargetMapping,  "http://" + wwwTargetDomain))
+            .concat(encodedQueryTest("http",        sourceHTTP,  httpTargetMapping, httpTargetUrl))
+            .concat(encodedQueryTest("www",         sourceHTTP,  wwwTargetMapping,  "http://" + wwwTargetUrl))
+            .concat(encodedQueryTest("https",       sourceHTTPS, httpTargetMapping, httpTargetUrl))
+            .concat(encodedQueryTest("wwws",        sourceHTTPS, wwwTargetMapping,  "http://" + wwwTargetUrl))
+            .concat(doubleEncodedQueryTest("http",  sourceHTTP,  httpTargetMapping, httpTargetUrl))
+            .concat(doubleEncodedQueryTest("www",   sourceHTTP,  wwwTargetMapping,  "http://" + wwwTargetUrl))
+            .concat(doubleEncodedQueryTest("https", sourceHTTPS, httpTargetMapping, httpTargetUrl))
+            .concat(doubleEncodedQueryTest("wwws",  sourceHTTPS, wwwTargetMapping,  "http://" + wwwTargetUrl))
             .concat(twoTargetsTests)
             .concat([]);
     for (var index = 0; index < tests.length; index++) {
