@@ -12,10 +12,10 @@ Please give feedback(see below) if you find websites where this fails or where
 you get redirected in a weird way when this add-on is enabled but not when it's
 disabled.
 
-After skipping, an indicator is shown on the toolbar button(which you can use
-to quickly enable/disable skipping) for a couple of seconds(see the add-on's
-preferences) and information about original and final information is shown in
-its tooltip.
+There is a toolbar button which you can use to quickly enable/disable skipping.
+The button displays an indicator for a couple of seconds(see the add-on's
+preferences) when a redirect is skipped and information about original and
+final link is shown in its tooltip.
 
 This add-on aims for similar functionality as the following add-ons but in a
 simpler and/or better documented way:
