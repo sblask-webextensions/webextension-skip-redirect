@@ -1,98 +1,60 @@
-var url = require("./url");
+const url = require("./url");
 
-var sourceHTTP = "http://www.some.website.com/";
-var sourceHTTPS = "https://www.some.website.com/";
+var queryAndFragment = "?some=parameter&some-other=parameter;another=parameter#some-fragment";
 
-var queryAndFragment = "?some=parameter&some-other=parameter;a=parameter-with-?-in-it#some-fragment";
-
-var httpTargetDomain = "http://www.redirection.target.com/";
-var httpTargetUrl = httpTargetDomain + queryAndFragment;
-var httpTargetUrlEncoded = encodeURIComponent(httpTargetUrl);
-var httpTargetUrlDoubleEncoded = encodeURIComponent(httpTargetUrlEncoded);
-var httpTargetUrlIncompletelyEncoded = httpTargetDomain + encodeURIComponent(queryAndFragment);
-
-var wwwTargetDomain = "www.redirection.target.com/";
-var wwwTargetUrl = wwwTargetDomain + queryAndFragment;
+var wwwTargetUrl = "www.redirection.target.com/" + queryAndFragment;
 var wwwTargetUrlEncoded = encodeURIComponent(wwwTargetUrl);
 var wwwTargetUrlDoubleEncoded = encodeURIComponent(wwwTargetUrlEncoded);
-var wwwTargetUrlIncompletelyEncoded = wwwTargetDomain + encodeURIComponent(queryAndFragment);
 
-var noRedirectUrls = [
-    httpTargetUrl,
-    sourceHTTP + wwwTargetUrl.replace("www.", "www"),
-    sourceHTTP + "login?continue=" + httpTargetUrl + "#some-fragment",
-    sourceHTTP + "login?continue=" + httpTargetUrlEncoded + "#some-fragment",
-    sourceHTTP + "login?continue=" + httpTargetUrlDoubleEncoded + "#some-fragment]",
-];
-var noRedirectTests = [for (url of noRedirectUrls) [url, url]];
+var someTargetUrl = "some.www.redirection.target.com/" + queryAndFragment;
+var someTargetUrlEncoded = encodeURIComponent(someTargetUrl);
+var someTargetUrlDoubleEncoded = encodeURIComponent(someTargetUrlEncoded);
 
-function pathTest(source, target, expected) {
-    return [
-        [source + target, expected],
-        [source + "?" + target, expected],
+exports["test skipping to urls in querystring"] = function(assert) {
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http://" +             someTargetUrl),              "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http%3A%2F%2F" +       someTargetUrlEncoded),       "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded), "http://"  + someTargetUrl);
+
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "?" + "http://" +  someTargetUrl),                         "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("https://" + "www.some.website.com" + "/" + "http://" +  someTargetUrl),                         "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "https://" + someTargetUrl),                         "https://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http://" +  someTargetUrlEncoded),                  "http://"  + someTargetUrl);
+
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrl),                         "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrlDoubleEncoded),            "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrlEncoded),                  "http://"  + wwwTargetUrl);
+};
+
+exports["test skipping to urls in query parameter"] = function(assert) {
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl),                            "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?some=parameter"), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&some=parameter"), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";some=parameter"), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#some-fragment"),  "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded),               "http://" + someTargetUrl);
+
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrlEncoded),                     "http://" + someTargetUrl);
+
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrl),                            "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrl + "?some=parameter"),        "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + "&some=parameter"), "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + ";some=parameter"), "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + "#some-fragment"),  "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlDoubleEncoded),               "http://"  + wwwTargetUrl);
+};
+
+
+exports["test exceptions to skipping"] = function(assert) {
+    let noRedirectUrls = [
+        someTargetUrl,
+        "http://www.some.website.com/" + wwwTargetUrl.replace("www.", "www"),
+        "http://www.some.website.com/" + "login?continue=" + someTargetUrl + "#some-fragment",
+        "http://www.some.website.com/" + "login?continue=" + someTargetUrlEncoded + "#some-fragment",
+        "http://www.some.website.com/" + "login?continue=" + someTargetUrlDoubleEncoded + "#some-fragment]",
     ];
-}
 
-function queryTest(source, target, expected) {
-    return [
-        [source + "?target=" + target, expected],
-        [source + "?target=" + target + "&some=parameter", expected],
-        [source + "?target=" + target + ";some=parameter", expected],
-        [source + "?target=" + target + "#some-fragment", expected],
-    ];
-}
-
-var someOtherTargetUrl = "www.some.other.website.com";
-var twoTargetsTests = [
-    [sourceHTTP + "?url-one=" + wwwTargetDomain + "&url-two=" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
-    [sourceHTTP + "?url-one=" + httpTargetDomain + "&url-two=" + "http://" + someOtherTargetUrl, "http://" + someOtherTargetUrl],
-];
-
-exports["test redirects"] = function(assert) {
-    var tests =
-        []
-            .concat(noRedirectTests)
-            .concat(pathTest(sourceHTTP,   httpTargetUrl,                    httpTargetUrl))
-            .concat(pathTest(sourceHTTP,   httpTargetUrlDoubleEncoded,       httpTargetUrl))
-            .concat(pathTest(sourceHTTP,   httpTargetUrlEncoded,             httpTargetUrl))
-            .concat(pathTest(sourceHTTP,   httpTargetUrlIncompletelyEncoded, httpTargetUrl))
-            .concat(pathTest(sourceHTTPS,  httpTargetUrl,                    httpTargetUrl))
-            .concat(pathTest(sourceHTTPS,  httpTargetUrlDoubleEncoded,       httpTargetUrl))
-            .concat(pathTest(sourceHTTPS,  httpTargetUrlEncoded,             httpTargetUrl))
-            .concat(pathTest(sourceHTTPS,  httpTargetUrlIncompletelyEncoded, httpTargetUrl))
-            .concat(pathTest(sourceHTTP,   wwwTargetUrl,                     "http://" + wwwTargetUrl))
-            .concat(pathTest(sourceHTTP,   wwwTargetUrlDoubleEncoded,        "http://" + wwwTargetUrl))
-            .concat(pathTest(sourceHTTP,   wwwTargetUrlEncoded,              "http://" + wwwTargetUrl))
-            .concat(pathTest(sourceHTTP,   wwwTargetUrlIncompletelyEncoded,  "http://" + wwwTargetUrl))
-            .concat(pathTest(sourceHTTPS,  wwwTargetUrl,                     "http://" + wwwTargetUrl))
-            .concat(pathTest(sourceHTTPS,  wwwTargetUrlEncoded,              "http://" + wwwTargetUrl))
-            .concat(pathTest(sourceHTTPS,  wwwTargetUrlDoubleEncoded,        "http://" + wwwTargetUrl))
-            .concat(pathTest(sourceHTTPS,  wwwTargetUrlIncompletelyEncoded,  "http://" + wwwTargetUrl))
-            .concat(queryTest(sourceHTTP,  httpTargetUrl,                    httpTargetUrl.slice(0, httpTargetUrl.lastIndexOf("?"))))
-            .concat(queryTest(sourceHTTP,  httpTargetUrlDoubleEncoded,       httpTargetUrl))
-            .concat(queryTest(sourceHTTP,  httpTargetUrlEncoded,             httpTargetUrl))
-            .concat(queryTest(sourceHTTP,  httpTargetUrlIncompletelyEncoded, httpTargetUrl))
-            .concat(queryTest(sourceHTTPS, httpTargetUrl,                    httpTargetUrl.slice(0, httpTargetUrl.lastIndexOf("?"))))
-            .concat(queryTest(sourceHTTPS, httpTargetUrlDoubleEncoded,       httpTargetUrl))
-            .concat(queryTest(sourceHTTPS, httpTargetUrlEncoded,             httpTargetUrl))
-            .concat(queryTest(sourceHTTPS, httpTargetUrlIncompletelyEncoded, httpTargetUrl))
-            .concat(queryTest(sourceHTTP,  wwwTargetUrl,                     "http://" + wwwTargetUrl.slice(0, wwwTargetUrl.lastIndexOf("?"))))
-            .concat(queryTest(sourceHTTP,  wwwTargetUrlDoubleEncoded,        "http://" + wwwTargetUrl))
-            .concat(queryTest(sourceHTTP,  wwwTargetUrlEncoded,              "http://" + wwwTargetUrl))
-            .concat(queryTest(sourceHTTP,  wwwTargetUrlIncompletelyEncoded,  "http://" + wwwTargetUrl))
-            .concat(queryTest(sourceHTTPS, wwwTargetUrl,                     "http://" + wwwTargetUrl.slice(0, wwwTargetUrl.lastIndexOf("?"))))
-            .concat(queryTest(sourceHTTPS, wwwTargetUrlDoubleEncoded,        "http://" + wwwTargetUrl))
-            .concat(queryTest(sourceHTTPS, wwwTargetUrlEncoded,              "http://" + wwwTargetUrl))
-            .concat(queryTest(sourceHTTPS, wwwTargetUrlIncompletelyEncoded,  "http://" + wwwTargetUrl))
-            .concat(twoTargetsTests)
-            .concat([]);
-    for (var index = 0; index < tests.length; index++) {
-        var [ from, to ] = tests[index];
-        assert.equal(
-           url.getRedirectTarget(from),
-           to,
-           "Wrong redirection target for " + from
-        );
+    for (let urlString of noRedirectUrls) {
+        assert.equal(url.getRedirectTarget(urlString), urlString);
     }
 };
 
