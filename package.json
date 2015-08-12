@@ -17,6 +17,13 @@
         "value": true
     },
     {
+        "name": "exceptions",
+        "title": "Exceptions",
+        "description": "No skipping is done on pages whose url contains one of the words in this list(separate words by | or use a regular expression)",
+        "type": "string",
+        "value": ""
+    },
+    {
         "name": "indicationDuration",
         "title": "Indicate skip for",
         "description": "The toolbar icon will show a little indicator for this many seconds after a redirect was skipped",
