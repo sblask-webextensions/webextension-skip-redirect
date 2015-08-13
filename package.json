@@ -1,35 +1,35 @@
 {
-  "name": "skipredirect",
-  "title": "Skip Redirect",
-  "id": "skipredirect@sblask",
-  "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
-  "author": "Sebastian Blask",
-  "license": "MIT",
-  "version": "1.0",
-  "homepage": "https://github.com/sblask/firefox-skip-redirect",
-  "preferences-branch": "skipredirect",
-  "preferences": [
-    {
-        "name": "enabled",
-        "title": "Enabled",
-        "description": "You can also use the toolbar button to quickly enable/disable skipping redirects",
-        "type": "bool",
-        "value": true
-    },
-    {
-        "name": "exceptions",
-        "title": "Exceptions",
-        "description": "No skipping is done on pages whose url contains one of the words in this list(separate words by | or use a regular expression)",
-        "type": "string",
-        "value": ""
-    },
-    {
-        "name": "indicationDuration",
-        "title": "Indicate skip for",
-        "description": "The toolbar icon will show a little indicator for this many seconds after a redirect was skipped",
-        "type": "integer",
-        "value": 3
-    }
-  ],
-  "icon": "data/skip-off-64.png"
+    "name": "skipredirect",
+    "title": "Skip Redirect",
+    "id": "skipredirect@sblask",
+    "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
+    "author": "Sebastian Blask",
+    "license": "MIT",
+    "version": "1.0",
+    "homepage": "https://github.com/sblask/firefox-skip-redirect",
+    "preferences-branch": "skipredirect",
+    "preferences": [
+        {
+            "name": "enabled",
+            "title": "Enabled",
+            "description": "You can also use the toolbar button to quickly enable/disable skipping redirects",
+            "type": "bool",
+            "value": true
+        },
+        {
+            "name": "exceptions",
+            "title": "Exceptions",
+            "description": "No skipping is done on pages whose url contains one of the words in this list(separate words by | or use a regular expression)",
+            "type": "string",
+            "value": ""
+        },
+        {
+            "name": "indicationDuration",
+            "title": "Indicate skip for",
+            "description": "The toolbar icon will show a little indicator for this many seconds after a redirect was skipped",
+            "type": "integer",
+            "value": 3
+        }
+    ],
+    "icon": "data/skip-off-64.png"
 }
