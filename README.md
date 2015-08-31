@@ -15,7 +15,9 @@ disabled.
 There is a toolbar button which you can use to quickly enable/disable skipping.
 The button displays an indicator for a couple of seconds(see the add-on's
 preferences) when a redirect is skipped and information about original and
-final link is shown in its tooltip.
+final link is shown in its tooltip. Also see the add-on's preferences for a way
+to configure pages where no skipping should take place(because of problems you
+encountered for example).
 
 This add-on aims for similar functionality as the following add-ons but in a
 simpler and/or better documented way:
