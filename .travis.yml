@@ -1,12 +1,12 @@
 language: javascript
+addons:
+    firefox: "38.0"
 install:
+    - npm install -g jpm
     - npm install -g jshint
-    - wget https://ftp.mozilla.org/pub/mozilla.org/labs/jetpack/jetpack-sdk-latest.tar.gz
-    - tar -xf jetpack-sdk-latest.tar.gz
 before_script:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
-    - pushd addon-sdk-* && source ./bin/activate && popd
 script:
-    - cfx test
+    - jpm --binary /usr/local/bin/firefox test
     - jshint lib test

@@ -1,5 +1,5 @@
 const base64 = require("sdk/base64");
-const url = require("./url");
+const url = require("../lib/url");
 
 const queryAndFragment = "?some=parameter&some-other=parameter;another=parameter#some-fragment";
 
