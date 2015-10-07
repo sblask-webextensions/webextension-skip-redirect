@@ -3,10 +3,10 @@ addons:
     firefox: "38.0"
 install:
     - npm install -g jpm
-    - npm install -g jshint
+    - npm install -g eslint
 before_script:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
 script:
     - jpm --binary /usr/local/bin/firefox test
-    - jshint lib test
+    - eslint index.js lib data test
