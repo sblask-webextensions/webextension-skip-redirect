@@ -4,9 +4,11 @@ addons:
 install:
     - npm install -g jpm
     - npm install -g eslint
+    - npm install -g jscs
 before_script:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
 script:
     - jpm --binary /usr/local/bin/firefox test
     - eslint index.js lib data test
+    - jscs index.js lib data test
