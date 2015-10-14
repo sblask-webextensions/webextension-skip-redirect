@@ -1,9 +1,5 @@
 {
-    "preset": "idiomatic",
-    "esnext": true,
-    "disallowTrailingComma": null,
-    "disallowSpacesInFunctionExpression": null,
-    "requireSpacesInsideBrackets": null,
-    "requireSpacesInsideParentheses": null,
-    "maximumLineLength": null,
+    "preset": "airbnb",
+    "validateQuoteMarks": '"',
+    "validateIndentation": 4,
 }

@@ -73,11 +73,11 @@ exports["test skipping to hex encoded urls"] = function(assert) {
     let noUrlBase64Url = "http://" + "www.some.website.com" + "/" + base64.encode("wwwwwwww");
     assert.equal(url.getRedirectTarget(noUrlBase64Url), noUrlBase64Url);
 
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +               base64.encode(             wwwTargetUrl)),                    "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +               base64.encode(wwwTargetUrl)),                    "http://" +  wwwTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +               base64.encode("http://" + someTargetUrl)),                    "http://" + someTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +               base64.encode("http://" + someTargetUrl) + "#some-fragment"), "http://" + someTargetUrl);
 
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +  base64.encode(             wwwTargetUrl)),                    "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +  base64.encode(wwwTargetUrl)),                    "http://" +  wwwTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +  base64.encode("http://" + someTargetUrl)),                    "http://" + someTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +  base64.encode("http://" + someTargetUrl) + "#some-fragment"), "http://" + someTargetUrl);
 };
