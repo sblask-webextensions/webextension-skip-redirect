@@ -2,9 +2,9 @@ const events = require("sdk/system/events");
 const interfaces = require("chrome").Ci;
 const simplePreferences = require("sdk/simple-prefs");
 
-const ui = require("./ui.js");
-const url = require("./url.js");
-const utils = require("./utils.js");
+const ui = require("./ui");
+const url = require("./url");
+const utils = require("./utils");
 
 ui.makeButton();
 
