@@ -6,8 +6,6 @@ const ui = require("./ui");
 const url = require("./url");
 const utils = require("./utils");
 
-ui.makeButton();
-
 function listener(event) {
     let subject = event.subject;
     subject.QueryInterface(interfaces.nsIHttpChannel);
@@ -33,4 +31,9 @@ function listener(event) {
     subject.redirectTo(utils.makeURI(redirectTarget));
 }
 
-events.on("http-on-opening-request", listener);
+exports.main = function(options) {
+    console.log("Starting up with reason ", options.loadReason);
+
+    ui.makeButton();
+    events.on("http-on-opening-request", listener);
+};
