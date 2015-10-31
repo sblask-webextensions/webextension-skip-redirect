@@ -2,6 +2,7 @@
     "name": "skipredirect",
     "title": "Skip Redirect",
     "id": "skipredirect@sblask",
+    "icon": "resource://skipredirect-at-sblask/data/skip-off.svg",
     "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
     "author": "Sebastian Blask",
     "license": "MIT",
@@ -30,6 +31,5 @@
             "type": "integer",
             "value": 3
         }
-    ],
-    "icon": "data/skip-off-64.png"
+    ]
 }
