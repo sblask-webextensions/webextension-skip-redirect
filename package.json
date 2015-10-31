@@ -6,7 +6,7 @@
     "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
     "author": "Sebastian Blask",
     "license": "MIT",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "homepage": "https://github.com/sblask/firefox-skip-redirect",
     "preferences-branch": "skipredirect",
     "preferences": [
