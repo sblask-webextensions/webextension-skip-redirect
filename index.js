@@ -2,9 +2,9 @@ const events = require("sdk/system/events");
 const interfaces = require("chrome").Ci;
 const simplePreferences = require("sdk/simple-prefs");
 
-const ui = require("./ui");
-const url = require("./url");
-const utils = require("./utils");
+const ui = require("./lib/ui");
+const url = require("./lib/url");
+const utils = require("./lib/utils");
 
 function listener(event) {
     let subject = event.subject;
