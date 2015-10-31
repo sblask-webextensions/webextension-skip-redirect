@@ -2,8 +2,8 @@ language: javascript
 addons:
     firefox: "38.0"
 install:
-    - npm install -g jpm
     - npm install -g eslint
+    - npm install -g jpm
     - npm install -g jscs
 before_script:
     - export DISPLAY=:99.0
