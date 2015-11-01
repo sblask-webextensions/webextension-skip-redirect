@@ -45,8 +45,8 @@ exports["test skipping to urls in query parameter"] = function(assert) {
 };
 
 exports["test recursion"] = function(assert) {
-    let wwwTargetUrlOne =  wwwTargetUrl + "-ONE";
-    let wwwTargetUrlTwo =  wwwTargetUrl + "-TWO";
+    const wwwTargetUrlOne =  wwwTargetUrl + "-ONE";
+    const wwwTargetUrlTwo =  wwwTargetUrl + "-TWO";
     assert.equal(url.getRedirectTarget("http://www.some.website.com/" +                                             wwwTargetUrlOne + "/" +                                       wwwTargetUrlTwo),   "http://" + wwwTargetUrlTwo);
     assert.equal(url.getRedirectTarget("http://www.some.website.com/" +                                 "http://" + wwwTargetUrlOne + "/" +                           "http://" + wwwTargetUrlTwo),   "http://" + wwwTargetUrlTwo);
 
@@ -56,7 +56,7 @@ exports["test recursion"] = function(assert) {
 };
 
 exports["test exceptions to skipping"] = function(assert) {
-    let noRedirectUrls = [
+    const noRedirectUrls = [
         someTargetUrl,
         "http://www.some.website.com/" + wwwTargetUrl.replace("www.", "www"),
         "http://www.some.website.com/" + "login?continue=" + someTargetUrl + "#some-fragment",
@@ -70,7 +70,7 @@ exports["test exceptions to skipping"] = function(assert) {
 };
 
 exports["test skipping to hex encoded urls"] = function(assert) {
-    let noUrlBase64Url = "http://" + "www.some.website.com" + "/" + base64.encode("wwwwwwww");
+    const noUrlBase64Url = "http://" + "www.some.website.com" + "/" + base64.encode("wwwwwwww");
     assert.equal(url.getRedirectTarget(noUrlBase64Url), noUrlBase64Url);
 
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +               base64.encode(wwwTargetUrl)),                    "http://" +  wwwTargetUrl);

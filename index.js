@@ -7,21 +7,21 @@ const url = require("./lib/url");
 const utils = require("./lib/utils");
 
 function listener(event) {
-    let subject = event.subject;
+    const subject = event.subject;
     subject.QueryInterface(interfaces.nsIHttpChannel);
 
-    let isDocumentLoad = subject.loadFlags & subject.LOAD_INITIAL_DOCUMENT_URI;
+    const isDocumentLoad = subject.loadFlags & subject.LOAD_INITIAL_DOCUMENT_URI;
     if (!isDocumentLoad) {
         return;
     }
 
-    let preferences = simplePreferences.prefs;
+    const preferences = simplePreferences.prefs;
     if (!preferences.enabled) {
         return;
     }
 
-    let original = subject.URI.spec;
-    let redirectTarget = url.getRedirectTarget(original);
+    const original = subject.URI.spec;
+    const redirectTarget = url.getRedirectTarget(original);
     if (redirectTarget == original) {
         return;
     }
