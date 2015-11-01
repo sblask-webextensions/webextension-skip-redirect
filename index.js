@@ -37,3 +37,10 @@ exports.main = function(options) {
     ui.makeButton();
     events.on("http-on-opening-request", listener);
 };
+
+exports.onUnload = function(reason) {
+    console.log("Closing down with reason ", reason);
+
+    events.off("http-on-opening-request", listener);
+    ui.destroyButton();
+};
