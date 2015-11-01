@@ -4,7 +4,7 @@
         "indent": [2, 4],
         "linebreak-style": [2, "unix"],
         "no-console": [0],
-        "no-unused-vars": [2, {"args": "all", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}],
+        "no-unused-vars": [2, {"args": "all", "argsIgnorePattern": "^_[^_]", "varsIgnorePattern": "^_[^_]"}],
         "quotes": [2, "double"],
         "semi": [2, "always"],
     },
