@@ -2,13 +2,10 @@ language: javascript
 addons:
     firefox: "38.0"
 install:
-    - npm install -g eslint
-    - npm install -g jpm
-    - npm install -g jscs
+    - npm install
 before_script:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
 script:
-    - jpm --binary /usr/local/bin/firefox test
-    - eslint index.js lib data test
-    - jscs index.js lib data test
+    - npm run test:travis
+    - npm run lint
