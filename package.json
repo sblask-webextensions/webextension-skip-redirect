@@ -1,13 +1,24 @@
 {
-    "name": "skipredirect",
     "title": "Skip Redirect",
+    "name": "skipredirect",
     "id": "skipredirect@sblask",
-    "icon": "resource://skipredirect-at-sblask/data/skip-off.svg",
-    "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
-    "author": "Sebastian Blask",
-    "license": "MIT",
     "version": "1.0.3",
-    "homepage": "https://github.com/sblask/firefox-skip-redirect",
+    "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
+    "main": "index.js",
+    "author": "Sebastian Blask",
+    "engines": {
+        "firefox": ">=38.0a1",
+        "fennec": ">=38.0a1"
+    },
+    "license": "MIT",
+    "icon": "resource://skipredirect-at-sblask/data/skip-off.svg",
+    "homepage": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sblask/firefox-skip-redirect"
+    },
+    "permissions": {
+    },
     "preferences-branch": "skipredirect",
     "preferences": [
         {
