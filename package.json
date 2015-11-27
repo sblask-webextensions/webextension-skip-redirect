@@ -11,6 +11,13 @@
         "fennec": ">=38.0a1"
     },
     "license": "MIT",
+    "keywords": [
+        "jetpack",
+        "link",
+        "redirect",
+        "target",
+        "url"
+    ],
     "icon": "resource://skipredirect-at-sblask/data/skip-off.svg",
     "homepage": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
     "repository": {
