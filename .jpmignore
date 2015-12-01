@@ -1,0 +1,12 @@
+.*
+*
+
+!/data/**
+!/lib/**
+
+!/LICENSE
+!/README.md
+!/bootstrap.js
+!/index.js
+!/install.rdf
+!/package.json
