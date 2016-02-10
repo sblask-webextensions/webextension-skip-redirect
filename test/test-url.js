@@ -12,36 +12,47 @@ const someTargetUrlEncoded = encodeURIComponent(someTargetUrl);
 const someTargetUrlDoubleEncoded = encodeURIComponent(someTargetUrlEncoded);
 
 exports["test skipping to urls in querystring"] = function(assert) {
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http://" +             someTargetUrl),              "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http%3A%2F%2F" +       someTargetUrlEncoded),       "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded), "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http://" +             someTargetUrl),                              "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http%3A%2F%2F" +       someTargetUrlEncoded),                       "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded),                 "http://"  + someTargetUrl);
 
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "?" + "http://" +  someTargetUrl),                         "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("https://" + "www.some.website.com" + "/" + "http://" +  someTargetUrl),                         "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "https://" + someTargetUrl),                         "https://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http://" +  someTargetUrlEncoded),                  "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "http://" +             someTargetUrl).toLowerCase()),              "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "http%3A%2F%2F" +       someTargetUrlEncoded).toLowerCase()),       "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded).toLowerCase()), "http://"  + someTargetUrl);
 
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrl),                         "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrlDoubleEncoded),            "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrlEncoded),                  "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "?" + "http://" +  someTargetUrl),                                         "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("https://" + "www.some.website.com" + "/" + "http://" +  someTargetUrl),                                         "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "https://" + someTargetUrl),                                         "https://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "http://" +  someTargetUrlEncoded),                                  "http://"  + someTargetUrl);
+
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrl),                                         "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrlDoubleEncoded),                            "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" +               wwwTargetUrlEncoded),                                  "http://"  + wwwTargetUrl);
 };
 
 exports["test skipping to urls in query parameter"] = function(assert) {
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl),                            "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?some=parameter"), "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&some=parameter"), "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";some=parameter"), "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#some-fragment"),  "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded),               "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl),                                            "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?some=parameter"),                 "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&some=parameter"),                 "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";some=parameter"),                 "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#some-fragment"),                  "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded),                               "http://" + someTargetUrl);
 
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrlEncoded),                     "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl).toLowerCase()),                            "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?some=parameter").toLowerCase()), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&some=parameter").toLowerCase()), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";some=parameter").toLowerCase()), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#some-fragment").toLowerCase()),  "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://"  + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded).toLowerCase()),               "http://" + someTargetUrl);
 
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrl),                            "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrl +        "?some=parameter"), "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + "&some=parameter"), "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + ";some=parameter"), "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + "#some-fragment"),  "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlDoubleEncoded),               "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrlEncoded),                                     "http://" + someTargetUrl);
+
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrl),                                            "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrl +        "?some=parameter"),                 "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + "&some=parameter"),                 "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + ";some=parameter"),                 "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlEncoded + "#some-fragment"),                  "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                          wwwTargetUrlDoubleEncoded),                               "http://"  + wwwTargetUrl);
 };
 
 exports["test recursion"] = function(assert) {
