@@ -2,7 +2,7 @@
     "title": "Skip Redirect",
     "name": "skipredirect",
     "id": "skipredirect@sblask",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
     "main": "index.js",
     "author": "Sebastian Blask",
