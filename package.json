@@ -17,7 +17,7 @@
         "start:stable": "jpm run",
         "test": "jpm --binary firefox-trunk test",
         "test:stable": "jpm test",
-        "test:travis": "jpm test",
+        "test:travis": "jpm test --verbose",
         "xpi": "jpm xpi"
     },
     "devDependencies": {
