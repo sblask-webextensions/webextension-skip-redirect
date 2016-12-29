@@ -1,6 +1,6 @@
 language: javascript
 addons:
-    firefox: "50.0"
+    firefox: "latest-dev"
 install:
     - npm install
 before_script:
