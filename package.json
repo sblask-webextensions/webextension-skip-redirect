@@ -14,15 +14,15 @@
     "scripts": {
         "lint": "eslint index.js lib data test && jscs index.js lib data test",
         "start": "jpm --binary firefox-trunk run",
-        "start:stable": "jpm --binary /usr/bin/firefox run",
+        "start:stable": "jpm run",
         "test": "jpm --binary firefox-trunk test",
-        "test:stable": "jpm --binary /usr/bin/firefox test",
-        "test:travis": "jpm --binary /usr/local/bin/firefox test",
+        "test:stable": "jpm test",
+        "test:travis": "jpm test",
         "xpi": "jpm xpi"
     },
     "devDependencies": {
         "eslint": "1.10.x",
-        "jpm": "1.0.x",
+        "jpm": "1.2.x",
         "jscs": "2.6.x"
     },
     "keywords": [
