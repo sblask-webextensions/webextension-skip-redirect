@@ -1,16 +1,60 @@
 {
-    "title": "Skip Redirect",
-    "name": "skipredirect",
-    "id": "skipredirect@sblask",
-    "version": "1.0.7",
-    "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
-    "main": "index.js",
     "author": "Sebastian Blask",
-    "engines": {
-        "firefox": ">=38.0a1",
-        "fennec": ">=38.0a1"
+    "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
+    "devDependencies": {
+        "eslint": "1.10.x",
+        "jpm": "1.2.x",
+        "jscs": "2.6.x"
     },
+    "engines": {
+        "fennec": ">=38.0a1",
+        "firefox": ">=38.0a1"
+    },
+    "homepage": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
+    "icon": "resource://skipredirect-at-sblask/data/skip-off.svg",
+    "id": "skipredirect@sblask",
+    "keywords": [
+        "jetpack",
+        "link",
+        "redirect",
+        "target",
+        "url"
+    ],
     "license": "MIT",
+    "main": "index.js",
+    "name": "skipredirect",
+    "permissions": {
+        "multiprocess": true,
+        "private-browsing": true
+    },
+    "preferences": [
+        {
+            "description": "You can also use the toolbar button to quickly enable/disable skipping redirects",
+            "name": "enabled",
+            "title": "Enabled",
+            "type": "bool",
+            "value": true
+        },
+        {
+            "description": "No skipping is done on pages whose url contains one of the words in this list(separate words by | or use a regular expression)",
+            "name": "exceptions",
+            "title": "Exceptions",
+            "type": "string",
+            "value": ""
+        },
+        {
+            "description": "The toolbar icon will show a little indicator for this many seconds after a redirect was skipped",
+            "name": "indicationDuration",
+            "title": "Indicate skip for",
+            "type": "integer",
+            "value": 3
+        }
+    ],
+    "preferences-branch": "skipredirect",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sblask/firefox-skip-redirect"
+    },
     "scripts": {
         "lint": "eslint index.js lib data test && jscs index.js lib data test",
         "start": "jpm --binary firefox-trunk run",
@@ -20,50 +64,6 @@
         "test:travis": "jpm test --verbose",
         "xpi": "jpm xpi"
     },
-    "devDependencies": {
-        "eslint": "1.10.x",
-        "jpm": "1.2.x",
-        "jscs": "2.6.x"
-    },
-    "keywords": [
-        "jetpack",
-        "link",
-        "redirect",
-        "target",
-        "url"
-    ],
-    "icon": "resource://skipredirect-at-sblask/data/skip-off.svg",
-    "homepage": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sblask/firefox-skip-redirect"
-    },
-    "permissions": {
-        "multiprocess": true,
-        "private-browsing": true
-    },
-    "preferences-branch": "skipredirect",
-    "preferences": [
-        {
-            "name": "enabled",
-            "title": "Enabled",
-            "description": "You can also use the toolbar button to quickly enable/disable skipping redirects",
-            "type": "bool",
-            "value": true
-        },
-        {
-            "name": "exceptions",
-            "title": "Exceptions",
-            "description": "No skipping is done on pages whose url contains one of the words in this list(separate words by | or use a regular expression)",
-            "type": "string",
-            "value": ""
-        },
-        {
-            "name": "indicationDuration",
-            "title": "Indicate skip for",
-            "description": "The toolbar icon will show a little indicator for this many seconds after a redirect was skipped",
-            "type": "integer",
-            "value": 3
-        }
-    ]
+    "title": "Skip Redirect",
+    "version": "1.0.7"
 }
