@@ -3,6 +3,7 @@
 
 !/data/**
 !/lib/**
+!/webextension/**
 
 !/LICENSE
 !/README.md

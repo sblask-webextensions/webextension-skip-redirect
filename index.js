@@ -5,6 +5,9 @@ const simplePreferences = require("sdk/simple-prefs");
 const ui = require("./lib/ui");
 const url = require("./lib/url");
 const utils = require("./lib/utils");
+const webExtension = require("sdk/webextension");
+
+webExtension.startup();
 
 function listener(event) {
     const subject = event.subject;

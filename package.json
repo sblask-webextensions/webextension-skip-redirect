@@ -3,13 +3,14 @@
     "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
     "devDependencies": {
         "eslint": "1.10.x",
-        "jpm": "1.2.x",
+        "jpm": "1.3.x",
         "jscs": "2.6.x"
     },
     "engines": {
         "fennec": ">=38.0a1",
         "firefox": ">=38.0a1"
     },
+    "hasEmbeddedWebExtension": true,
     "homepage": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
     "icon": "resource://skipredirect-at-sblask/data/skip-off.svg",
     "id": "skipredirect@sblask",
@@ -65,5 +66,5 @@
         "xpi": "jpm xpi"
     },
     "title": "Skip Redirect",
-    "version": "1.0.7"
+    "version": "2.0.0b"
 }
