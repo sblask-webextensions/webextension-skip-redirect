@@ -2,4 +2,7 @@
     "preset": "airbnb",
     "validateQuoteMarks": '"',
     "validateIndentation": 4,
+    "excludeFiles": [
+        "webextension/base64.js",
+    ],
 }

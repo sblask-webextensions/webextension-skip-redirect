@@ -31,6 +31,7 @@
     "preferences": [
         {
             "description": "You can also use the toolbar button to quickly enable/disable skipping redirects",
+            "hidden": true,
             "name": "enabled",
             "title": "Enabled",
             "type": "bool",
@@ -38,6 +39,7 @@
         },
         {
             "description": "No skipping is done on pages whose url contains one of the words in this list(separate words by | or use a regular expression)",
+            "hidden": true,
             "name": "exceptions",
             "title": "Exceptions",
             "type": "string",
@@ -45,6 +47,7 @@
         },
         {
             "description": "The toolbar icon will show a little indicator for this many seconds after a redirect was skipped",
+            "hidden": true,
             "name": "indicationDuration",
             "title": "Indicate skip for",
             "type": "integer",
@@ -57,7 +60,7 @@
         "url": "https://github.com/sblask/firefox-skip-redirect"
     },
     "scripts": {
-        "lint": "eslint index.js lib data test && jscs index.js lib data test",
+        "lint": "eslint index.js webextension && jscs index.js webextension",
         "start": "jpm --binary firefox-trunk run",
         "start:stable": "jpm run",
         "test": "jpm --binary firefox-trunk test",
