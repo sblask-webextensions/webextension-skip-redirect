@@ -11,6 +11,8 @@ const ICON_OFF       = "icon-off.svg";
 const ICON_BLACKLIST = "icon-blacklist.svg";
 const ICON_WHITELIST = "icon-whitelist.svg";
 
+const MAX_NOTIFICATION_URL_LENGTH = 100;
+
 const GLOBAL_BLACKLIST = [
     "/abp",
     "/account",
@@ -153,6 +155,14 @@ function notifySkip(from, to) {
         type: "basic",
         iconUrl: browser.extension.getURL(ICON),
         title: "Skipped Redirect",
-        message: from + "\n->\n" + to,
+        message: cleanUrl(from) + "\n->\n" + cleanUrl(to),
     });
+}
+
+function cleanUrl(string) {
+    if (string.length > MAX_NOTIFICATION_URL_LENGTH) {
+        string = string.substring(0, MAX_NOTIFICATION_URL_LENGTH - 3) + "...";
+    }
+
+    return string.replace(/&/g, "&amp;");
 }
