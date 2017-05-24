@@ -33,7 +33,6 @@ let blacklist = [];
 
 browser.runtime.sendMessage("get-simple-preferences").then(reply => {
     if (reply) {
-        console.log("response from legacy add-on: ", reply);
         browser.storage.local.get([MODE, BLACKLIST])
             .then(
                 (result) => {
@@ -52,7 +51,7 @@ browser.runtime.sendMessage("get-simple-preferences").then(reply => {
                     if (result[BLACKLIST] === undefined) {
                         browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST.concat(reply.blacklist.split("|"))});
                     } else {
-                        blacklist = result[BLACKLIST];
+                        updateBlacklist(result[BLACKLIST]);
                     }
                 }
             );
@@ -70,10 +69,14 @@ browser.storage.onChanged.addListener(
         }
 
         if (changes[BLACKLIST]) {
-            blacklist = changes[BLACKLIST].newValue;
+            updateBlacklist(changes[BLACKLIST].newValue);
         }
     }
 );
+
+function updateBlacklist(newBlacklist) {
+    blacklist = newBlacklist.filter(Boolean);
+}
 
 function enableSkipping() {
     browser.webRequest.onBeforeRequest.addListener(
