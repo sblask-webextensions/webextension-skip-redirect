@@ -4,10 +4,12 @@ const MODE_OFF = "off";
 const MODE_BLACKLIST = "blacklist";
 
 const BLACKLIST = "blacklist";
+const WHITELIST = "whitelist";
 
 const ICON           = "icon.svg";
 const ICON_OFF       = "icon-off.svg";
 const ICON_BLACKLIST = "icon-blacklist.svg";
+const ICON_WHITELIST = "icon-whitelist.svg";
 
 const GLOBAL_BLACKLIST = [
     "/abp",
@@ -29,13 +31,27 @@ const GLOBAL_BLACKLIST = [
     "/verification",
 ];
 
+let currentMode = undefined;
 let blacklist = [];
+let whitelist = [];
 
 browser.runtime.sendMessage("get-simple-preferences").then(reply => {
     if (reply) {
-        browser.storage.local.get([MODE, BLACKLIST])
+        browser.storage.local.get([MODE, BLACKLIST, WHITELIST])
             .then(
                 (result) => {
+                    if (result[BLACKLIST] === undefined) {
+                        browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST.concat(reply.blacklist.split("|"))});
+                    } else {
+                        updateBlacklist(result[BLACKLIST]);
+                    }
+
+                    if (result[WHITELIST] === undefined) {
+                        browser.storage.local.set({[WHITELIST]: []});
+                    } else {
+                        updateWhitelist(result[WHITELIST]);
+                    }
+
                     if (result[MODE] === undefined) {
                         if (reply.enabled) {
                             browser.storage.local.set({[MODE]: MODE_BLACKLIST});
@@ -45,13 +61,7 @@ browser.runtime.sendMessage("get-simple-preferences").then(reply => {
                     } else if (result[MODE] === MODE_OFF) {
                         disableSkipping();
                     } else {
-                        enableSkipping();
-                    }
-
-                    if (result[BLACKLIST] === undefined) {
-                        browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST.concat(reply.blacklist.split("|"))});
-                    } else {
-                        updateBlacklist(result[BLACKLIST]);
+                        enableSkipping(result[MODE]);
                     }
                 }
             );
@@ -60,16 +70,21 @@ browser.runtime.sendMessage("get-simple-preferences").then(reply => {
 
 browser.storage.onChanged.addListener(
     (changes) => {
+        console.log(changes);
+        if (changes[BLACKLIST]) {
+            updateBlacklist(changes[BLACKLIST].newValue);
+        }
+
+        if (changes[WHITELIST]) {
+            updateWhitelist(changes[WHITELIST].newValue);
+        }
+
         if (changes[MODE]) {
             if (changes[MODE].newValue === MODE_OFF) {
                 disableSkipping();
             } else {
-                enableSkipping();
+                enableSkipping(changes[MODE].newValue);
             }
-        }
-
-        if (changes[BLACKLIST]) {
-            updateBlacklist(changes[BLACKLIST].newValue);
         }
     }
 );
@@ -78,14 +93,30 @@ function updateBlacklist(newBlacklist) {
     blacklist = newBlacklist.filter(Boolean);
 }
 
-function enableSkipping() {
-    browser.webRequest.onBeforeRequest.addListener(
-        maybeRedirect,
-        {urls: ["<all_urls>"], types: ["main_frame"]},
-        ["blocking"]
-    );
+function updateWhitelist(newWhitelist) {
+    whitelist = newWhitelist.filter(Boolean);
+}
 
-    browser.browserAction.setIcon({path: ICON_BLACKLIST});
+function enableSkipping(mode) {
+    browser.webRequest.onBeforeRequest.removeListener(maybeRedirect);
+
+    currentMode = mode;
+    if (mode === MODE_BLACKLIST) {
+        browser.webRequest.onBeforeRequest.addListener(
+            maybeRedirect,
+            {urls: ["<all_urls>"], types: ["main_frame"]},
+            ["blocking"]
+        );
+        browser.browserAction.setIcon({path: ICON_BLACKLIST});
+    } else {
+        browser.webRequest.onBeforeRequest.addListener(
+            maybeRedirect,
+            {urls: whitelist, types: ["main_frame"]},
+            ["blocking"]
+        );
+        browser.browserAction.setIcon({path: ICON_WHITELIST});
+    }
+
     browser.browserAction.setTitle({title: "Skip Redirect is enabled, click to disable"});
 }
 
@@ -101,7 +132,7 @@ function maybeRedirect(requestDetails) {
         return;
     }
 
-    if (new RegExp("(" + blacklist.join("|") + ")").test(requestDetails.url)) {
+    if (currentMode === MODE_BLACKLIST && new RegExp("(" + blacklist.join("|") + ")").test(requestDetails.url)) {
         return;
     }
 

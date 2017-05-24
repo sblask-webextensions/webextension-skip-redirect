@@ -45,8 +45,14 @@ textarea {
     padding: 8px 2px;
     text-align: left;
 }
+.wrapper .container {
+    width: 80%;
+}
 .option {
     width: 80%;
+}
+.container .option {
+    width: 100%;
 }
 fieldset fieldset {
     width: 80%;
