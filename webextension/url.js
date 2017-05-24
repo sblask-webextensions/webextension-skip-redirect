@@ -1,5 +1,9 @@
 /* global base64 */
-const url = (function() { //  eslint-disable-line no-unused-vars
+const url = (function(root) { //  eslint-disable-line no-unused-vars
+
+    if (typeof base64 === "undefined") {
+        base64 = require("./base64"); //  eslint-disable-line no-global-assign,no-unused-vars
+    }
 
     const PROTOCOLS = [
         "ftp",
@@ -100,8 +104,10 @@ const url = (function() { //  eslint-disable-line no-unused-vars
         return url;
     }
 
+    root.getRedirectTarget = getRedirectTarget;
+
     return {
         getRedirectTarget: getRedirectTarget,
     };
 
-})();
+})(this);
