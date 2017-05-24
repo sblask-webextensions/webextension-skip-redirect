@@ -31,24 +31,33 @@ const GLOBAL_BLACKLIST = [
 
 let blacklist = [];
 
-browser.storage.local.get([MODE, BLACKLIST])
-    .then(
-        (result) => {
-            if (result[MODE] === undefined) {
-                browser.storage.local.set({[MODE]: MODE_BLACKLIST});
-            } else if (result[MODE] === MODE_OFF) {
-                disableSkipping();
-            } else {
-                enableSkipping();
-            }
+browser.runtime.sendMessage("get-simple-preferences").then(reply => {
+    if (reply) {
+        console.log("response from legacy add-on: ", reply);
+        browser.storage.local.get([MODE, BLACKLIST])
+            .then(
+                (result) => {
+                    if (result[MODE] === undefined) {
+                        if (reply.enabled) {
+                            browser.storage.local.set({[MODE]: MODE_BLACKLIST});
+                        } else {
+                            disableSkipping();
+                        }
+                    } else if (result[MODE] === MODE_OFF) {
+                        disableSkipping();
+                    } else {
+                        enableSkipping();
+                    }
 
-            if (result[BLACKLIST] === undefined) {
-                browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST});
-            } else {
-                blacklist = result[BLACKLIST];
-            }
-        }
-    );
+                    if (result[BLACKLIST] === undefined) {
+                        browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST.concat(reply.blacklist.split("|"))});
+                    } else {
+                        blacklist = result[BLACKLIST];
+                    }
+                }
+            );
+    }
+});
 
 browser.storage.onChanged.addListener(
     (changes) => {
