@@ -14,7 +14,7 @@
         ]
     },
     "browser_action": {
-        "browser_style": true,
+        "browser_style": false,
         "default_icon": "icon.svg",
         "default_popup": "options/options.html",
         "default_title": "Skip Redirect"
