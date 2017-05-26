@@ -35,19 +35,22 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
     const possibleBase64PrefixesDecoded = comprehend(PROTOCOLS, protocol =>                protocol + "://")              .concat("www\\.");
     const possibleBase64PrefixesString = "(?:" + possibleBase64Prefixes.join("|") + ")";
 
+    const base64JunkPrefix = "(?:[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/]+\\.)?";
+    const validBase64 =         "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/]+";
+
     // the slice above is required in case there is padding, that's why a test on
     // the decoded string is needed
     const base64CheckRegexp = new RegExp("^(?:" + possibleBase64PrefixesDecoded.join("|") + ")", "i");
 
-    const pathRegexpPlainProtocol   = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" + "(" + possibleColonPrefixesString         + ".*$"                                                                 + ")", "i");
-    const pathRegexpEncodedProtocol = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" + "(" + possibleEncodedColonPrefixesString  + "[^?&;#]*"                                                            + ")", "i");
-    const pathRegexpBase64Protocol  = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" + "(" + possibleBase64PrefixesString        + "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/]+" + ")", "i");
+    const pathRegexpPlainProtocol   = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" +                    "(" + possibleColonPrefixesString         + ".*$"       + ")", "i");
+    const pathRegexpEncodedProtocol = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" +                    "(" + possibleEncodedColonPrefixesString  + "[^?&;#]*"  + ")", "i");
+    const pathRegexpBase64Protocol  = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" + base64JunkPrefix + "(" + possibleBase64PrefixesString        + validBase64 + ")", "i");
 
     // the first alternative in the group is for the case that there are several ?
     // in the url and thus encoding is incomplete - it just picks everything from
     // there to the end or the next ?
-    const queryRegexpPlainProtocol  = new RegExp("https?://.*" +         "=" + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]*[?][^?]*|[^?&;#]*)" +                                       ")", "i");
-    const queryRegexpBase64Protocol = new RegExp("https?://.*" +         "=" + "(" + possibleBase64PrefixesString + "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/]+" + ")", "i");
+    const queryRegexpPlainProtocol  = new RegExp("https?://.*" +         "=" + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]*[?][^?]*|[^?&;#]*)"              + ")", "i");
+    const queryRegexpBase64Protocol = new RegExp("https?://.*" +         "=" + "(" + possibleBase64PrefixesString + validBase64                                  + ")", "i");
 
     // %
     const percentRegExp = new RegExp("%25", "i");
