@@ -95,10 +95,14 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
         }
     }
 
-    function getRedirectTarget(url) {
+    function getRedirectTarget(url, exceptions) {
+        if (exceptions.length > 0 && new RegExp("(" + exceptions.join("|") + ")").test(url)) {
+            return url;
+        }
+
         const extractedUrl = getPlainMatches(url) || getBase64Matches(url);
         if (extractedUrl) {
-            return getRedirectTarget(maybeDecode(extractedUrl));
+            return getRedirectTarget(maybeDecode(extractedUrl), exceptions);
         }
 
         return url;

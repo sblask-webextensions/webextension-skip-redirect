@@ -134,11 +134,12 @@ function maybeRedirect(requestDetails) {
         return;
     }
 
-    if (currentMode === MODE_BLACKLIST && new RegExp("(" + blacklist.join("|") + ")").test(requestDetails.url)) {
-        return;
+    let exceptions = [];
+    if (currentMode === MODE_BLACKLIST) {
+        exceptions = blacklist;
     }
 
-    const redirectTarget = url.getRedirectTarget(requestDetails.url);
+    const redirectTarget = url.getRedirectTarget(requestDetails.url, exceptions);
     if (redirectTarget == requestDetails.url) {
         return;
     }
