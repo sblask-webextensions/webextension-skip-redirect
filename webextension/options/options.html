@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="./options.css">
+    </head>
+
+    <body>
+        <form>
+            <fieldset>
+                <legend>Options</legend>
+                <div class="wrapper">
+                    <label for="mode">Mode</label>
+                    <fieldset id="mode">
+                        <div class="wrapper">
+                            <input type="radio" name="mode" id="modeOff" value="off">
+                            <label class="radio" for="modeOff">Off</label>
+                        </div>
+                        <div class="wrapper">
+                            <input type="radio" name="mode" id="modeBlacklist"value="blacklist">
+                            <label class="radio" for="modeBlacklist">
+                                Skip all redirects except for URLs matching any
+                                line in the blacklist. You may use regular
+                                expressions.
+                            </label>
+                        </div>
+                        <div class="wrapper">
+                            <input type="radio" name="mode" id="modeWhitelist"value="whitelist">
+                            <label class="radio" for="modeWhitelist">
+                                Skip redirects only for URLs matching any of
+                                the lines in the whitelist.
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="wrapper">
+                    <label for="blacklist">Blacklist</label>
+                    <textarea id="blacklist" class="option"></textarea>
+                </div>
+                <div class="wrapper">
+                    <label for="whitelist">Whitelist</label>
+                    <div class="container">
+                        <textarea id="whitelist" class="option"></textarea>
+                        <div>
+                            Each line in the whitelist needs to follow this pattern:
+                            https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Save">
+            </fieldset>
+        </form>
+        <script src="./options.js"></script>
+    </body>
+
+</html>

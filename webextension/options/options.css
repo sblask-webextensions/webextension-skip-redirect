@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+fieldset {
+    border: 1px solid;
+    padding: 30px;
+    text-align: center;
+}
+label {
+    float: left;
+    line-height: 24px;
+    min-height: 24px;
+    padding-right: 1%;
+    text-align: right;
+    width: 20%;
+    vertical-align: top;
+}
+input[type=checkbox] {
+    margin: 1px 0 0;
+}
+input[type=radio] {
+    float: left;
+}
+input[type=submit] {
+    margin-top: 15px;
+}
+input:not([type=submit]) {
+    height: 24px;
+}
+textarea {
+    height: 150px;
+    padding: 3px;
+}
+.wrapper {
+    align-items: center;
+    clear: both;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding: 8px 2px;
+    text-align: left;
+}
+.wrapper .container {
+    width: 80%;
+}
+.option {
+    width: 80%;
+}
+.container .option {
+    width: 100%;
+}
+fieldset fieldset {
+    width: 80%;
+    border-color: #DDDDDD;
+}
+fieldset fieldset label {
+    width: 25%;
+}
+fieldset fieldset label.radio {
+    text-align: left;
+    width: auto;
+}
+fieldset fieldset .option {
+    width: 75%;
+}
