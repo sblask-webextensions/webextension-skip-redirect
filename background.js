@@ -37,42 +37,33 @@ let currentMode = undefined;
 let blacklist = [];
 let whitelist = [];
 
-browser.runtime.sendMessage("get-simple-preferences").then(reply => {
-    if (reply) {
-        browser.storage.local.get([MODE, BLACKLIST, WHITELIST])
-            .then(
-                (result) => {
-                    if (result[BLACKLIST] === undefined) {
-                        browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST.concat(reply.blacklist.split("|"))});
-                    } else {
-                        updateBlacklist(result[BLACKLIST]);
-                    }
+browser.storage.local.get([MODE, BLACKLIST, WHITELIST])
+    .then(
+        (result) => {
+            if (result[BLACKLIST] === undefined) {
+                browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST});
+            } else {
+                updateBlacklist(result[BLACKLIST]);
+            }
 
-                    if (result[WHITELIST] === undefined) {
-                        browser.storage.local.set({[WHITELIST]: []});
-                    } else {
-                        updateWhitelist(result[WHITELIST]);
-                    }
+            if (result[WHITELIST] === undefined) {
+                browser.storage.local.set({[WHITELIST]: []});
+            } else {
+                updateWhitelist(result[WHITELIST]);
+            }
 
-                    if (result[MODE] === undefined) {
-                        if (reply.enabled) {
-                            browser.storage.local.set({[MODE]: MODE_BLACKLIST});
-                        } else {
-                            disableSkipping();
-                        }
-                    } else if (result[MODE] === MODE_OFF) {
-                        disableSkipping();
-                    } else {
-                        enableSkipping(result[MODE]);
-                    }
-                }
-            );
-    }
-});
+            if (result[MODE] === undefined) {
+                browser.storage.local.set({[MODE]: MODE_BLACKLIST});
+            } else if (result[MODE] === MODE_OFF) {
+                disableSkipping();
+            } else {
+                enableSkipping(result[MODE]);
+            }
+        }
+    );
 
 browser.storage.onChanged.addListener(
     (changes) => {
-        console.log(changes);
         if (changes[BLACKLIST]) {
             updateBlacklist(changes[BLACKLIST].newValue);
         }

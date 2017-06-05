@@ -8,6 +8,7 @@
     "author": "Sebastian Blask",
     "background": {
         "scripts": [
+            "browser-polyfill.js",
             "base64.js",
             "url.js",
             "background.js"
@@ -21,6 +22,13 @@
     },
     "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
     "homepage_url": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
+    "icons": {
+        "128": "icon-128x128.png",
+        "16": "icon-16x16.png",
+        "32": "icon-32x32.png",
+        "48": "icon-48x48.png",
+        "64": "icon-64x64.png"
+    },
     "manifest_version": 2,
     "name": "Skip Redirect",
     "options_ui": {

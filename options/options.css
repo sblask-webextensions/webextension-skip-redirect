@@ -3,6 +3,7 @@
 }
 body {
     margin: 0;
+    min-width: 600px;
     padding: 10px;
     text-align: center;
 }
@@ -63,7 +64,7 @@ fieldset fieldset label {
 }
 fieldset fieldset label.radio {
     text-align: left;
-    width: auto;
+    width: 85%;
 }
 fieldset fieldset .option {
     width: 75%;
