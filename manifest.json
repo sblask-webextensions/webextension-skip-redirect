@@ -20,7 +20,7 @@
         "default_popup": "options/options.html",
         "default_title": "Skip Redirect"
     },
-    "description": "Some web pages use intermediary pages before redirecting to a final page. This add-on tries to extract the final url from the intermediary url and goes there straight away if successful.",
+    "description": "Skip intermediary pages that some pages use before redirecting to a final page.",
     "homepage_url": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
     "icons": {
         "128": "icon-128x128.png",
