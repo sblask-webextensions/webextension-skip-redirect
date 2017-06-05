@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/sblask/firefox-skip-redirect.svg?branch=master)](https://travis-ci.org/sblask/firefox-skip-redirect)
 
-firefox-skip-redirect
+Skip Redirect
 =====================
 Some web pages use intermediary pages before redirecting to a final page. This
-add-on tries to extract the final url from the intermediary url and goes there
-straight away if successful. As an example, try this url:
+webextension tries to extract the final url from the intermediary url and goes
+there straight away if successful. As an example, try this url:
 
  - www.google.com/chrome/?i-would-rather-use-firefox=http%3A%2F%2Fwww.mozilla.org/
 

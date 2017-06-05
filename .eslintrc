@@ -9,25 +9,29 @@
     "extends": "eslint:recommended",
     "rules": {
         "comma-dangle": [
-            2,
+            "error",
             "always-multiline"
         ],
         "indent": [
-            2,
+            "error",
             4,
             {
                 "SwitchCase": 1
             }
         ],
         "linebreak-style": [
-            2,
+            "error",
             "unix"
         ],
         "no-console": [
-            0
+            "off"
+        ],
+        "no-restricted-syntax": [
+            "error",
+            "ForInStatement"
         ],
         "no-unused-vars": [
-            2,
+            "error",
             {
                 "args": "all",
                 "argsIgnorePattern": "^_[^_]",
@@ -35,11 +39,11 @@
             }
         ],
         "quotes": [
-            2,
+            "warn",
             "double"
         ],
         "semi": [
-            2,
+            "warn",
             "always"
         ]
     }
