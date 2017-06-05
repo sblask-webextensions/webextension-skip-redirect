@@ -102,11 +102,14 @@ function enableSkipping(mode) {
         );
         browser.browserAction.setIcon({path: ICON_BLACKLIST});
     } else {
-        browser.webRequest.onBeforeRequest.addListener(
-            maybeRedirect,
-            {urls: whitelist, types: ["main_frame"]},
-            ["blocking"]
-        );
+        if (whitelist.length > 0) {
+            browser.webRequest.onBeforeRequest.addListener(
+                maybeRedirect,
+                {urls: whitelist, types: ["main_frame"]},
+                ["blocking"]
+            );
+        }
+
         browser.browserAction.setIcon({path: ICON_WHITELIST});
     }
 
