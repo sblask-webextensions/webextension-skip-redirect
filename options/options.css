@@ -1,71 +1,44 @@
 * {
     box-sizing: border-box;
+    margin: 0;
 }
 body {
-    margin: 0;
-    min-width: 600px;
     padding: 10px;
-    text-align: center;
 }
 fieldset {
     border: 1px solid;
-    padding: 30px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    width: 100%;
 }
-label {
-    float: left;
-    line-height: 24px;
-    min-height: 24px;
-    padding-right: 1%;
-    text-align: right;
-    width: 20%;
-    vertical-align: top;
+form > fieldset > *:nth-child(even) {
+    margin-top: 20px;
 }
-input[type=checkbox] {
-    margin: 1px 0 0;
+fieldset fieldset {
+    border-color: #DDDDDD;
 }
-input[type=radio] {
-    float: left;
+fieldset fieldset label,
+fieldset fieldset .box-wrapper {
+    margin-top: 10px;
 }
-input[type=submit] {
-    margin-top: 15px;
-}
-input:not([type=submit]) {
-    height: 24px;
+input[type=text],
+input[type=number] {
+    width: 100%;
 }
 textarea {
     height: 150px;
     padding: 3px;
-}
-.wrapper {
-    align-items: center;
-    clear: both;
-    display: flex;
-    flex-direction: row;
-    height: auto;
-    padding: 8px 2px;
-    text-align: left;
-}
-.wrapper .container {
-    width: 80%;
-}
-.option {
-    width: 80%;
-}
-.container .option {
     width: 100%;
 }
-fieldset fieldset {
-    width: 80%;
-    border-color: #DDDDDD;
+.box-wrapper {
+    line-height: 30px;
+    margin-top: 5px;
 }
-fieldset fieldset label {
-    width: 25%;
+.box-wrapper > label {
+    display: block;
+    margin: -30px 0 0 25px;
 }
-fieldset fieldset label.radio {
-    text-align: left;
-    width: 85%;
-}
-fieldset fieldset .option {
-    width: 75%;
+.controls {
+    text-align: center;
 }
