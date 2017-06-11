@@ -30,7 +30,7 @@
         "release": "VERSION=$(jq --raw-output '.version' manifest.json); hub release create $(for file in *$VERSION*.zip; do echo \" -a ${file} \"; done) -m $VERSION $VERSION",
         "start": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox-trunk",
         "start:stable": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox",
-        "test": "web-ext lint"
+        "test": "web-ext lint && tape $(find . -not -path '*node_modules*' -name 'test-*.js')"
     },
     "title": "Skip Redirect",
     "version": "2.1.2"
