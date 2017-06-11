@@ -130,6 +130,7 @@ test("base64 encoded URLs - no valid URL", function(assert) {
 
 test("base64 encoded URLs - in path", function(assert) {
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode(wwwTargetUrl), []),                                     "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode(wwwTargetUrl + "\n" + someTargetUrl), []),              "http://" +  wwwTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode("http://" + someTargetUrl), []),                        "http://" + someTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode("http://" + someTargetUrl) + "#some-fragment", []),     "http://" + someTargetUrl);
     assert.end();
@@ -137,6 +138,7 @@ test("base64 encoded URLs - in path", function(assert) {
 
 test("base64 encoded URLs - in path with junk in front of it", function(assert) {
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode(wwwTargetUrl), []),                                     "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode(wwwTargetUrl + "\n" + someTargetUrl), []),              "http://" +  wwwTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode("http://" + someTargetUrl), []),                        "http://" + someTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode("http://" + someTargetUrl) + "#some-fragment", []),     "http://" + someTargetUrl);
     assert.end();
@@ -144,6 +146,7 @@ test("base64 encoded URLs - in path with junk in front of it", function(assert) 
 
 test("base64 encoded URLs - in query string value", function(assert) {
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode(wwwTargetUrl), []),                                     "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode(wwwTargetUrl + "\n" + someTargetUrl), []),              "http://" +  wwwTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode("http://" + someTargetUrl), []),                        "http://" + someTargetUrl);
     assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode("http://" + someTargetUrl, []) + "#some-fragment", []), "http://" + someTargetUrl);
     assert.end();

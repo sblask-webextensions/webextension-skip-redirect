@@ -91,7 +91,7 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
             url.match(queryRegexpBase64Protocol, "i") ||
             undefined;
         if (matches) {
-            const decodedMatch = base64.decode(matches[1]);
+            const decodedMatch = base64.decode(matches[1]).split("\n")[0];
             if (base64CheckRegexp.test(decodedMatch, "i")) {
                 return decodedMatch;
             }
