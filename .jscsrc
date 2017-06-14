@@ -1,8 +1,6 @@
 {
     "preset": "airbnb",
-    "requirePaddingNewLinesAfterBlocks": {
-        "allExcept": ["inArrayExpressions"],
-    },
+    "requirePaddingNewLinesAfterBlocks": false,
     "requirePaddingNewLinesBeforeLineComments": false,
     "validateQuoteMarks": '"',
     "validateIndentation": 4,
