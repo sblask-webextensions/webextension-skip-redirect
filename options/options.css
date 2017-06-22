@@ -6,7 +6,7 @@ body {
     min-width: 400px;
     padding: 10px;
 }
-fieldset {
+form > fieldset {
     border: 1px solid;
     display: flex;
     flex-direction: column;
@@ -14,31 +14,34 @@ fieldset {
     width: 100%;
 }
 form > fieldset > *:nth-child(even) {
-    margin-top: 20px;
-}
-fieldset fieldset {
-    border-color: #DDDDDD;
-}
-fieldset fieldset label,
-fieldset fieldset .box-wrapper {
     margin-top: 10px;
+}
+form > fieldset > fieldset {
+    border-color: #DDDDDD;
 }
 input[type=text],
 input[type=number] {
     width: 100%;
+}
+input[type=checkbox],
+input[type=radio] {
+    display: inline-block;
 }
 textarea {
     height: 150px;
     padding: 3px;
     width: 100%;
 }
+.wrapper,
 .box-wrapper {
-    line-height: 30px;
     margin-top: 5px;
+}
+.box-wrapper {
+    line-height: 20px;
 }
 .box-wrapper > label {
     display: block;
-    margin: -30px 0 0 25px;
+    margin: -20px 0 0 25px;
 }
 .controls {
     text-align: center;
