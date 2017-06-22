@@ -6,6 +6,9 @@ const MODE_BLACKLIST = "blacklist";
 const BLACKLIST = "blacklist";
 const WHITELIST = "whitelist";
 
+const NOTIFICATION_ID = "notify-skip";
+const NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
+
 const ICON           = "icon.svg";
 const ICON_OFF       = "icon-off.svg";
 const ICON_BLACKLIST = "icon-blacklist.svg";
@@ -37,7 +40,14 @@ let currentMode = undefined;
 let blacklist = [];
 let whitelist = [];
 
-browser.storage.local.get([MODE, BLACKLIST, WHITELIST])
+let notificationPopupEnabled = true;
+
+browser.storage.local.get([
+    MODE,
+    BLACKLIST,
+    WHITELIST,
+    NOTIFICATION_POPUP_ENABLED,
+])
     .then(
         (result) => {
             if (result[BLACKLIST] === undefined) {
@@ -59,6 +69,13 @@ browser.storage.local.get([MODE, BLACKLIST, WHITELIST])
             } else {
                 enableSkipping(result[MODE]);
             }
+
+            if (result[NOTIFICATION_POPUP_ENABLED] === undefined) {
+                browser.storage.local.set({[NOTIFICATION_POPUP_ENABLED]: true});
+            } else {
+                notificationPopupEnabled = result[NOTIFICATION_POPUP_ENABLED];
+            }
+
         }
     );
 
@@ -78,6 +95,10 @@ browser.storage.onChanged.addListener(
             } else {
                 enableSkipping(changes[MODE].newValue);
             }
+        }
+
+        if (changes[NOTIFICATION_POPUP_ENABLED]) {
+            notificationPopupEnabled = changes[NOTIFICATION_POPUP_ENABLED].newValue;
         }
     }
 );
@@ -146,12 +167,14 @@ function maybeRedirect(requestDetails) {
 }
 
 function notifySkip(from, to) {
-    browser.notifications.create("notify-skip", {
-        type: "basic",
-        iconUrl: browser.extension.getURL(ICON),
-        title: "Skipped Redirect",
-        message: cleanUrl(from) + "\n->\n" + cleanUrl(to),
-    });
+    if (notificationPopupEnabled) {
+        browser.notifications.create(NOTIFICATION_ID, {
+            type: "basic",
+            iconUrl: browser.extension.getURL(ICON),
+            title: "Skipped Redirect",
+            message: cleanUrl(from) + "\n->\n" + cleanUrl(to),
+        });
+    }
 }
 
 function cleanUrl(string) {

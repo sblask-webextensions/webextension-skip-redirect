@@ -13,13 +13,13 @@
                 <fieldset id="mode">
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeOff" value="off">
-                        <label class="radio" for="modeOff">
+                        <label for="modeOff">
                             Off
                         </label>
                     </div>
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeBlacklist"value="blacklist">
-                        <label class="radio" for="modeBlacklist">
+                        <label for="modeBlacklist">
                             Skip all redirects except for URLs matching any
                             line in the blacklist. You may use regular
                             expressions.
@@ -27,21 +27,34 @@
                     </div>
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeWhitelist"value="whitelist">
-                        <label class="radio" for="modeWhitelist">
+                        <label for="modeWhitelist">
                             Skip redirects only for URLs matching any of
                             the lines in the whitelist.
                         </label>
                     </div>
                 </fieldset>
+
                 <label for="blacklist">
                     Blacklist
                 </label>
-                <textarea id="blacklist" class="option"></textarea>
+                <textarea id="blacklist"></textarea>
+
                 <label for="whitelist">
                     Whitelist (each line needs to follow this
                     <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns">pattern</a>)
                 </label>
-                <textarea id="whitelist" class="option"></textarea>
+                <textarea id="whitelist"></textarea>
+
+                <label for="notifications">Notifications</label>
+                <fieldset id="notifications">
+                    <div class="box-wrapper">
+                        <input type="checkbox" name="mode" id="notificationPopupEnabled">
+                        <label for="notificationPopupEnabled">
+                            Enable popup
+                        </label>
+                    </div>
+                </fieldset>
+
                 <div class="controls">
                     <input type="submit" value="Save">
                 </div>

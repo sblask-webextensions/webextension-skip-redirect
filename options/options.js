@@ -3,11 +3,13 @@ function restoreOptions() {
         "mode",
         "blacklist",
         "whitelist",
+        "notificationPopupEnabled",
     ]).then(
         result => {
             document.querySelector("#blacklist").value = result.blacklist.join("\n");
             document.querySelector("#whitelist").value = result.whitelist.join("\n");
             document.querySelector("#mode" + result.mode.charAt(0).toUpperCase() + result.mode.slice(1)).checked = "checked";
+            document.querySelector("#notificationPopupEnabled").checked = result.notificationPopupEnabled;
         }
     );
 }
@@ -22,6 +24,7 @@ function saveOptions(event) {
               document.querySelector("#modeBlacklist").checked && "blacklist"
               ||
               document.querySelector("#modeWhitelist").checked && "whitelist",
+        notificationPopupEnabled: document.querySelector("#notificationPopupEnabled").checked,
     });
 }
 
