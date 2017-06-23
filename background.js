@@ -6,6 +6,9 @@ const MODE_BLACKLIST = "blacklist";
 const BLACKLIST = "blacklist";
 const WHITELIST = "whitelist";
 
+const LABEL_ON = "Skip Redirect is enabled, click to disable";
+const LABEL_OFF = "Skip Redirect is disabled, click to enable";
+
 const NOTIFICATION_ID = "notify-skip";
 const NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
 const NOTIFICATION_DURATION = "notificationDuration";
@@ -150,14 +153,14 @@ function enableSkipping(mode) {
     }
 
     browser.browserAction.setBadgeBackgroundColor({color: "red"});
-    browser.browserAction.setTitle({title: "Skip Redirect is enabled, click to disable"});
+    browser.browserAction.setTitle({title: LABEL_ON});
 }
 
 function disableSkipping() {
     browser.webRequest.onBeforeRequest.removeListener(maybeRedirect);
 
     browser.browserAction.setIcon({path: ICON_OFF});
-    browser.browserAction.setTitle({title: "Skip Redirect is disabled, click to enable"});
+    browser.browserAction.setTitle({title: LABEL_OFF});
 }
 
 function maybeRedirect(requestDetails) {
@@ -187,16 +190,33 @@ function notifySkip(from, to) {
         clearNotifications();
     }
 
+    let notificationMessage = `
+    ${cleanUrl(from)}
+    ->
+    ${cleanUrl(to)}
+    `.replace(/^\s+|\s+$/g, "").replace(/\n +/g, "\n");
+
+    let toolbarButtonTitle = `
+    ${LABEL_ON}
+
+    Last redirect:
+
+    ${from}
+    ->
+    ${to}
+    `.replace(/^\s+|\s+$/g, "").replace(/\n +/g, "\n");
+
     if (notificationPopupEnabled) {
         browser.notifications.create(NOTIFICATION_ID, {
             type: "basic",
             iconUrl: browser.extension.getURL(ICON),
             title: "Skipped Redirect",
-            message: cleanUrl(from) + "\n->\n" + cleanUrl(to),
+            message: notificationMessage,
         });
     }
-
     browser.browserAction.setBadgeText({text: "Skip"});
+
+    browser.browserAction.setTitle({title: toolbarButtonTitle});
 
     notificationTimeout = setTimeout(clearNotifications, 1000 * notificationDuration);
 }
