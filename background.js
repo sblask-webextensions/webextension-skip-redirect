@@ -149,6 +149,7 @@ function enableSkipping(mode) {
         browser.browserAction.setIcon({path: ICON_WHITELIST});
     }
 
+    browser.browserAction.setBadgeBackgroundColor({color: "red"});
     browser.browserAction.setTitle({title: "Skip Redirect is enabled, click to disable"});
 }
 
@@ -195,6 +196,8 @@ function notifySkip(from, to) {
         });
     }
 
+    browser.browserAction.setBadgeText({text: "Skip"});
+
     notificationTimeout = setTimeout(clearNotifications, 1000 * notificationDuration);
 }
 
@@ -202,6 +205,7 @@ function clearNotifications() {
     clearTimeout(notificationTimeout);
     notificationTimeout = undefined;
     browser.notifications.clear(NOTIFICATION_ID);
+    browser.browserAction.setBadgeText({text: ""});
 }
 
 function cleanUrl(string) {
