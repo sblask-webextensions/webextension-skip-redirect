@@ -13,7 +13,9 @@ form > fieldset {
     padding-top: 0;
     width: 100%;
 }
-form > fieldset > *:nth-child(even) {
+form > fieldset > label,
+form > fieldset > fieldset > label {
+    display: inline-block;
     margin-top: 10px;
 }
 form > fieldset > fieldset {
@@ -28,21 +30,11 @@ input[type=radio] {
     display: inline-block;
 }
 textarea {
-    height: 150px;
+    height: 100px;
     padding: 3px;
     width: 100%;
-}
-.wrapper,
-.box-wrapper {
-    margin-top: 5px;
-}
-.box-wrapper {
-    line-height: 20px;
 }
 .box-wrapper > label {
     display: block;
     margin: -20px 0 0 25px;
-}
-.controls {
-    text-align: center;
 }
