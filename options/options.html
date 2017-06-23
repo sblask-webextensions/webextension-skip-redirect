@@ -48,10 +48,17 @@
                 <label for="notifications">Notifications</label>
                 <fieldset id="notifications">
                     <div class="box-wrapper">
-                        <input type="checkbox" name="mode" id="notificationPopupEnabled">
+                        <input type="checkbox" id="notificationPopupEnabled">
                         <label for="notificationPopupEnabled">
                             Enable popup
                         </label>
+                    </div>
+
+                    <div class="wrapper">
+                        <label for="notificationDuration">
+                            Show notifications for this many seconds (between 1 and 10):
+                        </label>
+                        <input type="number" id="notificationDuration" min="1" max="10">
                     </div>
                 </fieldset>
 

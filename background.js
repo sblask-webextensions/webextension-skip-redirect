@@ -8,6 +8,7 @@ const WHITELIST = "whitelist";
 
 const NOTIFICATION_ID = "notify-skip";
 const NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
+const NOTIFICATION_DURATION = "notificationDuration";
 
 const ICON           = "icon.svg";
 const ICON_OFF       = "icon-off.svg";
@@ -40,13 +41,17 @@ let currentMode = undefined;
 let blacklist = [];
 let whitelist = [];
 
-let notificationPopupEnabled = true;
+let notificationPopupEnabled = undefined;
+let notificationDuration = undefined;
+
+let notificationTimeout = undefined;
 
 browser.storage.local.get([
     MODE,
     BLACKLIST,
     WHITELIST,
     NOTIFICATION_POPUP_ENABLED,
+    NOTIFICATION_DURATION,
 ])
     .then(
         (result) => {
@@ -76,6 +81,12 @@ browser.storage.local.get([
                 notificationPopupEnabled = result[NOTIFICATION_POPUP_ENABLED];
             }
 
+            if (result[NOTIFICATION_DURATION] === undefined) {
+                browser.storage.local.set({[NOTIFICATION_DURATION]: 3});
+            } else {
+                notificationDuration = result[NOTIFICATION_DURATION];
+            }
+
         }
     );
 
@@ -99,6 +110,10 @@ browser.storage.onChanged.addListener(
 
         if (changes[NOTIFICATION_POPUP_ENABLED]) {
             notificationPopupEnabled = changes[NOTIFICATION_POPUP_ENABLED].newValue;
+        }
+
+        if (changes[NOTIFICATION_DURATION]) {
+            notificationDuration = changes[NOTIFICATION_DURATION].newValue;
         }
     }
 );
@@ -167,6 +182,10 @@ function maybeRedirect(requestDetails) {
 }
 
 function notifySkip(from, to) {
+    if (notificationTimeout) {
+        clearNotifications();
+    }
+
     if (notificationPopupEnabled) {
         browser.notifications.create(NOTIFICATION_ID, {
             type: "basic",
@@ -175,6 +194,14 @@ function notifySkip(from, to) {
             message: cleanUrl(from) + "\n->\n" + cleanUrl(to),
         });
     }
+
+    notificationTimeout = setTimeout(clearNotifications, 1000 * notificationDuration);
+}
+
+function clearNotifications() {
+    clearTimeout(notificationTimeout);
+    notificationTimeout = undefined;
+    browser.notifications.clear(NOTIFICATION_ID);
 }
 
 function cleanUrl(string) {
