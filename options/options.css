@@ -10,16 +10,17 @@ form > fieldset {
     border: 1px solid;
     display: flex;
     flex-direction: column;
-    padding-top: 0;
+    padding: 10px;
     width: 100%;
 }
-form > fieldset > label,
-form > fieldset > fieldset > label {
+form > fieldset > label:not(:first-child),
+form > fieldset > fieldset > label:not(:first-child) {
     display: inline-block;
     margin-top: 10px;
 }
 form > fieldset > fieldset {
     border-color: #DDDDDD;
+    padding: 5px;
 }
 input[type=text],
 input[type=number] {
