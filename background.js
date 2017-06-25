@@ -6,9 +6,6 @@ const MODE_BLACKLIST = "blacklist";
 const BLACKLIST = "blacklist";
 const WHITELIST = "whitelist";
 
-const LABEL_ON = "Skip Redirect is enabled, click to disable";
-const LABEL_OFF = "Skip Redirect is disabled, click to enable";
-
 const NOTIFICATION_ID = "notify-skip";
 const NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
 const NOTIFICATION_DURATION = "notificationDuration";
@@ -153,14 +150,14 @@ function enableSkipping(mode) {
     }
 
     browser.browserAction.setBadgeBackgroundColor({color: "red"});
-    browser.browserAction.setTitle({title: LABEL_ON});
+    browser.browserAction.setTitle({title: browser.i18n.getMessage("browserActionLabelOn")});
 }
 
 function disableSkipping() {
     browser.webRequest.onBeforeRequest.removeListener(maybeRedirect);
 
     browser.browserAction.setIcon({path: ICON_OFF});
-    browser.browserAction.setTitle({title: LABEL_OFF});
+    browser.browserAction.setTitle({title: browser.i18n.getMessage("browserActionLabelOff")});
 }
 
 function maybeRedirect(requestDetails) {
@@ -190,31 +187,19 @@ function notifySkip(from, to) {
         clearNotifications();
     }
 
-    let notificationMessage = `
-    ${cleanUrl(from)}
-    ->
-    ${cleanUrl(to)}
-    `.replace(/^\s+|\s+$/g, "").replace(/\n +/g, "\n");
+    let notificationMessage = browser.i18n.getMessage("redirectSkippedNotificationMessage", [cleanUrl(from), cleanUrl(to)]);
 
-    let toolbarButtonTitle = `
-    ${LABEL_ON}
-
-    Last redirect:
-
-    ${from}
-    ->
-    ${to}
-    `.replace(/^\s+|\s+$/g, "").replace(/\n +/g, "\n");
+    let toolbarButtonTitle = browser.i18n.getMessage("browserActionLabelOnSkipped", [from, to]);
 
     if (notificationPopupEnabled) {
         browser.notifications.create(NOTIFICATION_ID, {
             type: "basic",
             iconUrl: browser.extension.getURL(ICON),
-            title: "Skipped Redirect",
+            title: browser.i18n.getMessage("redirectSkippedNotificationTitle"),
             message: notificationMessage,
         });
     }
-    browser.browserAction.setBadgeText({text: "Skip"});
+    browser.browserAction.setBadgeText({text: browser.i18n.getMessage("redirectSkippedBrowserActionBadge")});
 
     browser.browserAction.setTitle({title: toolbarButtonTitle});
 

@@ -18,9 +18,9 @@
         "browser_style": false,
         "default_icon": "icon.svg",
         "default_popup": "options/options.html",
-        "default_title": "Skip Redirect"
+        "default_title": "__MSG_browserActionLabelDefault__"
     },
-    "description": "Skip intermediary pages that some pages use before redirecting to a final page.",
+    "description": "__MSG_extensionDescription__",
     "homepage_url": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
     "icons": {
         "128": "icon-128x128.png",
@@ -30,7 +30,7 @@
         "64": "icon-64x64.png"
     },
     "manifest_version": 2,
-    "name": "Skip Redirect",
+    "name": "__MSG_extensionName__",
     "options_ui": {
         "page": "options/options.html"
     },
@@ -41,5 +41,6 @@
         "webRequest",
         "webRequestBlocking"
     ],
+    "default_locale": "en",
     "version": "2.1.5"
 }

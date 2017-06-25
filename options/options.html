@@ -8,56 +8,39 @@
     <body>
         <form>
             <fieldset>
-                <label for="mode">Mode</label>
+                <label for="mode" data-i18n="optionsSectionMode"></label>
                 <fieldset id="mode">
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeOff" value="off">
-                        <label for="modeOff">
-                            Off
-                        </label>
+                        <label for="modeOff" data-i18n="optionsModeOff"></label>
                     </div>
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeBlacklist"value="blacklist">
-                        <label for="modeBlacklist">
-                            Skip all redirects except for URLs matching any
-                            line in the blacklist.
-                        </label>
+                        <label for="modeBlacklist" data-i18n="optionsModeBlacklist"></label>
                     </div>
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeWhitelist"value="whitelist">
-                        <label for="modeWhitelist">
-                            Skip redirects only for URLs matching any of
-                            the lines in the whitelist.
-                        </label>
+                        <label for="modeWhitelist" data-i18n="optionsModeWhitelist"></label>
                     </div>
                 </fieldset>
 
-                <label for="blacklist">
-                    Blacklist (you may use regular expressions)
-                </label>
+                <label for="blacklist" data-i18n="optionsBlacklistContent"></label>
                 <textarea id="blacklist"></textarea>
 
-                <label for="whitelist">
-                    Whitelist (each line needs to follow this
-                    <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns">pattern</a>)
-                </label>
+                <label for="whitelist" data-i18n="optionsWhitelistContent"></label>
                 <textarea id="whitelist"></textarea>
 
-                <label for="notifications">Notifications</label>
+                <label for="notifications" data-i18n="optionsSectionNotifications"></label>
                 <fieldset id="notifications">
                     <div class="box-wrapper">
                         <input type="checkbox" id="notificationPopupEnabled">
-                        <label for="notificationPopupEnabled">
-                            Enable popup
-                        </label>
+                        <label for="notificationPopupEnabled" data-i18n="optionsNotificationsEnable"></label>
                     </div>
 
-                    <label for="notificationDuration">
-                        Show notifications for this many seconds (between 1 and 10):
-                    </label>
+                    <label for="notificationDuration" data-i18n="optionsNotificationsDuration"></label>
                     <input type="number" id="notificationDuration" min="1" max="10">
                 </fieldset>
-                <legend>Options</legend>
+                <legend data-i18n="optionsTitle"></legend>
             </fieldset>
         </form>
         <script src="../browser-polyfill.js"></script>
