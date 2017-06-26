@@ -22,6 +22,14 @@ function enableAutosave() {
     }
 }
 
+function loadTranslations() {
+    document.querySelectorAll("[data-i18n]").forEach(
+        el => {
+            el.innerHTML = browser.i18n.getMessage(el.getAttribute("data-i18n"));
+        }
+    );
+}
+
 function saveOptions(event) {
     event.preventDefault();
     browser.storage.local.set({
@@ -39,6 +47,7 @@ function saveOptions(event) {
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
 document.addEventListener("DOMContentLoaded", enableAutosave);
+document.addEventListener("DOMContentLoaded", loadTranslations);
 document.querySelector("form").addEventListener("submit", saveOptions);
 
 browser.storage.onChanged.addListener(restoreOptions);
