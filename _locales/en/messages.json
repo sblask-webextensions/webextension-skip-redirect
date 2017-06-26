@@ -5,7 +5,7 @@
     },
     "extensionDescription": {
         "message": "Skip intermediary pages that some pages use before redirecting to a final page.",
-        "description": "Name of the extension in the add-on manager."
+        "description": "Description of the extension in the add-on manager."
     },
     "browserActionLabelDefault": {
         "message": "Skip Redirect",
@@ -31,11 +31,11 @@
     },
     "browserActionLabelOff": {
         "message": "Skip Redirect is disabled, click to enable",
-        "description": "Label of the button when the extension is enabled."
+        "description": "Label of the button when the extension is disabled."
     },
     "redirectSkippedBrowserActionBadge": {
         "message": "Skip",
-        "description": "Text of a badge shown over the button after a redirect was skipped."
+        "description": "Text of the badge shown on the button after a redirect was skipped."
     },
     "redirectSkippedNotificationTitle": {
         "message": "Skipped Redirect",
@@ -65,23 +65,23 @@
     },
     "optionsModeOff": {
         "message": "Off",
-        "description": "One of the mode options, disables the extension."
+        "description": "The choice that disables the extension."
     },
     "optionsModeBlacklist": {
-        "message": "Skip all redirects except for URLs matching any line in the blacklist.",
-        "description": "One of the mode options."
+        "message": "Skip all redirects except for URLs matching any of the lines in the blacklist.",
+        "description": "The choice that sets the extension into blacklist mode."
     },
     "optionsModeWhitelist": {
         "message": "Skip redirects only for URLs matching any of the lines in the whitelist.",
-        "description": "One of the mode options."
+        "description": "The choice that sets the extension into whitelist mode."
     },
     "optionsBlacklistContent": {
         "message": "Blacklist (you may use regular expressions)",
-        "description": "Label of the text area for editing blacklist."
+        "description": "Label of the text area to edit the blacklist."
     },
     "optionsWhitelistContent": {
         "message": "Whitelist (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)",
-        "description": "Label of the text area for editing whitelist."
+        "description": "Label of the text area to edit the whitelist."
     },
     "optionsSectionNotifications": {
         "message": "Notifications",
@@ -89,10 +89,10 @@
     },
     "optionsNotificationsEnable": {
         "message": "Enable popup",
-        "description": "Label of the checkbox for toggling notifications."
+        "description": "Label of the checkbox to toggle notifications."
     },
     "optionsNotificationsDuration": {
         "message": "Show notifications for this many seconds (between 1 and 10):",
-        "description": "Label of the entry for specifying how long will notifications linger."
+        "description": "Label of the input field to specify how long notifications are shown."
     }
 }
