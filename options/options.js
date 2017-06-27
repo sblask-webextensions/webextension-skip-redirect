@@ -17,8 +17,11 @@ function restoreOptions() {
 }
 
 function enableAutosave() {
-    for (let input of document.querySelectorAll("input, textarea")) {
+    for (let input of document.querySelectorAll("input:not([type=radio]):not([type=checkbox]), textarea")) {
         input.addEventListener("input", saveOptions);
+    }
+    for (let input of document.querySelectorAll("input[type=radio], input[type=checkbox]")) {
+        input.addEventListener("change", saveOptions);
     }
 }
 
