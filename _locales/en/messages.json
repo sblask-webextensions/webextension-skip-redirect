@@ -16,7 +16,7 @@
         "description": "Label of the button when the extension is enabled."
     },
     "browserActionLabelOnSkipped": {
-        "message": "Skip Redirect is enabled, click to disable\n\nLast redirect:\n\n$sourceUrl$\n→\n$targetUrl$",
+        "message": "Skip Redirect is enabled, click to disable\n\nLast redirect:\n\n$sourceUrl$\n➔\n$targetUrl$",
         "description": "Label of the button when the extension is enabled and there was a redirect.",
         "placeholders": {
             "sourceUrl": {
@@ -42,7 +42,7 @@
         "description": "Title of the notification about skipped redirect."
     },
     "redirectSkippedNotificationMessage": {
-        "message": "$sourceUrl$\n→\n$targetUrl$",
+        "message": "$sourceUrl$\n➔\n$targetUrl$",
         "description": "Content of the notification about skipped redirect.",
         "placeholders": {
             "sourceUrl": {
