@@ -1,0 +1,98 @@
+{
+    "extensionName": {
+        "message": "Skip Redirect",
+        "description": "Name of the extension in the add-on manager."
+    },
+    "extensionDescription": {
+        "message": "Manche Webseiten leiten Benutzer auf eine extra Seite bevor sie auf die Seite weiterleiten die man eigentlich sehen wollte. Skip Redirect versucht diese Weiterleitung zu überspringen um direkt zur richtigen Seite zu gehen.",
+        "description": "Description of the extension in the add-on manager."
+    },
+    "browserActionLabelDefault": {
+        "message": "Skip Redirect",
+        "description": "Label of the button before the extension has loaded completely."
+    },
+    "browserActionLabelOn": {
+        "message": "Skip Redirect ist an. Ein Klick öffnet die Einstellungen um es auszustellen",
+        "description": "Label of the button when the extension is enabled."
+    },
+    "browserActionLabelOnSkipped": {
+        "message": "Skip Redirect ist an\n\nDie letzte Weiterleitung war:\n\n$sourceUrl$\n→\n$targetUrl$",
+        "description": "Label of the button when the extension is enabled and there was a redirect.",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "browserActionLabelOff": {
+        "message": "Skip Redirect ist aus. Ein Klick öffnet die Einstellungen um es anzustellen",
+        "description": "Label of the button when the extension is disabled."
+    },
+    "redirectSkippedBrowserActionBadge": {
+        "message": "Skip",
+        "description": "Text of the badge shown on the button after a redirect was skipped."
+    },
+    "redirectSkippedNotificationTitle": {
+        "message": "Eine Weiterleitung wurde übersprungen",
+        "description": "Title of the notification about skipped redirect."
+    },
+    "redirectSkippedNotificationMessage": {
+        "message": "$sourceUrl$\n→\n$targetUrl$",
+        "description": "Content of the notification about skipped redirect.",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "optionsTitle": {
+        "message": "Einstellungen",
+        "description": "Title of the options view."
+    },
+    "optionsSectionMode": {
+        "message": "Modus",
+        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension."
+    },
+    "optionsModeOff": {
+        "message": "Aus",
+        "description": "The choice that disables the extension."
+    },
+    "optionsModeBlacklist": {
+        "message": "Überspringe Weiterleitungen für alle Webadressen, es sei denn die Adresse entspricht einem Eintrag in der Blacklist.",
+        "description": "The choice that sets the extension into blacklist mode."
+    },
+    "optionsModeWhitelist": {
+        "message": "Überspringe Weiterleitungen nur für Webadressen die einem Eintrag in der Whitelist entsprechen.",
+        "description": "The choice that sets the extension into whitelist mode."
+    },
+    "optionsBlacklistContent": {
+        "message": "Blacklist (reguläre Ausdrücke sind zugelassen)",
+        "description": "Label of the text area to edit the blacklist."
+    },
+    "optionsWhitelistContent": {
+        "message": "Whitelist (jeder Eintrag muss diesem <a href=\"https://developer.mozilla.org/Add-ons/WebExtensions/Match_patterns\">Schema</a> folgen)",
+        "description": "Label of the text area to edit the whitelist."
+    },
+    "optionsSectionNotifications": {
+        "message": "Benachrichtigungen",
+        "description": "Title of the options section allowing to control notifications."
+    },
+    "optionsNotificationsEnable": {
+        "message": "Zeige Benachrichtigungsdialog",
+        "description": "Label of the checkbox to toggle notifications."
+    },
+    "optionsNotificationsDuration": {
+        "message": "Zeige Benachrichtigungen für so viele Sekunden (zwischen 1 und 10):",
+        "description": "Label of the input field to specify how long notifications are shown."
+    }
+}
