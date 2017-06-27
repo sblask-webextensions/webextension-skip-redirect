@@ -11,7 +11,7 @@
     "preferences-branch": "skipredirect",
     "repository": {
         "type": "git",
-        "url": "https://github.com/sblask/firefox-skip-redirect"
+        "url": "https://github.com/sblask/webextension-skip-redirect"
     },
     "scripts": {
         "artifact-create:chrome": "web-ext build --artifacts-dir . --ignore-files screenshots package.json icon.fodg",
@@ -28,9 +28,9 @@
         "modify:remove-polyfill-references": "sed --in-place --regexp-extended '/\"(\\.\\.\\/)?browser-polyfill.js\"/d' $(find . -not -path '*node_modules*' -name '*.js' -o -name '*.html')",
         "readme": "cat README.md | sed -r 's/\\[.+\\]\\((.+)\\)/\\1/' | sed -r '/\\[/{ N; s/\\[.+\\]\\((.+)\\)/\\n\\1/ }' | sed -r '/```/,/```/d' | vim -",
         "release": "VERSION=$(jq --raw-output '.version' manifest.json); hub release create $(for file in *$VERSION*.zip; do echo \" -a ${file} \"; done) -m $VERSION $VERSION",
-        "start": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox-trunk --url https://github.com/sblask/firefox-skip-redirect",
-        "start:german": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --pref=general.useragent.locale=de-DE --pref=intl.locale.matchOS=false --url https://github.com/sblask/firefox-skip-redirect",
-        "start:stable": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --url https://github.com/sblask/firefox-skip-redirect",
+        "start": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox-trunk --url https://github.com/sblask/webextension-skip-redirect",
+        "start:german": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --pref=general.useragent.locale=de-DE --pref=intl.locale.matchOS=false --url https://github.com/sblask/webextension-skip-redirect",
+        "start:stable": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --url https://github.com/sblask/webextension-skip-redirect",
         "test": "web-ext lint && tape $(find . -not -path '*node_modules*' -name 'test-*.js')"
     },
     "title": "Skip Redirect",

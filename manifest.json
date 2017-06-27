@@ -21,7 +21,7 @@
         "default_title": "__MSG_browserActionLabelDefault__"
     },
     "description": "__MSG_extensionDescription__",
-    "homepage_url": "https://addons.mozilla.org/firefox/addon/skip-redirect/",
+    "homepage_url": "https://github.com/sblask/webextension-skip-redirect",
     "icons": {
         "128": "icon-128x128.png",
         "16": "icon-16x16.png",
