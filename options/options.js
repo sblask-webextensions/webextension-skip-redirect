@@ -26,11 +26,13 @@ function enableAutosave() {
 }
 
 function loadTranslations() {
-    document.querySelectorAll("[data-i18n]").forEach(
-        el => {
-            el.innerHTML = browser.i18n.getMessage(el.getAttribute("data-i18n"));
+    for (let element of document.querySelectorAll("[data-i18n]")) {
+        if (typeof browser === "undefined") {
+            element.textContent = element.getAttribute("data-i18n");
+        } else {
+            element.textContent = browser.i18n.getMessage(element.getAttribute("data-i18n"));
         }
-    );
+    }
 }
 
 function saveOptions(event) {
