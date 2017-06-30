@@ -1,49 +1,19 @@
 {
-    "extensionName": {
-        "message": "Skip Redirect",
-        "description": "Name of the extension in the add-on manager."
-    },
-    "extensionDescription": {
-        "message": "Skip intermediary pages that some pages use before redirecting to a final page.",
-        "description": "Description of the extension in the add-on manager."
-    },
     "browserActionLabelDefault": {
-        "message": "Skip Redirect",
-        "description": "Label of the button before the extension has loaded completely."
-    },
-    "browserActionLabelOn": {
-        "message": "Skip Redirect is enabled, click to disable",
-        "description": "Label of the button when the extension is enabled."
-    },
-    "browserActionLabelOnSkipped": {
-        "message": "Skip Redirect is enabled, click to disable\n\nLast redirect:\n\n$sourceUrl$\n➔\n$targetUrl$",
-        "description": "Label of the button when the extension is enabled and there was a redirect.",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
+        "description": "Label of the button before the extension has loaded completely.",
+        "message": "Skip Redirect"
     },
     "browserActionLabelOff": {
-        "message": "Skip Redirect is disabled, click to enable",
-        "description": "Label of the button when the extension is disabled."
+        "description": "Label of the button when the extension is disabled.",
+        "message": "Skip Redirect is disabled, click to enable"
     },
-    "redirectSkippedBrowserActionBadge": {
-        "message": "Skip",
-        "description": "Text of the badge shown on the button after a redirect was skipped."
+    "browserActionLabelOn": {
+        "description": "Label of the button when the extension is enabled.",
+        "message": "Skip Redirect is enabled, click to disable"
     },
-    "redirectSkippedNotificationTitle": {
-        "message": "Skipped Redirect",
-        "description": "Title of the notification about skipped redirect."
-    },
-    "redirectSkippedNotificationMessage": {
-        "message": "$sourceUrl$\n➔\n$targetUrl$",
-        "description": "Content of the notification about skipped redirect.",
+    "browserActionLabelOnSkipped": {
+        "description": "Label of the button when the extension is enabled and there was a redirect.",
+        "message": "Skip Redirect is enabled, click to disable\n\nLast redirect:\n\n$sourceUrl$\n➔\n$targetUrl$",
         "placeholders": {
             "sourceUrl": {
                 "content": "$1",
@@ -55,44 +25,74 @@
             }
         }
     },
-    "optionsTitle": {
-        "message": "Options",
-        "description": "Title of the options view."
+    "extensionDescription": {
+        "description": "Description of the extension in the add-on manager.",
+        "message": "Skip intermediary pages that some pages use before redirecting to a final page."
     },
-    "optionsSectionMode": {
-        "message": "Mode",
-        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension."
-    },
-    "optionsModeOff": {
-        "message": "Off",
-        "description": "The choice that disables the extension."
-    },
-    "optionsModeBlacklist": {
-        "message": "Skip all redirects except for URLs matching any of the lines in the blacklist.",
-        "description": "The choice that sets the extension into blacklist mode."
-    },
-    "optionsModeWhitelist": {
-        "message": "Skip redirects only for URLs matching any of the lines in the whitelist.",
-        "description": "The choice that sets the extension into whitelist mode."
+    "extensionName": {
+        "description": "Name of the extension in the add-on manager.",
+        "message": "Skip Redirect"
     },
     "optionsBlacklistContent": {
-        "message": "Blacklist (you may use regular expressions)",
-        "description": "Label of the text area to edit the blacklist."
+        "description": "Label of the text area to edit the blacklist.",
+        "message": "Blacklist (you may use regular expressions)"
     },
-    "optionsWhitelistContent": {
-        "message": "Whitelist (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)",
-        "description": "Label of the text area to edit the whitelist."
+    "optionsModeBlacklist": {
+        "description": "The choice that sets the extension into blacklist mode.",
+        "message": "Skip all redirects except for URLs matching any of the lines in the blacklist."
     },
-    "optionsSectionNotifications": {
-        "message": "Notifications",
-        "description": "Title of the options section allowing to control notifications."
+    "optionsModeOff": {
+        "description": "The choice that disables the extension.",
+        "message": "Off"
     },
-    "optionsNotificationsEnable": {
-        "message": "Enable popup",
-        "description": "Label of the checkbox to toggle notifications."
+    "optionsModeWhitelist": {
+        "description": "The choice that sets the extension into whitelist mode.",
+        "message": "Skip redirects only for URLs matching any of the lines in the whitelist."
     },
     "optionsNotificationsDuration": {
-        "message": "Show notifications for this many seconds (between 1 and 10):",
-        "description": "Label of the input field to specify how long notifications are shown."
+        "description": "Label of the input field to specify how long notifications are shown.",
+        "message": "Show notifications for this many seconds (between 1 and 10):"
+    },
+    "optionsNotificationsEnable": {
+        "description": "Label of the checkbox to toggle notifications.",
+        "message": "Enable popup"
+    },
+    "optionsSectionMode": {
+        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "message": "Mode"
+    },
+    "optionsSectionNotifications": {
+        "description": "Title of the options section allowing to control notifications.",
+        "message": "Notifications"
+    },
+    "optionsTitle": {
+        "description": "Title of the options view.",
+        "message": "Options"
+    },
+    "optionsWhitelistContent": {
+        "description": "Label of the text area to edit the whitelist.",
+        "message": "Whitelist (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
+    },
+    "redirectSkippedBrowserActionBadge": {
+        "description": "Text of the badge shown on the button after a redirect was skipped.",
+        "message": "Skip"
+    },
+    "redirectSkippedNotificationMessage": {
+        "description": "Content of the notification about skipped redirect.",
+        "message": "$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "redirectSkippedNotificationTitle": {
+        "description": "Title of the notification about skipped redirect.",
+        "message": "Skipped Redirect"
     }
 }
