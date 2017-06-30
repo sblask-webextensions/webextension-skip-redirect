@@ -26,6 +26,8 @@ const GLOBAL_BLACKLIST = [
     "/cookie",
     "/download",
     "/login",
+    "/logoff",
+    "/logon",
     "/logout",
     "/preferences",
     "/profile",
