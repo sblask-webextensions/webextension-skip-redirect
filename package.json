@@ -35,5 +35,5 @@
         "test": "web-ext lint && tape $(find . -not -path '*node_modules*' -name 'test-*.js') && npm run translation-check"
     },
     "title": "Skip Redirect",
-    "version": "2.1.6"
+    "version": "2.1.7"
 }
