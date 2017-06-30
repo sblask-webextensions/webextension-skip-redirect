@@ -36,6 +36,8 @@
     },
     "permissions": [
         "<all_urls>",
+        "clipboardWrite",
+        "contextMenus",
         "notifications",
         "storage",
         "webRequest",

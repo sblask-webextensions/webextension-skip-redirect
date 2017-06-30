@@ -25,6 +25,10 @@
             }
         }
     },
+    "contextMenuLabel": {
+        "description": "Label of the context menu entry to copy last URL.",
+        "message": "Letzte übersprungene Webadresse kopieren"
+    },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
         "message": "Manche Webseiten leiten Benutzer auf eine extra Seite bevor sie auf die Seite weiterleiten die man eigentlich sehen wollte. Skip Redirect versucht diese Weiterleitung zu überspringen um direkt zur richtigen Seite zu gehen."

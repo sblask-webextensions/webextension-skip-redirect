@@ -25,6 +25,10 @@
             }
         }
     },
+    "contextMenuLabel": {
+        "description": "Label of the context menu entry to copy last URL.",
+        "message": "Copy last skipped URL"
+    },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
         "message": "Skip intermediary pages that some pages use before redirecting to a final page."

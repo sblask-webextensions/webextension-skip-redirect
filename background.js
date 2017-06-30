@@ -6,6 +6,8 @@ const MODE_BLACKLIST = "blacklist";
 const BLACKLIST = "blacklist";
 const WHITELIST = "whitelist";
 
+const CONTEXT_MENU_ID = "copy-last-source-url";
+
 const NOTIFICATION_ID = "notify-skip";
 const NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
 const NOTIFICATION_DURATION = "notificationDuration";
@@ -40,6 +42,8 @@ const GLOBAL_BLACKLIST = [
 let currentMode = undefined;
 let blacklist = [];
 let whitelist = [];
+
+let lastSourceURL = undefined;
 
 let notificationPopupEnabled = undefined;
 let notificationDuration = undefined;
@@ -118,6 +122,35 @@ browser.storage.onChanged.addListener(
     }
 );
 
+browser.contextMenus.create({
+    id: CONTEXT_MENU_ID,
+    title: browser.i18n.getMessage("contextMenuLabel"),
+    contexts: ["browser_action"],
+    enabled: false,
+});
+
+browser.contextMenus.onClicked.addListener(
+    (info, _tab) => {
+        if (info.menuItemId === CONTEXT_MENU_ID) {
+            copyLastSourceURLToClipboard();
+        }
+    }
+);
+
+function copyLastSourceURLToClipboard() {
+    chainPromises([
+        ()        => { return browser.tabs.executeScript({ code: "typeof copyToClipboard === 'function';" }); },
+        (results) => { return injectScriptIfNecessary(results && results[0]); },
+        ()        => { return browser.tabs.executeScript({ code: `copyToClipboard("${lastSourceURL}")` }); },
+    ]);
+}
+
+function injectScriptIfNecessary(isCopyFunctionDefined) {
+    if (!isCopyFunctionDefined) {
+        return browser.tabs.executeScript({ file: "clipboard-helper.js" });
+    }
+}
+
 function updateBlacklist(newBlacklist) {
     blacklist = newBlacklist.filter(Boolean);
 }
@@ -175,11 +208,19 @@ function maybeRedirect(requestDetails) {
         return;
     }
 
+    prepareContextMenu(requestDetails.url);
     notifySkip(requestDetails.url, redirectTarget);
 
     return {
         redirectUrl: redirectTarget,
     };
+}
+
+function prepareContextMenu(from) {
+    if (lastSourceURL === undefined) {
+        browser.contextMenus.update(CONTEXT_MENU_ID, {enabled: true});
+    }
+    lastSourceURL = from;
 }
 
 function notifySkip(from, to) {
@@ -219,4 +260,13 @@ function cleanUrl(string) {
     }
 
     return string.replace(/&/g, "&amp;");
+}
+
+function chainPromises(functions) {
+    let promise = Promise.resolve();
+    for (let function_ of functions) {
+        promise = promise.then(function_);
+    }
+
+    return promise.catch((error) => { console.warn(error.message); });
 }
