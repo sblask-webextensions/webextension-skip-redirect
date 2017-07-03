@@ -14,8 +14,8 @@
         "url": "https://github.com/sblask/webextension-skip-redirect"
     },
     "scripts": {
-        "artifact-create:chrome": "web-ext build --artifacts-dir . --ignore-files bin screenshots package.json icon.fodg",
-        "artifact-create:firefox": "web-ext build --artifacts-dir . --ignore-files bin screenshots package.json icon.fodg *.png browser-polyfill.js",
+        "artifact-create:chrome": "web-ext build --artifacts-dir . --ignore-files bin screenshots package.json package-lock.json icon.fodg",
+        "artifact-create:firefox": "web-ext build --artifacts-dir . --ignore-files bin screenshots package.json package-lock.json icon.fodg *.png browser-polyfill.js",
         "artifact-rename:chrome": "VERSION=$(jq --raw-output '.version' manifest.json); rename \"s/.zip$/-chrome.zip/\"  *$VERSION.zip",
         "artifact-rename:firefox": "VERSION=$(jq --raw-output '.version' manifest.json); rename \"s/.zip$/-firefox.zip/\" *$VERSION.zip",
         "build": "git add --all; rm *.zip; npm run modify:chrome && npm run artifact-create:chrome && npm run artifact-rename:chrome && git checkout -- . && npm run modify:firefox && npm run artifact-create:firefox && npm run artifact-rename:firefox && git checkout -- .",
