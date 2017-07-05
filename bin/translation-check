@@ -10,6 +10,6 @@ FILES=$(find $ROOT_DIRECTORY -not -path '*node_modules*' -name '*.js*' -o -not -
 
 diff \
     --unified \
-    <(grep --perl-regexp --only-matching --no-filename $REGEXP $FILES 2>/dev/null | sort) \
+    <(grep --perl-regexp --only-matching --no-filename $REGEXP $FILES 2>/dev/null | sort --unique) \
     <(jq --raw-output 'keys[]' $ROOT_DIRECTORY/_locales/en/messages.json) \
 
