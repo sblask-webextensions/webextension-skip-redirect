@@ -30,7 +30,7 @@ function loadTranslations() {
         if (typeof browser === "undefined") {
             element.textContent = element.getAttribute("data-i18n");
         } else {
-            element.textContent = browser.i18n.getMessage(element.getAttribute("data-i18n"));
+            element.innerHTML = browser.i18n.getMessage(element.getAttribute("data-i18n"));
         }
     }
 }
