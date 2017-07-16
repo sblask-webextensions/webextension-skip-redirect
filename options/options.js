@@ -7,11 +7,11 @@ function restoreOptions() {
         "notificationDuration",
     ]).then(
         result => {
-            document.querySelector("#blacklist").value = result.blacklist.join("\n");
-            document.querySelector("#whitelist").value = result.whitelist.join("\n");
-            document.querySelector("#mode" + result.mode.charAt(0).toUpperCase() + result.mode.slice(1)).checked = "checked";
-            document.querySelector("#notificationPopupEnabled").checked = result.notificationPopupEnabled;
-            document.querySelector("#notificationDuration").value = result.notificationDuration;
+            setTextValue("blacklist", result.blacklist.join("\n"));
+            setTextValue("whitelist", result.whitelist.join("\n"));
+            setBooleanValue("mode" + result.mode.charAt(0).toUpperCase() + result.mode.slice(1), true);
+            setBooleanValue("notificationPopupEnabled", result.notificationPopupEnabled);
+            setTextValue("notificationDuration", result.notificationDuration);
         }
     );
 }
@@ -33,6 +33,18 @@ function loadTranslations() {
             element.innerHTML = browser.i18n.getMessage(element.getAttribute("data-i18n"));
         }
     }
+}
+
+function setTextValue(elementID, newValue) {
+    let oldValue = document.getElementById(elementID).value;
+
+    if (oldValue !== newValue) {
+        document.getElementById(elementID).value = newValue;
+    }
+}
+
+function setBooleanValue(elementID, newValue) {
+    document.getElementById(elementID).checked = newValue;
 }
 
 function saveOptions(event) {
