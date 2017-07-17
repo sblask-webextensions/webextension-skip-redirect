@@ -4,6 +4,7 @@
         "eslint": "4.1.x",
         "jscs": "2.6.x",
         "tape": "4.6.x",
+        "tape-benchmark": "0.0.0",
         "web-ext": "1.9.x"
     },
     "license": "MIT",
@@ -31,8 +32,8 @@
         "start": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox-trunk --url $(jq --raw-output '.homepage_url' manifest.json)",
         "start:german": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --pref=general.useragent.locale=de-DE --pref=intl.locale.matchOS=false --url $(jq --raw-output '.homepage_url' manifest.json)",
         "start:stable": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --url $(jq --raw-output '.homepage_url' manifest.json)",
-        "translation-check": "./bin/translation-check",
-        "test": "web-ext lint && tape $(find . -not -path '*node_modules*' -name 'test-*.js') && npm run translation-check"
+        "test": "web-ext lint && tape $(find . -not -path '*node_modules*' -name 'test-*.js') && npm run translation-check",
+        "translation-check": "./bin/translation-check"
     },
     "title": "Skip Redirect",
     "version": "2.1.7"
