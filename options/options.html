@@ -17,12 +17,17 @@
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeBlacklist"value="blacklist">
                         <label for="modeBlacklist" data-i18n="optionsModeBlacklist"></label>
+                        <div class="box-wrapper">
+                            <input type="checkbox" name="skipRedirectsToSameDomain" id="skipRedirectsToSameDomain">
+                            <label for="skipRedirectsToSameDomain" data-i18n="optionsSkipRedirectsToSameDomain"></label>
+                        </div>
                     </div>
                     <div class="box-wrapper">
                         <input type="radio" name="mode" id="modeWhitelist"value="whitelist">
                         <label for="modeWhitelist" data-i18n="optionsModeWhitelist"></label>
                     </div>
                 </fieldset>
+
 
                 <label for="blacklist" data-i18n="optionsBlacklistContent"></label>
                 <textarea id="blacklist"></textarea>

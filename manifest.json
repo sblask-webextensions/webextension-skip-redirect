@@ -10,6 +10,8 @@
         "scripts": [
             "browser-polyfill.js",
             "base64.js",
+            "pslrules.js",
+            "psl.js",
             "url.js",
             "background.js"
         ]

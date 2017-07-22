@@ -1,3 +1,4 @@
+/* global psl */
 /* global url */
 const MODE = "mode";
 const MODE_OFF = "off";
@@ -11,6 +12,8 @@ const CONTEXT_MENU_ID = "copy-last-source-url";
 const NOTIFICATION_ID = "notify-skip";
 const NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
 const NOTIFICATION_DURATION = "notificationDuration";
+
+const SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
 
 const ICON           = "icon.svg";
 const ICON_OFF       = "icon-off.svg";
@@ -50,6 +53,8 @@ let lastSourceURL = undefined;
 let notificationPopupEnabled = undefined;
 let notificationDuration = undefined;
 
+let skipRedirectsToSameDomain = false;
+
 let notificationTimeout = undefined;
 
 browser.storage.local.get([
@@ -58,6 +63,7 @@ browser.storage.local.get([
     WHITELIST,
     NOTIFICATION_POPUP_ENABLED,
     NOTIFICATION_DURATION,
+    SKIP_REDIRECTS_TO_SAME_DOMAIN,
 ])
     .then(
         (result) => {
@@ -93,6 +99,12 @@ browser.storage.local.get([
                 notificationDuration = result[NOTIFICATION_DURATION];
             }
 
+            if (result[SKIP_REDIRECTS_TO_SAME_DOMAIN] === undefined) {
+                browser.storage.local.set({[SKIP_REDIRECTS_TO_SAME_DOMAIN]: false});
+            } else {
+                skipRedirectsToSameDomain = result[SKIP_REDIRECTS_TO_SAME_DOMAIN];
+            }
+
         }
     );
 
@@ -121,6 +133,11 @@ browser.storage.onChanged.addListener(
         if (changes[NOTIFICATION_DURATION]) {
             notificationDuration = changes[NOTIFICATION_DURATION].newValue;
         }
+
+        if (changes[SKIP_REDIRECTS_TO_SAME_DOMAIN]) {
+            skipRedirectsToSameDomain = changes[SKIP_REDIRECTS_TO_SAME_DOMAIN].newValue;
+        }
+
     }
 );
 
@@ -206,8 +223,18 @@ function maybeRedirect(requestDetails) {
     }
 
     const redirectTarget = url.getRedirectTarget(requestDetails.url, exceptions);
-    if (redirectTarget == requestDetails.url) {
+    if (redirectTarget === requestDetails.url) {
         return;
+    }
+
+    if (!skipRedirectsToSameDomain) {
+        let sourceHostname = getHostname(requestDetails.url);
+        let targetHostname = getHostname(redirectTarget);
+        let sourceDomain = psl.getDomain(sourceHostname);
+        let targetDomain = psl.getDomain(targetHostname);
+        if (sourceDomain === targetDomain) {
+            return;
+        }
     }
 
     prepareContextMenu(requestDetails.url);
@@ -262,6 +289,12 @@ function cleanUrl(string) {
     }
 
     return string.replace(/&/g, "&amp;");
+}
+
+function getHostname(url) {
+    var a = document.createElement("a");
+    a.href = url;
+    return a.hostname;
 }
 
 function chainPromises(functions) {

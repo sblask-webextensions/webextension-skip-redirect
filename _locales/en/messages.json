@@ -69,6 +69,10 @@
         "description": "Title of the options section allowing to control notifications.",
         "message": "Notifications"
     },
+    "optionsSkipRedirectsToSameDomain": {
+        "description": "Label of the checkbox that toggles skipping to the same public domain.",
+        "message": "Skip redirects for URLs with the same public domain"
+    },
     "optionsTitle": {
         "description": "Title of the options view.",
         "message": "Options"
