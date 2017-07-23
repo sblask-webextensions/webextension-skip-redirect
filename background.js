@@ -227,7 +227,7 @@ function maybeRedirect(requestDetails) {
         return;
     }
 
-    if (!skipRedirectsToSameDomain) {
+    if (currentMode === MODE_BLACKLIST && !skipRedirectsToSameDomain) {
         let sourceHostname = getHostname(requestDetails.url);
         let targetHostname = getHostname(redirectTarget);
         let sourceDomain = psl.getDomain(sourceHostname);
