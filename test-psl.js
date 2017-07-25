@@ -11,6 +11,7 @@ test("Malformed hostname", function(assert) {
 });
 
 test("Normal rules", function(assert) {
+    assert.equal(psl.getDomain("com"), undefined);
     assert.equal(psl.getDomain("foo.com"), "foo.com");
     assert.equal(psl.getDomain("foo.bar.com"), "bar.com");
     assert.end();
