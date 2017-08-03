@@ -7,6 +7,9 @@
         "webextensions": true
     },
     "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
     "rules": {
         "comma-dangle": [
             "error",
