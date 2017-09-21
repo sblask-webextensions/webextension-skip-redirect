@@ -32,6 +32,7 @@ const GLOBAL_BLACKLIST = [
     "/logoff",
     "/logon",
     "/logout",
+    "/oauth",
     "/preferences",
     "/profile",
     "/register",
