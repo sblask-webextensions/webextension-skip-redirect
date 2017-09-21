@@ -113,6 +113,7 @@ test("no skipping if URL matches one of given exceptions", function(assert) {
         "http://www.some.website.com/" + "login?continue=" + wwwTargetUrl + "#some-fragment",
         "http://www.some.website.com/" + "login?continue=" + wwwTargetUrlEncoded + "#some-fragment",
         "http://www.some.website.com/" + "login?continue=" + wwwTargetUrlDoubleEncoded + "#some-fragment]",
+        "http://www.some.website.com/" + "Login?continue=" + wwwTargetUrlDoubleEncoded + "#some-fragment]",
     ];
 
     for (let urlString of noRedirectUrls) {

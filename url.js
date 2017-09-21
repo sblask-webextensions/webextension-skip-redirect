@@ -99,7 +99,7 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
     }
 
     function getRedirectTarget(url, exceptions) {
-        if (exceptions.length > 0 && new RegExp("(" + exceptions.join("|") + ")").test(url)) {
+        if (exceptions.length > 0 && new RegExp("(" + exceptions.join("|") + ")", "i").test(url)) {
             return url;
         }
 
