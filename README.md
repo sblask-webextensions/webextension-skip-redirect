@@ -24,6 +24,6 @@ Feedback
 --------
 
 You can report bugs or make feature requests on
-[Github](https://github.com/sblask/webextension-skip-redirect).
+[Github](https://github.com/sblask/webextension-skip-redirect)
 
 Patches are welcome.
