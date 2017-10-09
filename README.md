@@ -20,6 +20,11 @@ edited to avoid these problems. There is also a whitelist mode to avoid this
 kind of problem altogether. In whitelist mode, all URLs for which redirects
 should be skipped need to be configured by hand.
 
+Privacy Policy
+--------------
+
+This extension does not collect or send data of any kind to third parties.
+
 Feedback
 --------
 
