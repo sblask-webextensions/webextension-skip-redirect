@@ -1,8 +1,7 @@
 {
     "author": "Sebastian Blask",
     "devDependencies": {
-        "eslint": "4.1.x",
-        "jscs": "2.6.x",
+        "eslint": "4.8.x",
         "tape": "4.6.x",
         "tape-benchmark": "0.0.0",
         "web-ext": "2.2.x"
@@ -22,7 +21,7 @@
         "build": "git add --all; rm *.zip; npm run modify:chrome && npm run artifact-create:chrome && npm run artifact-rename:chrome && git checkout -- . && npm run modify:firefox && npm run artifact-create:firefox && npm run artifact-rename:firefox && git checkout -- .",
         "help": "web-ext --help",
         "icons": "for size in 16x16 32x32 48x48 64x64 128x128 440x280; do convert -background none -density 1000 -resize ${size} -extent ${size} -gravity center icon.svg icon-${size}.png; done",
-        "lint": "eslint --debug $(find . -not -path '*node_modules*' -name '*.js') && jscs $(find . -not -path '*node_modules*' -name '*.js')",
+        "lint": "eslint --debug $(find . -not -path '*node_modules*' -name '*.js')",
         "modify:chrome": "jq --indent 4 '. | del(.applications) | del(.browser_action.default_icon)' manifest.json | sponge manifest.json",
         "modify:firefox": "npm run modify:manifest:firefox && npm run modify:remove-polyfill-references",
         "modify:manifest:firefox": "jq --indent 4 '. | .background.scripts |= map(select(. != \"browser-polyfill.js\")) | if has(\"icons\") then .icons |= {\"48\": \"icon.svg\"} else . end | del(.options_ui.open_in_tab)' manifest.json | sponge manifest.json",
