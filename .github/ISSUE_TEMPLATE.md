@@ -1,16 +1,18 @@
-New Issue Checklist (tick off using x (`[x]`))
+### New Issue Checklist (tick off like this: `[x]`)
 
- - [] I checked existing issues (open and closed) for possible duplicates
+- [ ] I checked existing issues (open and closed) for possible duplicates
 
-Which browsers (that you know of) are affected?
+### What is your browser?
 
- - [] Firefox
- - [] Chrome
+- [ ] Firefox
+- [ ] Chrome
 
-What is your operating system?
+### What is your operating system?
 
- - [] Linux
- - [] Mac
- - [] Windows
+- [ ] Linux
+- [ ] Mac
+- [ ] Windows
 
-Description (please include examples/screenshots where applicable)
+### Description (please include examples/screenshots where applicable)
+
+
