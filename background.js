@@ -25,6 +25,7 @@ const MAX_NOTIFICATION_URL_LENGTH = 100;
 const GLOBAL_BLACKLIST = [
     "/abp",
     "/account",
+    "/adfs",
     "/auth",
     "/cookie",
     "/download",
@@ -36,11 +37,13 @@ const GLOBAL_BLACKLIST = [
     "/preferences",
     "/profile",
     "/register",
+    "/saml",
     "/signin",
     "/signoff",
     "/signon",
     "/signout",
     "/signup",
+    "/sso",
     "/subscribe",
     "/verification",
 ];
