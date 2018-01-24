@@ -2,6 +2,7 @@
 
 - [ ] I checked existing issues (open and closed) for possible duplicates
 - [ ] I can reproduce the problem on the latest stable version (not nightly!)
+- [ ] The issue is not about adding entries to the default blacklist
 
 ### What is your browser?
 
