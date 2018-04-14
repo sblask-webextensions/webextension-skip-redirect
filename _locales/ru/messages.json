@@ -1,0 +1,106 @@
+{
+    "browserActionLabelDefault": {
+        "description": "Label of the button before the extension has loaded completely.",
+        "message": "Skip Redirect"
+    },
+    "browserActionLabelOff": {
+        "description": "Label of the button when the extension is disabled.",
+        "message": "Skip Redirect is disabled, click to enable"
+    },
+    "browserActionLabelOn": {
+        "description": "Label of the button when the extension is enabled.",
+        "message": "Skip Redirect is enabled, click to disable"
+    },
+    "browserActionLabelOnSkipped": {
+        "description": "Label of the button when the extension is enabled and there was a redirect.",
+        "message": "Skip Redirect is enabled, click to disable\n\nLast redirect:\n\n$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "contextMenuLabel": {
+        "description": "Label of the context menu entry to copy last URL.",
+        "message": "Copy last skipped URL"
+    },
+    "extensionDescription": {
+        "description": "Description of the extension in the add-on manager.",
+        "message": "Skip intermediary pages that some pages use before redirecting to a final page."
+    },
+    "extensionName": {
+        "description": "Name of the extension in the add-on manager.",
+        "message": "Skip Redirect"
+    },
+    "optionsBlacklistContent": {
+        "description": "Label of the text area to edit the blacklist.",
+        "message": "Blacklist (you may use regular expressions)"
+    },
+    "optionsModeBlacklist": {
+        "description": "The choice that sets the extension into blacklist mode.",
+        "message": "Skip all redirects except for URLs matching any of the lines in the blacklist."
+    },
+    "optionsModeOff": {
+        "description": "The choice that disables the extension.",
+        "message": "Off"
+    },
+    "optionsModeWhitelist": {
+        "description": "The choice that sets the extension into whitelist mode.",
+        "message": "Skip redirects only for URLs matching any of the lines in the whitelist."
+    },
+    "optionsNotificationsDuration": {
+        "description": "Label of the input field to specify how long notifications are shown.",
+        "message": "Show notifications for this many seconds (between 1 and 10):"
+    },
+    "optionsNotificationsEnable": {
+        "description": "Label of the checkbox to toggle notifications.",
+        "message": "Enable popup"
+    },
+    "optionsSectionMode": {
+        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "message": "Mode"
+    },
+    "optionsSectionNotifications": {
+        "description": "Title of the options section allowing to control notifications.",
+        "message": "Notifications"
+    },
+    "optionsSkipRedirectsToSameDomain": {
+        "description": "Label of the checkbox that toggles skipping to the same public domain.",
+        "message": "Skip redirects for URLs with the same public domain"
+    },
+    "optionsTitle": {
+        "description": "Title of the options view.",
+        "message": "Options"
+    },
+    "optionsWhitelistContent": {
+        "description": "Label of the text area to edit the whitelist.",
+        "message": "Whitelist (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
+    },
+    "redirectSkippedBrowserActionBadge": {
+        "description": "Text of the badge shown on the button after a redirect was skipped.",
+        "message": "Skip"
+    },
+    "redirectSkippedNotificationMessage": {
+        "description": "Content of the notification about skipped redirect.",
+        "message": "$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "redirectSkippedNotificationTitle": {
+        "description": "Title of the notification about skipped redirect.",
+        "message": "Skipped Redirect"
+    }
+}
