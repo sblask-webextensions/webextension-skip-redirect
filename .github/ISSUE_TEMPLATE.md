@@ -2,6 +2,7 @@
 
 - [ ] I checked existing issues (open and closed) for possible duplicates
 - [ ] I can reproduce the problem on the latest stable version (not nightly!)
+- [ ] If you have a problem a specific website: adding the domain to your blacklist does not solve the problem
 - [ ] The issue is not about adding entries to the default blacklist
 
 ### What is your browser?
