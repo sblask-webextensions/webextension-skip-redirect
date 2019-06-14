@@ -1,0 +1,106 @@
+{
+    "browserActionLabelDefault": {
+        "description": "Label of the button before the extension has loaded completely.",
+        "message": "Passe-redirection"
+    },
+    "browserActionLabelOff": {
+        "description": "Label of the button when the extension is disabled.",
+        "message": "Passe-redirection désactivé — Cliquer pour l’activer"
+    },
+    "browserActionLabelOn": {
+        "description": "Label of the button when the extension is enabled.",
+        "message": "Passe-redirection activé — Cliquer pour le désactiver"
+    },
+    "browserActionLabelOnSkipped": {
+        "description": "Label of the button when the extension is enabled and there was a redirect.",
+        "message": "Passe-redirection actif\n\nDernière redirection :\n\n$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "contextMenuLabel": {
+        "description": "Label of the context menu entry to copy last URL.",
+        "message": "Copier le lien de la dernière redirection"
+    },
+    "extensionDescription": {
+        "description": "Description of the extension in the add-on manager.",
+        "message": "Certains sites web vous détournent parfois sur une page intermédiaire avant de vous conduire à la page que vous souhaitez réellement consulter. Passe-redirection tente de supprimer cette redirection pour atteindre directement la bonne page."
+    },
+    "extensionName": {
+        "description": "Name of the extension in the add-on manager.",
+        "message": "Passe-redirection"
+    },
+    "optionsBlacklistContent": {
+        "description": "Label of the text area to edit the blacklist.",
+        "message": "Liste noire (expressions rationnelles acceptées)"
+    },
+    "optionsModeBlacklist": {
+        "description": "The choice that sets the extension into blacklist mode.",
+        "message": "Supprimer toutes les redirections sauf celles des adresses figurant dans la liste noire"
+    },
+    "optionsModeOff": {
+        "description": "The choice that disables the extension.",
+        "message": "Désactiver"
+    },
+    "optionsModeWhitelist": {
+        "description": "The choice that sets the extension into whitelist mode.",
+        "message": "Supprimer les redirections uniquement des adresses figurant dans la liste blanche"
+    },
+    "optionsNotificationsDuration": {
+        "description": "Label of the input field to specify how long notifications are shown.",
+        "message": "Durée d’affichage des notifications (entre 1 et 10 secondes) :"
+    },
+    "optionsNotificationsEnable": {
+        "description": "Label of the checkbox to toggle notifications.",
+        "message": "Activer les notifications"
+    },
+    "optionsSectionMode": {
+        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "message": "Mode"
+    },
+    "optionsSectionNotifications": {
+        "description": "Title of the options section allowing to control notifications.",
+        "message": "Notification"
+    },
+    "optionsSkipRedirectsToSameDomain": {
+        "description": "Label of the checkbox that toggles skipping to the same public domain.",
+        "message": "Supprimer les redirections des adresses de même domaine public"
+    },
+    "optionsTitle": {
+        "description": "Title of the options view.",
+        "message": "Options"
+    },
+    "optionsWhitelistContent": {
+        "description": "Label of the text area to edit the whitelist.",
+        "message": "Liste blanche (<a href=\"https://developer.mozilla.org/Add-ons/WebExtensions/Match_patterns\">modèle</a> à suivre pour chaque entrée)"
+    },
+    "redirectSkippedBrowserActionBadge": {
+        "description": "Text of the badge shown on the button after a redirect was skipped.",
+        "message": "SUP"
+    },
+    "redirectSkippedNotificationMessage": {
+        "description": "Content of the notification about skipped redirect.",
+        "message": "$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "redirectSkippedNotificationTitle": {
+        "description": "Title of the notification about skipped redirect.",
+        "message": "Redirection supprimée"
+    }
+}
