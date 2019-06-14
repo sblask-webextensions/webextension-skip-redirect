@@ -1,0 +1,106 @@
+{
+    "browserActionLabelDefault": {
+        "description": "Label of the button before the extension has loaded completely.",
+        "message": "Skip Redirect"
+    },
+    "browserActionLabelOff": {
+        "description": "Label of the button when the extension is disabled.",
+        "message": "Skip Redirect отключен, нажмите, чтобы включить"
+    },
+    "browserActionLabelOn": {
+        "description": "Label of the button when the extension is enabled.",
+        "message": "Skip Redirect включен, нажмите, чтобы отключить"
+    },
+    "browserActionLabelOnSkipped": {
+        "description": "Label of the button when the extension is enabled and there was a redirect.",
+        "message": "Skip Redirect включен, нажмите, чтобы отключить\n\nПоследнее перенаправление:\n\n$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "contextMenuLabel": {
+        "description": "Label of the context menu entry to copy last URL.",
+        "message": "Скопировать последний пропущенный URL"
+    },
+    "extensionDescription": {
+        "description": "Description of the extension in the add-on manager.",
+        "message": "Некоторые веб-сайты направляют пользователей на промежуточные страницы, прежде чем открыть необходимую. Skip Redirect пытается предотвратить перенаправления, чтобы сразу перейти на нужную страницу."
+    },
+    "extensionName": {
+        "description": "Name of the extension in the add-on manager.",
+        "message": "Skip Redirect"
+    },
+    "optionsBlacklistContent": {
+        "description": "Label of the text area to edit the blacklist.",
+        "message": "Черный список (вы можете использовать регулярные выражения)"
+    },
+    "optionsModeBlacklist": {
+        "description": "The choice that sets the extension into blacklist mode.",
+        "message": "Пропускать все перенаправления, за исключением URL-адресов, находящихся в черном списке."
+    },
+    "optionsModeOff": {
+        "description": "The choice that disables the extension.",
+        "message": "Отключить"
+    },
+    "optionsModeWhitelist": {
+        "description": "The choice that sets the extension into whitelist mode.",
+        "message": "Пропускать перенаправления только URL-адресов, находящихся в белом списке."
+    },
+    "optionsNotificationsDuration": {
+        "description": "Label of the input field to specify how long notifications are shown.",
+        "message": "Время отображения уведомления (от 1 до 10 секунд):"
+    },
+    "optionsNotificationsEnable": {
+        "description": "Label of the checkbox to toggle notifications.",
+        "message": "Включить всплывающее уведомление"
+    },
+    "optionsSectionMode": {
+        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "message": "Способ"
+    },
+    "optionsSectionNotifications": {
+        "description": "Title of the options section allowing to control notifications.",
+        "message": "Уведомления"
+    },
+    "optionsSkipRedirectsToSameDomain": {
+        "description": "Label of the checkbox that toggles skipping to the same public domain.",
+        "message": "Пропускать перенаправления URL-адресов в том же домене"
+    },
+    "optionsTitle": {
+        "description": "Title of the options view.",
+        "message": "Опции"
+    },
+    "optionsWhitelistContent": {
+        "description": "Label of the text area to edit the whitelist.",
+        "message": "Белый список (каждая строка должна соответствовать этому <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">шаблону</a>)"
+    },
+    "redirectSkippedBrowserActionBadge": {
+        "description": "Text of the badge shown on the button after a redirect was skipped.",
+        "message": "Пропуск"
+    },
+    "redirectSkippedNotificationMessage": {
+        "description": "Content of the notification about skipped redirect.",
+        "message": "$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "redirectSkippedNotificationTitle": {
+        "description": "Title of the notification about skipped redirect.",
+        "message": "Пропущенное перенаправление"
+    }
+}
