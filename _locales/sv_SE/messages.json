@@ -1,0 +1,106 @@
+{
+    "browserActionLabelDefault": {
+        "description": "Label of the button before the extension has loaded completely.",
+        "message": "Skip Redirect"
+    },
+    "browserActionLabelOff": {
+        "description": "Label of the button when the extension is disabled.",
+        "message": "Skip Redirect är inaktiverad, tryck för att aktivera"
+    },
+    "browserActionLabelOn": {
+        "description": "Label of the button when the extension is enabled.",
+        "message": "Skip Redirect är aktiverad, tryck för att inaktivera"
+    },
+    "browserActionLabelOnSkipped": {
+        "description": "Label of the button when the extension is enabled and there was a redirect.",
+        "message": "Skip Redirect är aktiverad, tryck för att inaktivera\n\nSenast omdirigering:\n\n$sourceUrl$\n\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://exempel.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "contextMenuLabel": {
+        "description": "Label of the context menu entry to copy last URL.",
+        "message": "Kopiera senaste överhoppad webbadress"
+    },
+    "extensionDescription": {
+        "description": "Description of the extension in the add-on manager.",
+        "message": "Hoppa över mellanliggande sidor som en del sidor använder innan de omdirigeras till målsidan."
+    },
+    "extensionName": {
+        "description": "Name of the extension in the add-on manager.",
+        "message": "Skip Redirect"
+    },
+    "optionsBlacklistContent": {
+        "description": "Label of the text area to edit the blacklist.",
+        "message": "Svartlista (du kan använda reguljära uttryck)"
+    },
+    "optionsModeBlacklist": {
+        "description": "The choice that sets the extension into blacklist mode.",
+        "message": "Hoppa över alla omdirigeringar utom webbadresser som matchar någon av raderna i svartlistan."
+    },
+    "optionsModeOff": {
+        "description": "The choice that disables the extension.",
+        "message": "Av"
+    },
+    "optionsModeWhitelist": {
+        "description": "The choice that sets the extension into whitelist mode.",
+        "message": "Hoppa över omdirigeringar endast för webbadresser som matchar någon av raderna i vitlistan."
+    },
+    "optionsNotificationsDuration": {
+        "description": "Label of the input field to specify how long notifications are shown.",
+        "message": "Visa en avisering i så här många sekunder (mellan 1 och 10):"
+    },
+    "optionsNotificationsEnable": {
+        "description": "Label of the checkbox to toggle notifications.",
+        "message": "Aktivera popup"
+    },
+    "optionsSectionMode": {
+        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "message": "Läge"
+    },
+    "optionsSectionNotifications": {
+        "description": "Title of the options section allowing to control notifications.",
+        "message": "Aviseringar"
+    },
+    "optionsSkipRedirectsToSameDomain": {
+        "description": "Label of the checkbox that toggles skipping to the same public domain.",
+        "message": "Hoppa över omdirigeringar för webbadresser med samma offentliga domän"
+    },
+    "optionsTitle": {
+        "description": "Title of the options view.",
+        "message": "Alternativ"
+    },
+    "optionsWhitelistContent": {
+        "description": "Label of the text area to edit the whitelist.",
+        "message": "Vitlista (varje rad måste följa detta <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
+    },
+    "redirectSkippedBrowserActionBadge": {
+        "description": "Text of the badge shown on the button after a redirect was skipped.",
+        "message": "Hoppa över"
+    },
+    "redirectSkippedNotificationMessage": {
+        "description": "Content of the notification about skipped redirect.",
+        "message": "$sourceUrl$\n\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://exempel.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "redirectSkippedNotificationTitle": {
+        "description": "Title of the notification about skipped redirect.",
+        "message": "Överhoppad omdirigering"
+    }
+}
