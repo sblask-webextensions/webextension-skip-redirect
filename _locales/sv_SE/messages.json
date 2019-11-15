@@ -13,7 +13,7 @@
     },
     "browserActionLabelOnSkipped": {
         "description": "Label of the button when the extension is enabled and there was a redirect.",
-        "message": "Skip Redirect är aktiverad, tryck för att inaktivera\n\nSenast omdirigering:\n\n$sourceUrl$\n\n$targetUrl$",
+        "message": "Skip Redirect är aktiverad, tryck för att inaktivera\n\nSenast omdirigering:\n\n$sourceUrl$\n\n$targetUrl$",
         "placeholders": {
             "sourceUrl": {
                 "content": "$1",
@@ -87,7 +87,7 @@
     },
     "redirectSkippedNotificationMessage": {
         "description": "Content of the notification about skipped redirect.",
-        "message": "$sourceUrl$\n\n$targetUrl$",
+        "message": "$sourceUrl$\n\n$targetUrl$",
         "placeholders": {
             "sourceUrl": {
                 "content": "$1",
