@@ -23,6 +23,7 @@ const ICON_WHITELIST = "icon-whitelist.svg";
 const MAX_NOTIFICATION_URL_LENGTH = 100;
 
 const GLOBAL_BLACKLIST = [
+    "archive\.org",
     "/abp",
     "/account",
     "/adfs",
