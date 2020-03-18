@@ -45,6 +45,7 @@ const GLOBAL_BLACKLIST = [
     "/signup",
     "/sso",
     "/subscribe",
+    "/unauthenticated",
     "/verification",
 ];
 
