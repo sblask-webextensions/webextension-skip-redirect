@@ -5,15 +5,15 @@
     },
     "browserActionLabelOff": {
         "description": "Label of the button when the extension is disabled.",
-        "message": "Skip Redirect отключен, нажмите, чтобы включить"
+        "message": "Skip Redirect отключен. Нажмите для включения"
     },
     "browserActionLabelOn": {
         "description": "Label of the button when the extension is enabled.",
-        "message": "Skip Redirect включен, нажмите, чтобы отключить"
+        "message": "Skip Redirect включен. Нажмите для отключения"
     },
     "browserActionLabelOnSkipped": {
         "description": "Label of the button when the extension is enabled and there was a redirect.",
-        "message": "Skip Redirect включен, нажмите, чтобы отключить\n\nПоследнее перенаправление:\n\n$sourceUrl$\n➔\n$targetUrl$",
+        "message": "Skip Redirect включен. Нажмите для отключения\n\nПоследнее перенаправление:\n\n$sourceUrl$\n➔\n$targetUrl$",
         "placeholders": {
             "sourceUrl": {
                 "content": "$1",
@@ -31,7 +31,7 @@
     },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
-        "message": "Некоторые веб-сайты направляют пользователей на промежуточные страницы, прежде чем открыть необходимую. Skip Redirect пытается предотвратить перенаправления, чтобы сразу перейти на нужную страницу."
+        "message": "Пропускает промежуточные страницы, которые используют некоторые сайты, до перенаправления на нужную страницу."
     },
     "extensionName": {
         "description": "Name of the extension in the add-on manager.",
@@ -43,7 +43,7 @@
     },
     "optionsModeBlacklist": {
         "description": "The choice that sets the extension into blacklist mode.",
-        "message": "Пропускать все перенаправления, за исключением URL-адресов, находящихся в черном списке."
+        "message": "Пропускать все перенаправления, за исключением URL, находящихся в черном списке."
     },
     "optionsModeOff": {
         "description": "The choice that disables the extension.",
@@ -51,7 +51,7 @@
     },
     "optionsModeWhitelist": {
         "description": "The choice that sets the extension into whitelist mode.",
-        "message": "Пропускать перенаправления только URL-адресов, находящихся в белом списке."
+        "message": "Пропускать перенаправления только URL, находящихся в белом списке."
     },
     "optionsNotificationsDuration": {
         "description": "Label of the input field to specify how long notifications are shown.",
@@ -63,7 +63,7 @@
     },
     "optionsSectionMode": {
         "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
-        "message": "Способ"
+        "message": "Режим"
     },
     "optionsSectionNotifications": {
         "description": "Title of the options section allowing to control notifications.",
@@ -71,11 +71,11 @@
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
-        "message": "Пропускать перенаправления URL-адресов в том же домене"
+        "message": "Пропускать перенаправления URL в том же домене"
     },
     "optionsTitle": {
         "description": "Title of the options view.",
-        "message": "Опции"
+        "message": "Параметры"
     },
     "optionsWhitelistContent": {
         "description": "Label of the text area to edit the whitelist.",
