@@ -233,10 +233,10 @@ function maybeRedirect(requestDetails) {
     }
 
     if (currentMode === MODE_BLACKLIST && !skipRedirectsToSameDomain) {
-        let sourceHostname = getHostname(requestDetails.url);
-        let targetHostname = getHostname(redirectTarget);
-        let sourceDomain = psl.getDomain(sourceHostname);
-        let targetDomain = psl.getDomain(targetHostname);
+        const sourceHostname = getHostname(requestDetails.url);
+        const targetHostname = getHostname(redirectTarget);
+        const sourceDomain = psl.getDomain(sourceHostname);
+        const targetDomain = psl.getDomain(targetHostname);
         if (sourceDomain === targetDomain) {
             return;
         }
@@ -262,9 +262,9 @@ function notifySkip(from, to) {
         clearNotifications();
     }
 
-    let notificationMessage = browser.i18n.getMessage("redirectSkippedNotificationMessage", [cleanUrl(from), cleanUrl(to)]);
+    const notificationMessage = browser.i18n.getMessage("redirectSkippedNotificationMessage", [cleanUrl(from), cleanUrl(to)]);
 
-    let toolbarButtonTitle = browser.i18n.getMessage("browserActionLabelOnSkipped", [from, to]);
+    const toolbarButtonTitle = browser.i18n.getMessage("browserActionLabelOnSkipped", [from, to]);
 
     if (notificationPopupEnabled) {
         browser.notifications.create(NOTIFICATION_ID, {
@@ -297,14 +297,14 @@ function cleanUrl(string) {
 }
 
 function getHostname(url) {
-    var a = document.createElement("a");
+    const a = document.createElement("a");
     a.href = url;
     return a.hostname;
 }
 
 function chainPromises(functions) {
     let promise = Promise.resolve();
-    for (let function_ of functions) {
+    for (const function_ of functions) {
         promise = promise.then(function_);
     }
 

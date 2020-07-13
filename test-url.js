@@ -116,7 +116,7 @@ test("no skipping if URL matches one of given exceptions", function(assert) {
         "http://www.some.website.com/" + "Login?continue=" + wwwTargetUrlDoubleEncoded + "#some-fragment]",
     ];
 
-    for (let urlString of noRedirectUrls) {
+    for (const urlString of noRedirectUrls) {
         assert.equal(url.getRedirectTarget(urlString, ["/login"]), urlString);
     }
 

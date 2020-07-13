@@ -14,13 +14,13 @@ const psl = (function(root) { //  eslint-disable-line no-unused-vars
             return hostname;
         }
 
-        let dotIndex = hostname.indexOf(".");
+        const dotIndex = hostname.indexOf(".");
         if (dotIndex == -1) {
             return undefined;
         }
 
-        let head = hostname.slice(0, dotIndex);
-        let rest = hostname.slice(dotIndex + 1);
+        const head = hostname.slice(0, dotIndex);
+        const rest = hostname.slice(dotIndex + 1);
 
         if (pslrules.WILDCARD_ENTRIES.has(rest) && previousHead) {
             return [previousHead, head, rest].join(".");

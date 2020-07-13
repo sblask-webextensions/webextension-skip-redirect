@@ -47,6 +47,8 @@
                 "varsIgnorePattern": "^_[^_]"
             }
         ],
+        "no-var": "error",
+        "prefer-const": "warn",
         "quotes": [
             "warn",
             "double"

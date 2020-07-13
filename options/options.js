@@ -19,17 +19,17 @@ function restoreOptions() {
 }
 
 function enableAutosave() {
-    for (let input of document.querySelectorAll("input:not([type=radio]):not([type=checkbox]), textarea")) {
+    for (const input of document.querySelectorAll("input:not([type=radio]):not([type=checkbox]), textarea")) {
         input.addEventListener("input", saveOptions);
     }
-    for (let input of document.querySelectorAll("input[type=radio], input[type=checkbox]")) {
+    for (const input of document.querySelectorAll("input[type=radio], input[type=checkbox]")) {
         input.addEventListener("change", saveOptions);
     }
 }
 
 function loadTranslations() {
-    for (let element of document.querySelectorAll("[data-i18n]")) {
-        let translationKey = element.getAttribute("data-i18n");
+    for (const element of document.querySelectorAll("[data-i18n]")) {
+        const translationKey = element.getAttribute("data-i18n");
         if (typeof browser === "undefined" || !browser.i18n.getMessage(translationKey)) {
             element.textContent = element.getAttribute("data-i18n");
         } else {
@@ -39,7 +39,7 @@ function loadTranslations() {
 }
 
 function setTextValue(elementID, newValue) {
-    let oldValue = document.getElementById(elementID).value;
+    const oldValue = document.getElementById(elementID).value;
 
     if (oldValue !== newValue) {
         document.getElementById(elementID).value = newValue;

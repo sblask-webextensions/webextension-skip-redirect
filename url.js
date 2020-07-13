@@ -15,7 +15,7 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
 
     function comprehend(array, transformFunction) {
         const result = [];
-        for (let thing of array) {
+        for (const thing of array) {
             result.push(transformFunction(thing));
         }
 

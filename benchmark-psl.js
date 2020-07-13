@@ -5,7 +5,7 @@ const pslrules = require("./pslrules");
 
 test("benchmark", function(test) {
     test.benchmark("Search through rules", function() {
-        for (let entry of pslrules.NORMAL_ENTRIES) {
+        for (const entry of pslrules.NORMAL_ENTRIES) {
             "foobar.foo.bar.ck".endsWith(entry);
         }
     });

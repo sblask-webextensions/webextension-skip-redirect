@@ -1,5 +1,5 @@
 function copyToClipboard(text) { // eslint-disable-line no-unused-vars
-    var copyFrom = document.createElement("textarea");
+    const copyFrom = document.createElement("textarea");
     copyFrom.textContent = text;
 
     document.body.appendChild(copyFrom);
