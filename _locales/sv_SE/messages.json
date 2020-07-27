@@ -37,21 +37,21 @@
         "description": "Name of the extension in the add-on manager.",
         "message": "Skip Redirect"
     },
-    "optionsBlacklistContent": {
-        "description": "Label of the text area to edit the blacklist.",
-        "message": "Svartlista (du kan använda reguljära uttryck)"
-    },
-    "optionsModeBlacklist": {
-        "description": "The choice that sets the extension into blacklist mode.",
+    "optionsModeNoSkipList": {
+        "description": "The choice that sets the extension into no-skip-list mode.",
         "message": "Hoppa över alla omdirigeringar utom webbadresser som matchar någon av raderna i svartlistan."
     },
     "optionsModeOff": {
         "description": "The choice that disables the extension.",
         "message": "Av"
     },
-    "optionsModeWhitelist": {
-        "description": "The choice that sets the extension into whitelist mode.",
+    "optionsModeSkipList": {
+        "description": "The choice that sets the extension into skip-list mode.",
         "message": "Hoppa över omdirigeringar endast för webbadresser som matchar någon av raderna i vitlistan."
+    },
+    "optionsNoSkipListContent": {
+        "description": "Label of the text area to edit the no-skip-list.",
+        "message": "Svartlista (du kan använda reguljära uttryck)"
     },
     "optionsNotificationsDuration": {
         "description": "Label of the input field to specify how long notifications are shown.",
@@ -62,12 +62,16 @@
         "message": "Aktivera popup"
     },
     "optionsSectionMode": {
-        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "description": "Title of the options section allowing to toggle between no-skip-list and skip-list or disable the extension.",
         "message": "Läge"
     },
     "optionsSectionNotifications": {
         "description": "Title of the options section allowing to control notifications.",
         "message": "Aviseringar"
+    },
+    "optionsSkipListContent": {
+        "description": "Label of the text area to edit the skip-list.",
+        "message": "Vitlista (varje rad måste följa detta <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
@@ -76,10 +80,6 @@
     "optionsTitle": {
         "description": "Title of the options view.",
         "message": "Alternativ"
-    },
-    "optionsWhitelistContent": {
-        "description": "Label of the text area to edit the whitelist.",
-        "message": "Vitlista (varje rad måste följa detta <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
     },
     "redirectSkippedBrowserActionBadge": {
         "description": "Text of the badge shown on the button after a redirect was skipped.",

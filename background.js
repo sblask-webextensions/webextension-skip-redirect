@@ -1,28 +1,31 @@
 /* global psl */
 /* global url */
-const MODE = "mode";
-const MODE_OFF = "off";
-const MODE_BLACKLIST = "blacklist";
 
-const BLACKLIST = "blacklist";
-const WHITELIST = "whitelist";
+const OPTION_MODE = "mode";
+
+const OPTION_MODE_OFF = "off";
+const OPTION_MODE_NO_SKIP_LIST = "blacklist";
+const OPTION_MODE_SKIP_LIST = "whitelist";
+
+const OPTION_NO_SKIP_LIST = "blacklist";
+const OPTION_SKIP_LIST = "whitelist";
+
+const OPTION_NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
+const OPTION_NOTIFICATION_DURATION = "notificationDuration";
+
+const OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
 
 const CONTEXT_MENU_ID = "copy-last-source-url";
-
 const NOTIFICATION_ID = "notify-skip";
-const NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
-const NOTIFICATION_DURATION = "notificationDuration";
 
-const SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
-
-const ICON           = "icon.svg";
-const ICON_OFF       = "icon-off.svg";
-const ICON_BLACKLIST = "icon-blacklist.svg";
-const ICON_WHITELIST = "icon-whitelist.svg";
+const ICON              = "icon.svg";
+const ICON_OFF          = "icon-off.svg";
+const ICON_NO_SKIP_LIST = "icon-no-skip-list.svg";
+const ICON_SKIP_LIST    = "icon-skip-list.svg";
 
 const MAX_NOTIFICATION_URL_LENGTH = 100;
 
-const GLOBAL_BLACKLIST = [
+const GLOBAL_NO_SKIP_LIST = [
     "/abp",
     "/account",
     "/adfs",
@@ -50,8 +53,8 @@ const GLOBAL_BLACKLIST = [
 ];
 
 let currentMode = undefined;
-let blacklist = [];
-let whitelist = [];
+let noSkipList = [];
+let skipList = [];
 
 let lastSourceURL = undefined;
 
@@ -63,51 +66,51 @@ let skipRedirectsToSameDomain = false;
 let notificationTimeout = undefined;
 
 browser.storage.local.get([
-    MODE,
-    BLACKLIST,
-    WHITELIST,
-    NOTIFICATION_POPUP_ENABLED,
-    NOTIFICATION_DURATION,
-    SKIP_REDIRECTS_TO_SAME_DOMAIN,
+    OPTION_MODE,
+    OPTION_NO_SKIP_LIST,
+    OPTION_SKIP_LIST,
+    OPTION_NOTIFICATION_POPUP_ENABLED,
+    OPTION_NOTIFICATION_DURATION,
+    OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN,
 ])
     .then(
         (result) => {
-            if (result[BLACKLIST] === undefined) {
-                browser.storage.local.set({[BLACKLIST]: GLOBAL_BLACKLIST});
+            if (result[OPTION_NO_SKIP_LIST] === undefined) {
+                browser.storage.local.set({[OPTION_NO_SKIP_LIST]: GLOBAL_NO_SKIP_LIST});
             } else {
-                updateBlacklist(result[BLACKLIST]);
+                updateNoSkipList(result[OPTION_NO_SKIP_LIST]);
             }
 
-            if (result[WHITELIST] === undefined) {
-                browser.storage.local.set({[WHITELIST]: []});
+            if (result[OPTION_SKIP_LIST] === undefined) {
+                browser.storage.local.set({[OPTION_SKIP_LIST]: []});
             } else {
-                updateWhitelist(result[WHITELIST]);
+                updateSkipList(result[OPTION_SKIP_LIST]);
             }
 
-            if (result[MODE] === undefined) {
-                browser.storage.local.set({[MODE]: MODE_BLACKLIST});
-            } else if (result[MODE] === MODE_OFF) {
+            if (result[OPTION_MODE] === undefined) {
+                browser.storage.local.set({[OPTION_MODE]: OPTION_MODE_NO_SKIP_LIST});
+            } else if (result[OPTION_MODE] === OPTION_MODE_OFF) {
                 disableSkipping();
             } else {
-                enableSkipping(result[MODE]);
+                enableSkipping(result[OPTION_MODE]);
             }
 
-            if (result[NOTIFICATION_POPUP_ENABLED] === undefined) {
-                browser.storage.local.set({[NOTIFICATION_POPUP_ENABLED]: true});
+            if (result[OPTION_NOTIFICATION_POPUP_ENABLED] === undefined) {
+                browser.storage.local.set({[OPTION_NOTIFICATION_POPUP_ENABLED]: true});
             } else {
-                notificationPopupEnabled = result[NOTIFICATION_POPUP_ENABLED];
+                notificationPopupEnabled = result[OPTION_NOTIFICATION_POPUP_ENABLED];
             }
 
-            if (result[NOTIFICATION_DURATION] === undefined) {
-                browser.storage.local.set({[NOTIFICATION_DURATION]: 3});
+            if (result[OPTION_NOTIFICATION_DURATION] === undefined) {
+                browser.storage.local.set({[OPTION_NOTIFICATION_DURATION]: 3});
             } else {
-                notificationDuration = result[NOTIFICATION_DURATION];
+                notificationDuration = result[OPTION_NOTIFICATION_DURATION];
             }
 
-            if (result[SKIP_REDIRECTS_TO_SAME_DOMAIN] === undefined) {
-                browser.storage.local.set({[SKIP_REDIRECTS_TO_SAME_DOMAIN]: false});
+            if (result[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN] === undefined) {
+                browser.storage.local.set({[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN]: false});
             } else {
-                skipRedirectsToSameDomain = result[SKIP_REDIRECTS_TO_SAME_DOMAIN];
+                skipRedirectsToSameDomain = result[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN];
             }
 
         }
@@ -115,32 +118,32 @@ browser.storage.local.get([
 
 browser.storage.onChanged.addListener(
     (changes) => {
-        if (changes[BLACKLIST]) {
-            updateBlacklist(changes[BLACKLIST].newValue);
+        if (changes[OPTION_NO_SKIP_LIST]) {
+            updateNoSkipList(changes[OPTION_NO_SKIP_LIST].newValue);
         }
 
-        if (changes[WHITELIST]) {
-            updateWhitelist(changes[WHITELIST].newValue);
+        if (changes[OPTION_SKIP_LIST]) {
+            updateSkipList(changes[OPTION_SKIP_LIST].newValue);
         }
 
-        if (changes[MODE]) {
-            if (changes[MODE].newValue === MODE_OFF) {
+        if (changes[OPTION_MODE]) {
+            if (changes[OPTION_MODE].newValue === OPTION_MODE_OFF) {
                 disableSkipping();
             } else {
-                enableSkipping(changes[MODE].newValue);
+                enableSkipping(changes[OPTION_MODE].newValue);
             }
         }
 
-        if (changes[NOTIFICATION_POPUP_ENABLED]) {
-            notificationPopupEnabled = changes[NOTIFICATION_POPUP_ENABLED].newValue;
+        if (changes[OPTION_NOTIFICATION_POPUP_ENABLED]) {
+            notificationPopupEnabled = changes[OPTION_NOTIFICATION_POPUP_ENABLED].newValue;
         }
 
-        if (changes[NOTIFICATION_DURATION]) {
-            notificationDuration = changes[NOTIFICATION_DURATION].newValue;
+        if (changes[OPTION_NOTIFICATION_DURATION]) {
+            notificationDuration = changes[OPTION_NOTIFICATION_DURATION].newValue;
         }
 
-        if (changes[SKIP_REDIRECTS_TO_SAME_DOMAIN]) {
-            skipRedirectsToSameDomain = changes[SKIP_REDIRECTS_TO_SAME_DOMAIN].newValue;
+        if (changes[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN]) {
+            skipRedirectsToSameDomain = changes[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN].newValue;
         }
 
     }
@@ -175,35 +178,35 @@ function injectScriptIfNecessary(isCopyFunctionDefined) {
     }
 }
 
-function updateBlacklist(newBlacklist) {
-    blacklist = newBlacklist.filter(Boolean);
+function updateNoSkipList(newNoSkipList) {
+    noSkipList = newNoSkipList.filter(Boolean);
 }
 
-function updateWhitelist(newWhitelist) {
-    whitelist = newWhitelist.filter(Boolean);
+function updateSkipList(newSkipList) {
+    skipList = newSkipList.filter(Boolean);
 }
 
 function enableSkipping(mode) {
     browser.webRequest.onBeforeRequest.removeListener(maybeRedirect);
 
     currentMode = mode;
-    if (mode === MODE_BLACKLIST) {
+    if (mode === OPTION_MODE_NO_SKIP_LIST) {
         browser.webRequest.onBeforeRequest.addListener(
             maybeRedirect,
             {urls: ["<all_urls>"], types: ["main_frame"]},
             ["blocking"]
         );
-        browser.browserAction.setIcon({path: ICON_BLACKLIST});
-    } else {
-        if (whitelist.length > 0) {
+        browser.browserAction.setIcon({path: ICON_NO_SKIP_LIST});
+    } else if (mode === OPTION_MODE_SKIP_LIST) {
+        if (skipList.length > 0) {
             browser.webRequest.onBeforeRequest.addListener(
                 maybeRedirect,
-                {urls: whitelist, types: ["main_frame"]},
+                {urls: skipList, types: ["main_frame"]},
                 ["blocking"]
             );
         }
 
-        browser.browserAction.setIcon({path: ICON_WHITELIST});
+        browser.browserAction.setIcon({path: ICON_SKIP_LIST});
     }
 
     browser.browserAction.setBadgeBackgroundColor({color: "red"});
@@ -223,8 +226,8 @@ function maybeRedirect(requestDetails) {
     }
 
     let exceptions = [];
-    if (currentMode === MODE_BLACKLIST) {
-        exceptions = blacklist;
+    if (currentMode === OPTION_MODE_NO_SKIP_LIST) {
+        exceptions = noSkipList;
     }
 
     const redirectTarget = url.getRedirectTarget(requestDetails.url, exceptions);
@@ -232,7 +235,7 @@ function maybeRedirect(requestDetails) {
         return;
     }
 
-    if (currentMode === MODE_BLACKLIST && !skipRedirectsToSameDomain) {
+    if (currentMode === OPTION_MODE_NO_SKIP_LIST && !skipRedirectsToSameDomain) {
         const sourceHostname = getHostname(requestDetails.url);
         const targetHostname = getHostname(redirectTarget);
         const sourceDomain = psl.getDomain(sourceHostname);

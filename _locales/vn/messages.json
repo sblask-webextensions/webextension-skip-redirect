@@ -37,21 +37,21 @@
         "description": "Name of the extension in the add-on manager.",
         "message": "Chuyển hướng nhanh"
     },
-    "optionsBlacklistContent": {
-        "description": "Label of the text area to edit the blacklist.",
-        "message": "Danh sách đen (you may use regular expressions)"
-    },
-    "optionsModeBlacklist": {
-        "description": "The choice that sets the extension into blacklist mode.",
+    "optionsModeNoSkipList": {
+        "description": "The choice that sets the extension into no-skip-list mode.",
         "message": "Bỏ qua tất cả các chuyển hướng ngoại trừ các URL khớp với bất kỳ dòng nào trong danh sách đen."
     },
     "optionsModeOff": {
         "description": "The choice that disables the extension.",
         "message": "Tắt"
     },
-    "optionsModeWhitelist": {
-        "description": "The choice that sets the extension into whitelist mode.",
+    "optionsModeSkipList": {
+        "description": "The choice that sets the extension into skip-list mode.",
         "message": "Bỏ qua các chuyển hướng chỉ cho các URL khớp với bất kỳ dòng nào trong danh sách trắng."
+    },
+    "optionsNoSkipListContent": {
+        "description": "Label of the text area to edit the no-skip-list.",
+        "message": "Danh sách đen (you may use regular expressions)"
     },
     "optionsNotificationsDuration": {
         "description": "Label of the input field to specify how long notifications are shown.",
@@ -62,12 +62,16 @@
         "message": "Bật popup"
     },
     "optionsSectionMode": {
-        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "description": "Title of the options section allowing to toggle between no-skip-list and skip-list or disable the extension.",
         "message": "Chế độ"
     },
     "optionsSectionNotifications": {
         "description": "Title of the options section allowing to control notifications.",
         "message": "Thông báo"
+    },
+    "optionsSkipListContent": {
+        "description": "Label of the text area to edit the skip-list.",
+        "message": "Danh sách trắng (mỗi dòng cần tuân theo điều này <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
@@ -76,10 +80,6 @@
     "optionsTitle": {
         "description": "Title of the options view.",
         "message": "Tùy chọn"
-    },
-    "optionsWhitelistContent": {
-        "description": "Label of the text area to edit the whitelist.",
-        "message": "Danh sách trắng (mỗi dòng cần tuân theo điều này <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
     },
     "redirectSkippedBrowserActionBadge": {
         "description": "Text of the badge shown on the button after a redirect was skipped.",

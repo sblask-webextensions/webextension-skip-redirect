@@ -37,21 +37,21 @@
         "description": "Name of the extension in the add-on manager.",
         "message": "Skip Redirect"
     },
-    "optionsBlacklistContent": {
-        "description": "Label of the text area to edit the blacklist.",
-        "message": "Blacklist (you may use regular expressions)"
-    },
-    "optionsModeBlacklist": {
-        "description": "The choice that sets the extension into blacklist mode.",
-        "message": "Skip all redirects except for URLs matching any of the lines in the blacklist."
+    "optionsModeNoSkipList": {
+        "description": "The choice that sets the extension into no-skip-list mode.",
+        "message": "Skip all redirects except for URLs matching any of the lines in the no-skip-list."
     },
     "optionsModeOff": {
         "description": "The choice that disables the extension.",
         "message": "Off"
     },
-    "optionsModeWhitelist": {
-        "description": "The choice that sets the extension into whitelist mode.",
-        "message": "Skip redirects only for URLs matching any of the lines in the whitelist."
+    "optionsModeSkipList": {
+        "description": "The choice that sets the extension into skip-list mode.",
+        "message": "Skip redirects only for URLs matching any of the lines in the skip-list."
+    },
+    "optionsNoSkipListContent": {
+        "description": "Label of the text area to edit the no-skip-list.",
+        "message": "No-skip-list (you may use regular expressions)"
     },
     "optionsNotificationsDuration": {
         "description": "Label of the input field to specify how long notifications are shown.",
@@ -62,12 +62,16 @@
         "message": "Enable popup"
     },
     "optionsSectionMode": {
-        "description": "Title of the options section allowing to toggle between blacklist and whitelist or disable the extension.",
+        "description": "Title of the options section allowing to toggle between no-skip-list and skip-list or disable the extension.",
         "message": "Mode"
     },
     "optionsSectionNotifications": {
         "description": "Title of the options section allowing to control notifications.",
         "message": "Notifications"
+    },
+    "optionsSkipListContent": {
+        "description": "Label of the text area to edit the skip-list.",
+        "message": "Skip-list (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
@@ -76,10 +80,6 @@
     "optionsTitle": {
         "description": "Title of the options view.",
         "message": "Options"
-    },
-    "optionsWhitelistContent": {
-        "description": "Label of the text area to edit the whitelist.",
-        "message": "Whitelist (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
     },
     "redirectSkippedBrowserActionBadge": {
         "description": "Text of the badge shown on the button after a redirect was skipped.",
