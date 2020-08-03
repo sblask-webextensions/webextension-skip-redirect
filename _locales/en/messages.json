@@ -37,21 +37,21 @@
         "description": "Name of the extension in the add-on manager.",
         "message": "Skip Redirect"
     },
-    "optionsModeNoSkipList": {
-        "description": "The choice that sets the extension into no-skip-list mode.",
-        "message": "Skip all redirects except for URLs matching any of the lines in the no-skip-list."
+    "optionsModeNoSkipUrlsList": {
+        "description": "The choice that sets the extension into no-skip-urls-list mode.",
+        "message": "Skip all redirects except for URLs matching any of the lines in the no-skip-urls-list."
     },
     "optionsModeOff": {
         "description": "The choice that disables the extension.",
         "message": "Off"
     },
-    "optionsModeSkipList": {
-        "description": "The choice that sets the extension into skip-list mode.",
-        "message": "Skip redirects only for URLs matching any of the lines in the skip-list."
+    "optionsModeSkipUrlsList": {
+        "description": "The choice that sets the extension into skip-urls-list mode.",
+        "message": "Skip redirects only for URLs matching any of the lines in the skip-urls-list."
     },
-    "optionsNoSkipListContent": {
-        "description": "Label of the text area to edit the no-skip-list.",
-        "message": "No-skip-list (you may use regular expressions)"
+    "optionsNoSkipUrlsListContent": {
+        "description": "Label of the text area to edit the no-skip-urls-list.",
+        "message": "No-skip-urls-list (you may use regular expressions)"
     },
     "optionsNotificationsDuration": {
         "description": "Label of the input field to specify how long notifications are shown.",
@@ -62,16 +62,16 @@
         "message": "Enable popup"
     },
     "optionsSectionMode": {
-        "description": "Title of the options section allowing to toggle between no-skip-list and skip-list or disable the extension.",
+        "description": "Title of the options section allowing to toggle between no-skip-urls-list and skip-urls-list or disable the extension.",
         "message": "Mode"
     },
     "optionsSectionNotifications": {
         "description": "Title of the options section allowing to control notifications.",
         "message": "Notifications"
     },
-    "optionsSkipListContent": {
-        "description": "Label of the text area to edit the skip-list.",
-        "message": "Skip-list (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
+    "optionsSkipUrlsListContent": {
+        "description": "Label of the text area to edit the skip-urls-list.",
+        "message": "Skip-urls-list (each line needs to follow this <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">pattern</a>)"
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
