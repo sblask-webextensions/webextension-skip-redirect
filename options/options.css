@@ -35,13 +35,13 @@ textarea {
     padding: 3px;
     width: 100%;
 }
-textarea#no-skip-urls-list.error {
+textarea.error {
     border: 1px solid red;
 }
-textarea:focus#no-skip-urls-list.error {
+textarea:focus.error {
     outline-color: red;
 }
-#no-skip-urls-list-error {
+.list-error {
     color: red;
 }
 .box-wrapper {

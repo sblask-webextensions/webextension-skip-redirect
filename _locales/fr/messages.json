@@ -49,6 +49,10 @@
         "description": "The choice that sets the extension into skip-urls-list mode.",
         "message": "Supprimer les redirections uniquement des adresses figurant dans la liste blanche"
     },
+    "optionsNoSkipParametersListContent": {
+        "description": "Label of the text area to edit the no-skip-parameters-list.",
+        "message": "Liste noire des paramètres url (expressions rationnelles acceptées)"
+    },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "Liste noire (expressions rationnelles acceptées)"

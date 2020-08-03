@@ -49,6 +49,10 @@
         "description": "The choice that sets the extension into skip-urls-list mode.",
         "message": "Überspringe Weiterleitungen nur für Webadressen die einem Eintrag in der Skip-Urls-Liste entsprechen."
     },
+    "optionsNoSkipParametersListContent": {
+        "description": "Label of the text area to edit the no-skip-parameters-list.",
+        "message": "No-Skip-Parameter-Liste (reguläre Ausdrücke sind zugelassen)"
+    },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "No-Skip-Urls-Liste (reguläre Ausdrücke sind zugelassen)"

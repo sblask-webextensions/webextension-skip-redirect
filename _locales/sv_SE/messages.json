@@ -49,6 +49,10 @@
         "description": "The choice that sets the extension into skip-urls-list mode.",
         "message": "Hoppa över omdirigeringar endast för webbadresser som matchar någon av raderna i vitlistan."
     },
+    "optionsNoSkipParametersListContent": {
+        "description": "Label of the text area to edit the no-skip-parameters-list.",
+        "message": "Svartlista för url parameter (du kan använda reguljära uttryck)"
+    },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "Svartlista (du kan använda reguljära uttryck)"

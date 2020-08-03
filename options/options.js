@@ -4,6 +4,7 @@ const OPTION_MODE_OFF = "off";
 const OPTION_MODE_NO_SKIP_URLS_LIST = "blacklist";
 const OPTION_MODE_SKIP_URLS_LIST = "whitelist";
 
+const OPTION_NO_SKIP_PARAMETERS_LIST = "no-skip-parameters-list";
 const OPTION_NO_SKIP_URLS_LIST = "blacklist";
 const OPTION_SKIP_URLS_LIST = "whitelist";
 
@@ -16,6 +17,8 @@ const ELEMENT_MODE_OFF = "mode-off";
 const ELEMENT_MODE_NO_SKIP_URLS_LIST = "mode-no-skip-urls-list";
 const ELEMENT_MODE_SKIP_URLS_LIST = "mode-skip-urls-list";
 
+const ELEMENT_NO_SKIP_PARAMETERS_LIST = "no-skip-parameters-list";
+const ELEMENT_NO_SKIP_PARAMETERS_LIST_ERROR = "no-skip-parameters-list-error";
 const ELEMENT_NO_SKIP_URLS_LIST = "no-skip-urls-list";
 const ELEMENT_NO_SKIP_URLS_LIST_ERROR = "no-skip-urls-list-error";
 const ELEMENT_SKIP_URLS_LIST = "skip-urls-list";
@@ -26,6 +29,7 @@ const ELEMENT_SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
 function restoreOptions() {
     browser.storage.local.get([
         OPTION_MODE,
+        OPTION_NO_SKIP_PARAMETERS_LIST,
         OPTION_NO_SKIP_URLS_LIST,
         OPTION_SKIP_URLS_LIST,
         OPTION_NOTIFICATION_POPUP_ENABLED,
@@ -34,9 +38,13 @@ function restoreOptions() {
     ]).then(
         result => {
             const noSkipUrlsList = result[OPTION_NO_SKIP_URLS_LIST];
-            maybeHighlightError(noSkipUrlsList);
-
+            maybeHighlightError(noSkipUrlsList, ELEMENT_NO_SKIP_URLS_LIST, ELEMENT_NO_SKIP_URLS_LIST_ERROR);
             setTextValue(ELEMENT_NO_SKIP_URLS_LIST, noSkipUrlsList.join("\n"));
+
+            const noSkipParametersList = result[OPTION_NO_SKIP_PARAMETERS_LIST];
+            maybeHighlightError(noSkipParametersList, ELEMENT_NO_SKIP_PARAMETERS_LIST, ELEMENT_NO_SKIP_PARAMETERS_LIST_ERROR);
+            setTextValue(ELEMENT_NO_SKIP_PARAMETERS_LIST, noSkipParametersList.join("\n"));
+
             setTextValue(ELEMENT_SKIP_URLS_LIST, result[OPTION_SKIP_URLS_LIST].join("\n"));
             setBooleanValue(ELEMENT_NOTIFICATION_POPUP_ENABLED, result[OPTION_NOTIFICATION_POPUP_ENABLED]);
             setTextValue(ELEMENT_NOTIFICATION_DURATION, result[OPTION_NOTIFICATION_DURATION]);
@@ -103,33 +111,37 @@ function getRegExpError(noSkipUrlsList) {
     return null;
 }
 
-function maybeHighlightError(noSkipUrlsList) {
-    const noSkipUrlsListElement = document.querySelector(`#${ELEMENT_NO_SKIP_URLS_LIST}`);
-    const noSkipUrlsListErrorSpan = document.querySelector(`#${ELEMENT_NO_SKIP_URLS_LIST_ERROR}`);
-    const noSkipUrlsListError = getRegExpError(noSkipUrlsList);
-    if (noSkipUrlsListError) {
-        const {line, message} = noSkipUrlsListError;
-        noSkipUrlsListElement.classList.add("error");
+function maybeHighlightError(list, listElementId, errorElementId) {
+    const listElement = document.querySelector(`#${listElementId}`);
+    const errorElement = document.querySelector(`#${errorElementId}`);
+    const error = getRegExpError(list);
+    if (error) {
+        const {line, message} = error;
+        listElement.classList.add("error");
 
         if (message.includes(line)) {
-            noSkipUrlsListErrorSpan.innerText = message;
+            errorElement.innerText = message;
         } else {
-            noSkipUrlsListErrorSpan.innerText = `${line}: ${message}`;
+            errorElement.innerText = `${line}: ${message}`;
         }
     } else {
-        noSkipUrlsListElement.classList.remove("error");
-        noSkipUrlsListErrorSpan.innerText = "";
+        listElement.classList.remove("error");
+        errorElement.innerText = "";
     }
 }
 
 function saveOptions(event) {
     event.preventDefault();
-    const noSkipUrlsList = document.querySelector(`#${ELEMENT_NO_SKIP_URLS_LIST}`).value.split("\n");
 
-    maybeHighlightError(noSkipUrlsList);
+    const noSkipUrlsList = document.querySelector(`#${ELEMENT_NO_SKIP_URLS_LIST}`).value.split("\n");
+    maybeHighlightError(noSkipUrlsList, ELEMENT_NO_SKIP_URLS_LIST, ELEMENT_NO_SKIP_URLS_LIST_ERROR);
+
+    const noSkipParametersList = document.querySelector(`#${ELEMENT_NO_SKIP_PARAMETERS_LIST}`).value.split("\n");
+    maybeHighlightError(noSkipParametersList, ELEMENT_NO_SKIP_PARAMETERS_LIST, ELEMENT_NO_SKIP_PARAMETERS_LIST_ERROR);
 
     browser.storage.local.set({
         [OPTION_NO_SKIP_URLS_LIST]: noSkipUrlsList,
+        [OPTION_NO_SKIP_PARAMETERS_LIST]: noSkipParametersList,
         [OPTION_SKIP_URLS_LIST]: document.querySelector(`#${ELEMENT_SKIP_URLS_LIST}`).value.split("\n"),
         [OPTION_MODE]:
             document.querySelector(`#${ELEMENT_MODE_OFF}`).checked && OPTION_MODE_OFF

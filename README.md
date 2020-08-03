@@ -13,13 +13,23 @@ you get redirected in a weird way when this add-on is enabled but not when it's
 disabled.
 
 See the add-on's preferences (also available by clicking the toolbar icon) for
-options. By default all URLs but the ones matching a no-skip-url-list are
-checked for embedded URLs and redirects are skipped. Depending on the pages
-visited, this can cause problems. For example a dysfunctional login. The
-no-skip-url-list can be edited to avoid these problems. There is also a
-skip-url-list mode to avoid this kind of problem altogether. In skip-url-list
-mode, all URLs for which redirects should be skipped need to be configured by
-hand.
+options.
+
+By default all URLs but the ones matching a no-skip-urls-list are checked for
+embedded URLs and redirects are skipped. Depending on the pages visited, this
+can cause problems. For example a dysfunctional login. The no-skip-urls-list
+can be edited to avoid these problems. There is also a skip-urls-list mode to
+avoid this kind of problem altogether. In skip-urls-list mode, all URLs for
+which redirects should be skipped need to be added to the skip-urls-list
+manually.
+
+Some websites use multiple url parameters like this:
+
+`www.example.com/page-we-want-to-skip?first=www.want-to-go-here.com&second=www.do-not-care-about-this-url.com`
+
+Skip Redirect does not know which is the right parameter, but you can edit the
+no-skip-parameter-list. Adding `first` would skip to the URL of `second` and
+vice versa. Adding both, `first` and `second` would cause no skipping.
 
 Privacy Policy
 --------------

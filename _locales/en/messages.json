@@ -49,6 +49,10 @@
         "description": "The choice that sets the extension into skip-urls-list mode.",
         "message": "Skip redirects only for URLs matching any of the lines in the skip-urls-list."
     },
+    "optionsNoSkipParametersListContent": {
+        "description": "Label of the text area to edit the no-skip-parameters-list.",
+        "message": "No-skip-parameters-list (you may use regular expressions)"
+    },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "No-skip-urls-list (you may use regular expressions)"

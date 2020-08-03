@@ -7,6 +7,7 @@ const OPTION_MODE_OFF = "off";
 const OPTION_MODE_NO_SKIP_URLS_LIST = "blacklist";
 const OPTION_MODE_SKIP_URLS_LIST = "whitelist";
 
+const OPTION_NO_SKIP_PARAMETERS_LIST = "no-skip-parameters-list";
 const OPTION_NO_SKIP_URLS_LIST = "blacklist";
 const OPTION_SKIP_URLS_LIST = "whitelist";
 
@@ -18,12 +19,20 @@ const OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
 const CONTEXT_MENU_ID = "copy-last-source-url";
 const NOTIFICATION_ID = "notify-skip";
 
-const ICON              = "icon.svg";
-const ICON_OFF          = "icon-off.svg";
+const ICON = "icon.svg";
+const ICON_OFF = "icon-off.svg";
 const ICON_NO_SKIP_URLS_LIST = "icon-no-skip-urls-list.svg";
-const ICON_SKIP_URLS_LIST    = "icon-skip-urls-list.svg";
+const ICON_SKIP_URLS_LIST = "icon-skip-urls-list.svg";
 
 const MAX_NOTIFICATION_URL_LENGTH = 100;
+
+const DEFAULT_NO_SKIP_PARAMETERS_LIST = [
+    "from",
+    "ref",
+    "referer",
+    "referrer",
+    "source",
+];
 
 const DEFAULT_NO_SKIP_URLS_LIST = [
     "/abp",
@@ -53,6 +62,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
 ];
 
 let currentMode = undefined;
+
+let noSkipParametersList = [];
 let noSkipUrlsList = [];
 let skipUrlsList = [];
 
@@ -67,6 +78,7 @@ let notificationTimeout = undefined;
 
 browser.storage.local.get([
     OPTION_MODE,
+    OPTION_NO_SKIP_PARAMETERS_LIST,
     OPTION_NO_SKIP_URLS_LIST,
     OPTION_SKIP_URLS_LIST,
     OPTION_NOTIFICATION_POPUP_ENABLED,
@@ -75,6 +87,12 @@ browser.storage.local.get([
 ])
     .then(
         (result) => {
+            if (result[OPTION_NO_SKIP_PARAMETERS_LIST] === undefined) {
+                browser.storage.local.set({[OPTION_NO_SKIP_PARAMETERS_LIST]: DEFAULT_NO_SKIP_PARAMETERS_LIST});
+            } else {
+                updateNoSkipParametersList(result[OPTION_NO_SKIP_PARAMETERS_LIST]);
+            }
+
             if (result[OPTION_NO_SKIP_URLS_LIST] === undefined) {
                 browser.storage.local.set({[OPTION_NO_SKIP_URLS_LIST]: DEFAULT_NO_SKIP_URLS_LIST});
             } else {
@@ -123,6 +141,10 @@ browser.storage.local.get([
 
 browser.storage.onChanged.addListener(
     (changes) => {
+        if (changes[OPTION_NO_SKIP_PARAMETERS_LIST]) {
+            updateNoSkipParametersList(changes[OPTION_NO_SKIP_PARAMETERS_LIST].newValue);
+        }
+
         if (changes[OPTION_NO_SKIP_URLS_LIST]) {
             updateNoSkipUrlsList(changes[OPTION_NO_SKIP_URLS_LIST].newValue);
         }
@@ -185,6 +207,10 @@ function injectScriptIfNecessary(isCopyFunctionDefined) {
     }
 }
 
+function updateNoSkipParametersList(newNoSkipParametersList) {
+    noSkipParametersList = newNoSkipParametersList.filter(Boolean);
+}
+
 function updateNoSkipUrlsList(newNoSkipUrlsList) {
     noSkipUrlsList = newNoSkipUrlsList.filter(Boolean);
 }
@@ -231,12 +257,13 @@ function maybeRedirect(requestDetails) {
         return;
     }
 
+    const parameterExceptions = noSkipParametersList;
     let urlExceptions = [];
     if (currentMode === OPTION_MODE_NO_SKIP_URLS_LIST) {
         urlExceptions = noSkipUrlsList;
     }
 
-    const redirectTarget = url.getRedirectTarget(requestDetails.url, urlExceptions);
+    const redirectTarget = url.getRedirectTarget(requestDetails.url, urlExceptions, parameterExceptions);
     if (redirectTarget === requestDetails.url) {
         return;
     }

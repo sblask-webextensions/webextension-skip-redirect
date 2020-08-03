@@ -49,6 +49,10 @@
         "description": "The choice that sets the extension into skip-urls-list mode.",
         "message": "Bỏ qua các chuyển hướng chỉ cho các URL khớp với bất kỳ dòng nào trong danh sách trắng."
     },
+    "optionsNoSkipParametersListContent": {
+        "description": "Label of the text area to edit the no-skip-urls-list.",
+        "message": ""
+    },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "Danh sách đen (you may use regular expressions)"
