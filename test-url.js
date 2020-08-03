@@ -15,107 +15,138 @@ const someTargetUrlDoubleEncoded = encodeURIComponent(someTargetUrlEncoded);
 
 test("URL in query path - http URLs url-encoded and not", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http://" +             someTargetUrl, urlExceptions),                             "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%3A%2F%2F" +       someTargetUrlEncoded, urlExceptions),                      "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%3A%2F%2F" +       someTargetUrlEncoded + "&unwanted", urlExceptions),        "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%253A%252F%252F" + someTargetUrlDoubleEncoded, urlExceptions),                "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%253A%252F%252F" + someTargetUrlDoubleEncoded + "&unwanted", urlExceptions),  "http://"  + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http://" +             someTargetUrl, urlExceptions, parameterExceptions),                             "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%3A%2F%2F" +       someTargetUrlEncoded, urlExceptions, parameterExceptions),                      "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%3A%2F%2F" +       someTargetUrlEncoded + "&unwanted", urlExceptions, parameterExceptions),        "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%253A%252F%252F" + someTargetUrlDoubleEncoded, urlExceptions, parameterExceptions),                "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http%253A%252F%252F" + someTargetUrlDoubleEncoded + "&unwanted", urlExceptions, parameterExceptions),  "http://"  + someTargetUrl);
     assert.end();
 });
 
 test("URL in query path - http URLs url-encoded and not - lowercase", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/"  + "http://" +             someTargetUrl).toLowerCase(), urlExceptions),              "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/"  + "http%3A%2F%2F" +       someTargetUrlEncoded).toLowerCase(), urlExceptions),       "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/"  + "http%253A%252F%252F" + someTargetUrlDoubleEncoded).toLowerCase(), urlExceptions), "http://"  + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/"  + "http://" +             someTargetUrl).toLowerCase(), urlExceptions, parameterExceptions),              "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/"  + "http%3A%2F%2F" +       someTargetUrlEncoded).toLowerCase(), urlExceptions, parameterExceptions),       "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/"  + "http%253A%252F%252F" + someTargetUrlDoubleEncoded).toLowerCase(), urlExceptions, parameterExceptions), "http://"  + someTargetUrl);
     assert.end();
 });
 
 test("URL in query path - works with initial /? and ? instead of slash", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/?" + "http://" +  someTargetUrl, urlExceptions),                                        "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "?"  + "http://" +  someTargetUrl, urlExceptions),                                        "http://"  + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/?" + "http://" +  someTargetUrl, urlExceptions, parameterExceptions),                                        "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "?"  + "http://" +  someTargetUrl, urlExceptions, parameterExceptions),                                        "http://"  + someTargetUrl);
     assert.end();
 });
 
 test("URL in query path - correct http handling", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("https://" + "www.some.website.com" + "/"  + "http://" +  someTargetUrl, urlExceptions),                                        "http://"  + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "https://" + someTargetUrl, urlExceptions),                                        "https://" + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("https://" + "www.some.website.com" + "/"  + "http://" +  someTargetUrl, urlExceptions, parameterExceptions),                                        "http://"  + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "https://" + someTargetUrl, urlExceptions, parameterExceptions),                                        "https://" + someTargetUrl);
     assert.end();
 });
 
 test("URL in query path - http URLs with some parts being url-encoded and others not", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http://" +  someTargetUrlEncoded, urlExceptions),                                 "http://"  + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "http://" +  someTargetUrlEncoded, urlExceptions, parameterExceptions),                                 "http://"  + someTargetUrl);
     assert.end();
 });
 
 test("URL in query path - www URLs work without http", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  +               wwwTargetUrl, urlExceptions),                                        "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  +               wwwTargetUrlDoubleEncoded, urlExceptions),                           "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  +               wwwTargetUrlEncoded, urlExceptions),                                 "http://"  + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "https://" +  wwwTargetUrl, urlExceptions),                                        "https://" + wwwTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  +               wwwTargetUrl, urlExceptions, parameterExceptions),                                        "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  +               wwwTargetUrlDoubleEncoded, urlExceptions, parameterExceptions),                           "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  +               wwwTargetUrlEncoded, urlExceptions, parameterExceptions),                                 "http://"  + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/"  + "https://" +  wwwTargetUrl, urlExceptions, parameterExceptions),                                        "https://" + wwwTargetUrl);
     assert.end();
 });
 
 test("URL in query parameter - http URLs url-encoded and not", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl, urlExceptions),                                                  "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?yet-another=parameter", urlExceptions),                "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&yet-another=parameter", urlExceptions),                "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";yet-another=parameter", urlExceptions),                "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#yet-another-fragment", urlExceptions),                 "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded, urlExceptions),                                     "http://" + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl, urlExceptions, parameterExceptions),                                                  "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?yet-another=parameter", urlExceptions, parameterExceptions),                "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&yet-another=parameter", urlExceptions, parameterExceptions),                "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";yet-another=parameter", urlExceptions, parameterExceptions),                "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#yet-another-fragment", urlExceptions, parameterExceptions),                 "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded, urlExceptions, parameterExceptions),                                     "http://" + someTargetUrl);
     assert.end();
 });
 
 test("URL in query parameter - http URLs url-encoded and not - lowercase", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl).toLowerCase(), urlExceptions),                                   "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?yet-another=parameter").toLowerCase(), urlExceptions), "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&yet-another=parameter").toLowerCase(), urlExceptions), "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";yet-another=parameter").toLowerCase(), urlExceptions), "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#yet-another-fragment").toLowerCase(), urlExceptions),  "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded).toLowerCase(), urlExceptions),                      "http://" + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl).toLowerCase(), urlExceptions, parameterExceptions),                                   "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl +        "?yet-another=parameter").toLowerCase(), urlExceptions, parameterExceptions), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "&yet-another=parameter").toLowerCase(), urlExceptions, parameterExceptions), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + ";yet-another=parameter").toLowerCase(), urlExceptions, parameterExceptions), "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%3A%2F%2F" +       someTargetUrlEncoded + "#yet-another-fragment").toLowerCase(), urlExceptions, parameterExceptions),  "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http%253A%252F%252F" + someTargetUrlDoubleEncoded).toLowerCase(), urlExceptions, parameterExceptions),                      "http://" + someTargetUrl);
     assert.end();
 });
 
 test("URL in query parameter - http URLs with some parts being url-encoded and others not", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrlEncoded, urlExceptions),                                           "http://" + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrlEncoded, urlExceptions, parameterExceptions),                                           "http://" + someTargetUrl);
     assert.end();
 });
 
 test("URL in query parameter - www URLs work without http", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrl, urlExceptions),                                                   "http://" + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrl +        "?yet-another=parameter", urlExceptions),                 "http://" + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlEncoded + "&yet-another=parameter", urlExceptions),                 "http://" + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlEncoded + ";yet-another=parameter", urlExceptions),                 "http://" + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlEncoded + "#yet-another-fragment", urlExceptions),                  "http://" + wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlDoubleEncoded, urlExceptions),                                      "http://" + wwwTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrl, urlExceptions, parameterExceptions),                                                   "http://" + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrl +        "?yet-another=parameter", urlExceptions, parameterExceptions),                 "http://" + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlEncoded + "&yet-another=parameter", urlExceptions, parameterExceptions),                 "http://" + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlEncoded + ";yet-another=parameter", urlExceptions, parameterExceptions),                 "http://" + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlEncoded + "#yet-another-fragment", urlExceptions, parameterExceptions),                  "http://" + wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://"  + "www.some.website.com" + "/" + "?target=" +                         wwwTargetUrlDoubleEncoded, urlExceptions, parameterExceptions),                                      "http://" + wwwTargetUrl);
     assert.end();
 });
 
 test("recursion", function(assert) {
     const urlExceptions = [];
-    const wwwTargetUrlOne =  wwwTargetUrl + "-ONE";
-    const wwwTargetUrlTwo =  wwwTargetUrl + "-TWO";
+    const parameterExceptions = [];
+    const wwwTargetUrlOne = wwwTargetUrl + "-ONE";
+    const wwwTargetUrlTwo = wwwTargetUrl + "-TWO";
 
-    assert.equal(url.getRedirectTarget("http://www.some.website.com/" +                                             wwwTargetUrlOne + "/" +                                       wwwTargetUrlTwo, urlExceptions),   "http://" + wwwTargetUrlTwo);
-    assert.equal(url.getRedirectTarget("http://www.some.website.com/" +                                 "http://" + wwwTargetUrlOne + "/" +                           "http://" + wwwTargetUrlTwo, urlExceptions),   "http://" + wwwTargetUrlTwo);
+    assert.equal(url.getRedirectTarget("http://www.some.website.com/" +                                             wwwTargetUrlOne + "/" +                                       wwwTargetUrlTwo, urlExceptions, parameterExceptions),   "http://" + wwwTargetUrlTwo);
+    assert.equal(url.getRedirectTarget("http://www.some.website.com/" +                                 "http://" + wwwTargetUrlOne + "/" +                           "http://" + wwwTargetUrlTwo, urlExceptions, parameterExceptions),   "http://" + wwwTargetUrlTwo);
 
-    assert.equal(url.getRedirectTarget("http://www.some.website.com/" + "?target=" +                                wwwTargetUrlOne + "&target=" +                                wwwTargetUrlTwo, urlExceptions),   "http://" + wwwTargetUrlTwo);
-    assert.equal(url.getRedirectTarget("http://www.some.website.com/" + "?target=" +                    "http://" + wwwTargetUrlOne + "&target=" +                    "http://" + wwwTargetUrlTwo, urlExceptions),   "http://" + wwwTargetUrlTwo);
-    assert.equal(url.getRedirectTarget("http://www.some.website.com/" + "?target=" + encodeURIComponent("http://" + wwwTargetUrlOne + "&target=" + encodeURIComponent("http://" + wwwTargetUrlTwo)), urlExceptions), "http://" + wwwTargetUrlTwo);
+    assert.equal(url.getRedirectTarget("http://www.some.website.com/" + "?target=" +                                wwwTargetUrlOne + "&target=" +                                wwwTargetUrlTwo, urlExceptions, parameterExceptions),   "http://" + wwwTargetUrlTwo);
+    assert.equal(url.getRedirectTarget("http://www.some.website.com/" + "?target=" +                    "http://" + wwwTargetUrlOne + "&target=" +                    "http://" + wwwTargetUrlTwo, urlExceptions, parameterExceptions),   "http://" + wwwTargetUrlTwo);
+    assert.equal(url.getRedirectTarget("http://www.some.website.com/" + "?target=" + encodeURIComponent("http://" + wwwTargetUrlOne + "&target=" + encodeURIComponent("http://" + wwwTargetUrlTwo)), urlExceptions, parameterExceptions), "http://" + wwwTargetUrlTwo);
+
+    assert.end();
+});
+
+test("URL in query parameter - multiple parameters", function(assert) {
+    const urlExceptions = [];
+    const someTargetUrlOne = "http://" + someTargetUrl + "-ONE";
+    const someTargetUrlTwo = "http://" + someTargetUrl + "-TWO";
+    const someTargetUrlOneEncoded = encodeURIComponent(someTargetUrlOne);
+    const someTargetUrlTwoEncoded = encodeURIComponent(someTargetUrlTwo);
+
+    assert.equal(url.getRedirectTarget(("http://www.some.website.com/" + "?first=" + someTargetUrlOneEncoded + "&second=" + someTargetUrlTwoEncoded), urlExceptions, ["first"]), someTargetUrlTwo);
+    assert.equal(url.getRedirectTarget(("http://www.some.website.com/" + "?first=" + someTargetUrlOneEncoded + "&second=" + someTargetUrlTwoEncoded), urlExceptions, ["First"]), someTargetUrlTwo);
+    assert.equal(url.getRedirectTarget(("http://www.some.website.com/" + "?first=" + someTargetUrlOneEncoded + "&second=" + someTargetUrlTwoEncoded), urlExceptions, ["second"]), someTargetUrlOne);
+    assert.equal(url.getRedirectTarget(("http://www.some.website.com/" + "?first=" + someTargetUrlOneEncoded + "&second=" + someTargetUrlTwoEncoded), urlExceptions, ["Second"]), someTargetUrlOne);
+
+    const original = "http://www.some.website.com/" + "?first=" + someTargetUrlOneEncoded + "&second=" + someTargetUrlTwoEncoded;
+    assert.equal(url.getRedirectTarget(original, urlExceptions, ["first", "second"]), original);
 
     assert.end();
 });
 
 test("no skipping if URL matches one of given exceptions", function(assert) {
     const urlExceptions = ["/login"];
+    const parameterExceptions = [];
+
     const noRedirectUrls = [
         wwwTargetUrl,
         "http://www.some.website.com/" + wwwTargetUrl.replace("www.", "www"),
@@ -126,7 +157,7 @@ test("no skipping if URL matches one of given exceptions", function(assert) {
     ];
 
     for (const urlString of noRedirectUrls) {
-        assert.equal(url.getRedirectTarget(urlString, urlExceptions), urlString);
+        assert.equal(url.getRedirectTarget(urlString, urlExceptions, parameterExceptions), urlString);
     }
 
     assert.end();
@@ -134,34 +165,38 @@ test("no skipping if URL matches one of given exceptions", function(assert) {
 
 test("base64 encoded URLs - no valid URL", function(assert) {
     const urlExceptions = [];
+    const parameterExceptions = [];
     const noUrlBase64Url = "http://" + "www.some.website.com" + "/" + base64.encode("wwwwwwww");
-    assert.equal(url.getRedirectTarget(noUrlBase64Url, urlExceptions), noUrlBase64Url);
+    assert.equal(url.getRedirectTarget(noUrlBase64Url, urlExceptions, parameterExceptions), noUrlBase64Url);
     assert.end();
 });
 
 test("base64 encoded URLs - in path", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode(wwwTargetUrl), urlExceptions),                                     "http://" +  wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode(wwwTargetUrl + "\n" + someTargetUrl), urlExceptions),              "http://" +  wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode("http://" + someTargetUrl), urlExceptions),                        "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode("http://" + someTargetUrl) + "#some-fragment", urlExceptions),     "http://" + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode(wwwTargetUrl), urlExceptions, parameterExceptions),                                     "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode(wwwTargetUrl + "\n" + someTargetUrl), urlExceptions, parameterExceptions),              "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode("http://" + someTargetUrl), urlExceptions, parameterExceptions),                        "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" +                   base64.encode("http://" + someTargetUrl) + "#some-fragment", urlExceptions, parameterExceptions),     "http://" + someTargetUrl);
     assert.end();
 });
 
 test("base64 encoded URLs - in path with junk in front of it", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode(wwwTargetUrl), urlExceptions),                                     "http://" +  wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode(wwwTargetUrl + "\n" + someTargetUrl), urlExceptions),              "http://" +  wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode("http://" + someTargetUrl), urlExceptions),                        "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode("http://" + someTargetUrl) + "#some-fragment", urlExceptions),     "http://" + someTargetUrl);
+    const parameterExceptions = [];
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode(wwwTargetUrl), urlExceptions, parameterExceptions),                                     "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode(wwwTargetUrl + "\n" + someTargetUrl), urlExceptions, parameterExceptions),              "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode("http://" + someTargetUrl), urlExceptions, parameterExceptions),                        "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "973abcCDE." +    base64.encode("http://" + someTargetUrl) + "#some-fragment", urlExceptions, parameterExceptions),     "http://" + someTargetUrl);
     assert.end();
 });
 
 test("base64 encoded URLs - in query string value", function(assert) {
     const urlExceptions = [];
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode(wwwTargetUrl), urlExceptions),                                     "http://" +  wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode(wwwTargetUrl + "\n" + someTargetUrl), urlExceptions),              "http://" +  wwwTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode("http://" + someTargetUrl), urlExceptions),                        "http://" + someTargetUrl);
-    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode("http://" + someTargetUrl, urlExceptions) + "#some-fragment", urlExceptions), "http://" + someTargetUrl);
+    const parameterExceptions = []    ;
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode(wwwTargetUrl), urlExceptions, parameterExceptions),                                     "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode(wwwTargetUrl + "\n" + someTargetUrl), urlExceptions, parameterExceptions),              "http://" +  wwwTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode("http://" + someTargetUrl), urlExceptions, parameterExceptions),                        "http://" + someTargetUrl);
+    assert.equal(url.getRedirectTarget("http://" + "www.some.website.com" + "/" + "?target=" +      base64.encode("http://" + someTargetUrl, urlExceptions, parameterExceptions) + "#some-fragment", urlExceptions, parameterExceptions), "http://" + someTargetUrl);
     assert.end();
 });

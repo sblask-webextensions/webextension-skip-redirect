@@ -46,17 +46,44 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
     const pathRegexpEncodedProtocol = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" +                    "(" + possibleEncodedColonPrefixesString  + "[^?&;#]*"  + ")", "i");
     const pathRegexpBase64Protocol  = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" + base64JunkPrefix + "(" + possibleBase64PrefixesString        + validBase64 + ")", "i");
 
-    // the first alternative in the group is for the case that there are several ?
-    // in the url and thus encoding is incomplete - it just picks everything from
-    // there to the end or the next ?
-    const queryRegexpPlainProtocol  = new RegExp("https?://.*" +         "=" + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]*[?][^?]*|[^?&;#]*)"              + ")", "i");
-    const queryRegexpBase64Protocol = new RegExp("https?://.*" +         "=" + "(" + possibleBase64PrefixesString + validBase64                                  + ")", "i");
-
     // %
     const percentRegExp = new RegExp("%25", "i");
 
     // #$&+,/:;=?@
     const symbolRegExp = new RegExp("(%23|%24|%26|%2B|%2C|%2F|%3A|%3B|%3D|%3F|%40)", "i");
+
+    function getQueryRegexpPlainProtocol(parameterExceptions) {
+        // the first alternative in the group is for the case that there are several ?
+        // in the url and thus encoding is incomplete - it just picks everything from
+        // there to the end or the next ?
+        const simple = new RegExp("https?://.*" +                                  "=" + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]*[?][^?]*|[^?&;#]*)" + ")", "i");
+        if (!parameterExceptions || parameterExceptions.length == 0) {
+            return simple;
+        }
+
+        // use try/catch to catch problems with given exceptions and to keep
+        // (partially) working on older browsers
+        try {
+            return new RegExp("https?://.*" + `(?<!${parameterExceptions.join("|")})=` + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]*[?][^?]*|[^?&;#]*)" + ")", "i");
+        } catch(_exception) {
+            return simple;
+        }
+    }
+
+    function getQueryRegexpBase64Protocol(parameterExceptions) {
+        const simple = new RegExp("https?://.*" +                                  "=" + "(" + possibleBase64PrefixesString + validBase64                     + ")", "i");
+        if (!parameterExceptions || parameterExceptions.length == 0) {
+            return simple;
+        }
+
+        // use try/catch to catch problems with given exceptions and to keep
+        // (partially) working on older browsers
+        try {
+            return new RegExp("https?://.*" + `(?<!${parameterExceptions.join("|")})=` + "(" + possibleBase64PrefixesString + validBase64                     + ")", "i");
+        } catch(_exception) {
+            return simple;
+        }
+    }
 
     function maybeDecode(urlMatch) {
         if (percentRegExp.test(urlMatch)) {
@@ -74,21 +101,21 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
         return urlMatch;
     }
 
-    function getPlainMatches(url) {
+    function getPlainMatches(url, parameterExceptions) {
         const matches =
             url.match(pathRegexpPlainProtocol, "i") ||
             url.match(pathRegexpEncodedProtocol, "i") ||
-            url.match(queryRegexpPlainProtocol, "i") ||
+            url.match(getQueryRegexpPlainProtocol(parameterExceptions), "i") ||
             undefined;
         if (matches) {
             return matches[1];
         }
     }
 
-    function getBase64Matches(url) {
+    function getBase64Matches(url, parameterExceptions) {
         const matches =
             url.match(pathRegexpBase64Protocol, "i") ||
-            url.match(queryRegexpBase64Protocol, "i") ||
+            url.match(getQueryRegexpBase64Protocol(parameterExceptions), "i") ||
             undefined;
         if (matches) {
             const decodedMatch = base64.decode(matches[1]).split("\n")[0];
@@ -98,14 +125,14 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
         }
     }
 
-    function getRedirectTarget(url, exceptions) {
-        if (exceptions.length > 0 && new RegExp("(" + exceptions.join("|") + ")", "i").test(url)) {
+    function getRedirectTarget(url, urlExceptions, parameterExceptions) {
+        if (urlExceptions.length > 0 && new RegExp("(" + urlExceptions.join("|") + ")", "i").test(url)) {
             return url;
         }
 
-        const extractedUrl = getPlainMatches(url) || getBase64Matches(url);
+        const extractedUrl = getPlainMatches(url, parameterExceptions) || getBase64Matches(url, parameterExceptions);
         if (extractedUrl) {
-            return getRedirectTarget(maybeDecode(extractedUrl), exceptions);
+            return getRedirectTarget(maybeDecode(extractedUrl), urlExceptions, parameterExceptions);
         }
 
         return url;
