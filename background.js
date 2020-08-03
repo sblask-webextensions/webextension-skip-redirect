@@ -89,10 +89,15 @@ browser.storage.local.get([
 
             if (result[OPTION_MODE] === undefined) {
                 browser.storage.local.set({[OPTION_MODE]: OPTION_MODE_NO_SKIP_URLS_LIST});
-            } else if (result[OPTION_MODE] === OPTION_MODE_OFF) {
+                currentMode = OPTION_MODE_NO_SKIP_URLS_LIST;
+            } else {
+                currentMode = result[OPTION_MODE];
+            }
+
+            if (currentMode === OPTION_MODE_OFF) {
                 disableSkipping();
             } else {
-                enableSkipping(result[OPTION_MODE]);
+                enableSkipping();
             }
 
             if (result[OPTION_NOTIFICATION_POPUP_ENABLED] === undefined) {
@@ -127,11 +132,13 @@ browser.storage.onChanged.addListener(
         }
 
         if (changes[OPTION_MODE]) {
-            if (changes[OPTION_MODE].newValue === OPTION_MODE_OFF) {
-                disableSkipping();
-            } else {
-                enableSkipping(changes[OPTION_MODE].newValue);
-            }
+            currentMode = changes[OPTION_MODE].newValue;
+        }
+
+        if (currentMode === OPTION_MODE_OFF) {
+            disableSkipping();
+        } else {
+            enableSkipping();
         }
 
         if (changes[OPTION_NOTIFICATION_POPUP_ENABLED]) {
@@ -186,18 +193,17 @@ function updateSkipUrlsList(newSkipUrlsList) {
     skipUrlsList = newSkipUrlsList.filter(Boolean);
 }
 
-function enableSkipping(mode) {
+function enableSkipping() {
     browser.webRequest.onBeforeRequest.removeListener(maybeRedirect);
 
-    currentMode = mode;
-    if (mode === OPTION_MODE_NO_SKIP_URLS_LIST) {
+    if (currentMode === OPTION_MODE_NO_SKIP_URLS_LIST) {
         browser.webRequest.onBeforeRequest.addListener(
             maybeRedirect,
             {urls: ["<all_urls>"], types: ["main_frame"]},
             ["blocking"]
         );
         browser.browserAction.setIcon({path: ICON_NO_SKIP_URLS_LIST});
-    } else if (mode === OPTION_MODE_SKIP_URLS_LIST) {
+    } else if (currentMode === OPTION_MODE_SKIP_URLS_LIST) {
         if (skipUrlsList.length > 0) {
             browser.webRequest.onBeforeRequest.addListener(
                 maybeRedirect,
@@ -225,12 +231,12 @@ function maybeRedirect(requestDetails) {
         return;
     }
 
-    let exceptions = [];
+    let urlExceptions = [];
     if (currentMode === OPTION_MODE_NO_SKIP_URLS_LIST) {
-        exceptions = noSkipUrlsList;
+        urlExceptions = noSkipUrlsList;
     }
 
-    const redirectTarget = url.getRedirectTarget(requestDetails.url, exceptions);
+    const redirectTarget = url.getRedirectTarget(requestDetails.url, urlExceptions);
     if (redirectTarget === requestDetails.url) {
         return;
     }
