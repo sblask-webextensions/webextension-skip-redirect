@@ -51,7 +51,7 @@
     },
     "optionsNoSkipParametersListContent": {
         "description": "Label of the text area to edit the no-skip-parameters-list.",
-        "message": ""
+        "message": "No-skip-parameters-list (you may use regular expressions)"
     },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
