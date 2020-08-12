@@ -39,7 +39,7 @@
     },
     "optionsModeNoSkipUrlsList": {
         "description": "The choice that sets the extension into no-skip-urls-list mode.",
-        "message": "Supprimer toutes les redirections sauf celles des adresses figurant dans la liste noire"
+        "message": "Supprimer toutes les redirections sauf celles des adresses figurant dans la liste d’exclusion"
     },
     "optionsModeOff": {
         "description": "The choice that disables the extension.",
@@ -47,15 +47,15 @@
     },
     "optionsModeSkipUrlsList": {
         "description": "The choice that sets the extension into skip-urls-list mode.",
-        "message": "Supprimer les redirections uniquement des adresses figurant dans la liste blanche"
+        "message": "Supprimer les redirections uniquement des adresses figurant dans la liste d’inclusion"
     },
     "optionsNoSkipParametersListContent": {
         "description": "Label of the text area to edit the no-skip-parameters-list.",
-        "message": "Liste noire des paramètres url (expressions rationnelles acceptées)"
+        "message": "Paramètres exclus (expressions rationnelles acceptées)"
     },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
-        "message": "Liste noire (expressions rationnelles acceptées)"
+        "message": "Liste d’exclusion (expressions rationnelles acceptées)"
     },
     "optionsNotificationsDuration": {
         "description": "Label of the input field to specify how long notifications are shown.",
@@ -75,7 +75,7 @@
     },
     "optionsSectionSync": {
         "description": "Title of the options section allowing to control Sync.",
-        "message": "Sync"
+        "message": "Synchronisation"
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
@@ -83,15 +83,15 @@
     },
     "optionsSkipUrlsListContent": {
         "description": "Label of the text area to edit the skip-urls-list.",
-        "message": "Liste blanche (<a href=\"https://developer.mozilla.org/Add-ons/WebExtensions/Match_patterns\">modèle</a> à suivre pour chaque entrée)"
+        "message": "Liste d’inclusion (<a href=\"https://developer.mozilla.org/Add-ons/WebExtensions/Match_patterns\">modèle</a> à suivre pour chaque entrée)"
     },
     "optionsSyncExplanation": {
         "description": "Details about how Sync works.",
-        "message": "Sync uses your browser's sync account and you need to enable sync for extensions/add-ons in your browser's preferences before enabling it here. The browser controls when data is actually synced and modifications on different devices might get lost if they happen over a short period."
+        "message": "La synchronisation utilisant Sync, elle ne peut se faire qu’après connexion à un compte Firefox. Le navigateur contrôle la synchronisation des données, il se peut que des modifications effectuées en même temps sur plusieurs appareils soient perdues."
     },
     "optionsSyncListsEnable": {
         "description": "Label of the checkbox to toggle Sync.",
-        "message": "Sync les listes"
+        "message": "Synchroniser les listes"
     },
     "optionsTitle": {
         "description": "Title of the options view.",
