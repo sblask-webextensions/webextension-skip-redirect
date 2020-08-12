@@ -13,6 +13,9 @@ form > fieldset {
     padding: 10px;
     width: 100%;
 }
+form > fieldset:not(:first-child) {
+    margin-top: 10px;
+}
 form > fieldset > label:not(:first-child),
 form > fieldset > fieldset > label:not(:first-child) {
     display: inline-block;
@@ -22,14 +25,29 @@ form > fieldset > fieldset {
     border-color: #DDDDDD;
     padding: 5px;
 }
-input[type=text],
-input[type=number] {
+form > fieldset > fieldset > label:not(:first-child),
+form > fieldset > fieldset > fieldset > label:not(:first-child) {
+    display: inline-block;
+    margin-top: 10px;
+}
+form > fieldset > fieldset > fieldset {
+    border-color: #DDDDDD;
+    padding: 5px;
+}
+button,
+input[type=file],
+input[type=number],
+input[type=text] {
     width: 100%;
 }
 input[type=checkbox],
 input[type=radio] {
     display: inline-block;
     vertical-align: -2px;
+}
+select {
+    padding: 3px;
+    width: 100%;
 }
 textarea {
     height: 100px;
@@ -60,31 +78,12 @@ textarea:focus.error {
     position: relative;
 }
 .color-wrapper > input {
-    display: block;
-    height: 12px;
-    left: 0px;
-    padding: 0;
-    position: absolute;
-    top: 1px;
-    width: 12px;
-    z-index: -1;
+    display: none;
 }
 .color-wrapper .color-picker {
     background-color: black;
     border-radius: 3px;
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-}
-@-moz-document url-prefix() {
-    .color-wrapper > input {
-        left: 1px;
-        top: 3px;
-    }
-    .color-wrapper > input:focus {
-        outline: 1px dotted;
-    }
-    .color-wrapper .color-picker {
-        margin-left: 1px;
-    }
+    display: block;
+    height: 20px;
+    width: 20px;
 }
