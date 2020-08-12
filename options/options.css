@@ -29,6 +29,7 @@ input[type=number] {
 input[type=checkbox],
 input[type=radio] {
     display: inline-block;
+    vertical-align: -2px;
 }
 textarea {
     height: 100px;

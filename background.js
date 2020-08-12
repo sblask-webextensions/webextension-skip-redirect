@@ -1,5 +1,6 @@
 /* global psl */
 /* global url */
+/* global util */
 
 const OPTION_MODE = "mode";
 
@@ -10,11 +11,18 @@ const OPTION_MODE_SKIP_URLS_LIST = "whitelist";
 const OPTION_NO_SKIP_PARAMETERS_LIST = "no-skip-parameters-list";
 const OPTION_NO_SKIP_URLS_LIST = "blacklist";
 const OPTION_SKIP_URLS_LIST = "whitelist";
+const OPTION_SYNC_LISTS_ENABLED = "syncListsEnabled";
 
 const OPTION_NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
 const OPTION_NOTIFICATION_DURATION = "notificationDuration";
 
 const OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
+
+const LIST_OPTIONS = [
+    OPTION_NO_SKIP_PARAMETERS_LIST,
+    OPTION_NO_SKIP_URLS_LIST,
+    OPTION_SKIP_URLS_LIST,
+];
 
 const CONTEXT_MENU_ID = "copy-last-source-url";
 const NOTIFICATION_ID = "notify-skip";
@@ -73,20 +81,23 @@ let notificationPopupEnabled = undefined;
 let notificationDuration = undefined;
 
 let skipRedirectsToSameDomain = false;
+let syncLists = false;
 
 let notificationTimeout = undefined;
 
 browser.storage.local.get([
     OPTION_MODE,
+    OPTION_NOTIFICATION_DURATION,
+    OPTION_NOTIFICATION_POPUP_ENABLED,
     OPTION_NO_SKIP_PARAMETERS_LIST,
     OPTION_NO_SKIP_URLS_LIST,
-    OPTION_SKIP_URLS_LIST,
-    OPTION_NOTIFICATION_POPUP_ENABLED,
-    OPTION_NOTIFICATION_DURATION,
     OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN,
+    OPTION_SKIP_URLS_LIST,
+    OPTION_SYNC_LISTS_ENABLED,
 ])
     .then(
         (result) => {
+
             if (result[OPTION_NO_SKIP_PARAMETERS_LIST] === undefined) {
                 browser.storage.local.set({[OPTION_NO_SKIP_PARAMETERS_LIST]: DEFAULT_NO_SKIP_PARAMETERS_LIST});
             } else {
@@ -140,17 +151,38 @@ browser.storage.local.get([
     );
 
 browser.storage.onChanged.addListener(
-    (changes) => {
+    (changes, areaName) => {
+
+        let initTriggered = false;
+        if (changes[OPTION_SYNC_LISTS_ENABLED]) {
+            const previousValue = syncLists;
+            const newValue = changes[OPTION_SYNC_LISTS_ENABLED].newValue;
+            syncLists = newValue;
+            if (previousValue !== newValue && syncLists) {
+                initTriggered = true;
+                initSyncLists();
+            }
+        }
+
         if (changes[OPTION_NO_SKIP_PARAMETERS_LIST]) {
             updateNoSkipParametersList(changes[OPTION_NO_SKIP_PARAMETERS_LIST].newValue);
+            if (!initTriggered){
+                maybeSyncList(areaName, OPTION_NO_SKIP_PARAMETERS_LIST, noSkipParametersList);
+            }
         }
 
         if (changes[OPTION_NO_SKIP_URLS_LIST]) {
             updateNoSkipUrlsList(changes[OPTION_NO_SKIP_URLS_LIST].newValue);
+            if (!initTriggered){
+                maybeSyncList(areaName, OPTION_NO_SKIP_URLS_LIST, noSkipUrlsList);
+            }
         }
 
         if (changes[OPTION_SKIP_URLS_LIST]) {
             updateSkipUrlsList(changes[OPTION_SKIP_URLS_LIST].newValue);
+            if (!initTriggered){
+                maybeSyncList(areaName, OPTION_SKIP_URLS_LIST, skipUrlsList);
+            }
         }
 
         if (changes[OPTION_MODE]) {
@@ -217,6 +249,41 @@ function updateNoSkipUrlsList(newNoSkipUrlsList) {
 
 function updateSkipUrlsList(newSkipUrlsList) {
     skipUrlsList = newSkipUrlsList.filter(Boolean);
+}
+
+function initSyncLists() {
+    Promise.all([
+        browser.storage.local.get(LIST_OPTIONS),
+        browser.storage.sync.get(LIST_OPTIONS),
+    ])
+        .then(
+            ([localResult, remoteResult]) => {
+                LIST_OPTIONS.forEach((optionName) => {
+                    const localValue = localResult[optionName];
+                    const remoteValue = remoteResult[optionName];
+                    const newValue = util.mergeList(localValue, remoteValue);
+                    browser.storage.local.set({[optionName]: newValue});
+                });
+            }
+        );
+}
+
+function maybeSyncList(changedArea, optionName, optionValue) {
+    if (!syncLists) {
+        return;
+    }
+
+    const toAreaName = changedArea === "local" ? "sync" : "local";
+    const toArea = browser.storage[toAreaName];
+
+    toArea.get([optionName]).then(
+        (result) => {
+            const targetValue = result[optionName];
+            if (JSON.stringify(targetValue) !== JSON.stringify(optionValue)){
+                toArea.set({[optionName]: optionValue});
+            }
+        }
+    );
 }
 
 function enableSkipping() {

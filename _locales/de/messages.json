@@ -73,13 +73,25 @@
         "description": "Title of the options section allowing to control notifications.",
         "message": "Benachrichtigungen"
     },
-    "optionsSkipUrlsListContent": {
-        "description": "Label of the text area to edit the skip-urls-list.",
-        "message": "Skip-Urls-Liste (jeder Eintrag muss diesem <a href=\"https://developer.mozilla.org/Add-ons/WebExtensions/Match_patterns\">Schema</a> folgen)"
+    "optionsSectionSync": {
+        "description": "Title of the options section allowing to control Sync.",
+        "message": "Sync"
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
         "message": "Überspringe Weiterleitungen für Webadressen mit der selben öffentlichen Domäne"
+    },
+    "optionsSkipUrlsListContent": {
+        "description": "Label of the text area to edit the skip-urls-list.",
+        "message": "Skip-Urls-Liste (jeder Eintrag muss diesem <a href=\"https://developer.mozilla.org/Add-ons/WebExtensions/Match_patterns\">Schema</a> folgen)"
+    },
+    "optionsSyncExplanation": {
+        "description": "Details about how Sync works.",
+        "message": "Einstellungen werden mithilfe Ihres Browser Sync Kontos synchronisiert. Sync für Extensions/Add-Ons muss in den Browsereinstellungen aktiviert werden bevor Sync hier aktiviert wird. Der Browser bestimmt wann Daten synchronisiert werden, sodass Änderungen auf verschiedenen Geräten verloren gehen können wenn sie in einem zu kurzen Zeitraum erfolgen."
+    },
+    "optionsSyncListsEnable": {
+        "description": "Label of the checkbox to toggle Sync.",
+        "message": "Sync Listen"
     },
     "optionsTitle": {
         "description": "Title of the options view.",
