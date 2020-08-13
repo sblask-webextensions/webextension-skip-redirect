@@ -37,6 +37,7 @@ const MAX_NOTIFICATION_URL_LENGTH = 100;
 const DEFAULT_NO_SKIP_PARAMETERS_LIST = [
     "from",
     "ref",
+    "ref_url",
     "referer",
     "referrer",
     "source",
