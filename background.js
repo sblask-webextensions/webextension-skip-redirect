@@ -148,6 +148,12 @@ browser.storage.local.get([
                 skipRedirectsToSameDomain = result[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN];
             }
 
+            if (result[OPTION_SYNC_LISTS_ENABLED] === undefined) {
+                browser.storage.local.set({[OPTION_SYNC_LISTS_ENABLED]: false});
+            } else {
+                syncLists = result[OPTION_SYNC_LISTS_ENABLED];
+            }
+
         }
     );
 
