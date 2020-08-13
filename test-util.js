@@ -8,60 +8,78 @@ const DEFAULT_TARGET = [
     "three",
 ];
 
+const DEFAULT_SOURCE = [
+    "four",
+    "five",
+    "six",
+];
+
 test("Test mergeList - null source", function(assert) {
     const source = null;
-    const merged = util.mergeList(DEFAULT_TARGET, source);
-    const expected = DEFAULT_TARGET;
+    const merged = util.mergeList(
+        DEFAULT_TARGET,
+        source,
+    );
     assert.equal(
         JSON.stringify(merged),
-        JSON.stringify(expected),
+        JSON.stringify(DEFAULT_TARGET),
     );
     assert.end();
 });
 
 test("Test mergeList - empty source", function(assert) {
-    const source = [];
-    const merged = util.mergeList(DEFAULT_TARGET, source);
-    const expected = DEFAULT_TARGET;
+    const merged = util.mergeList(
+        DEFAULT_TARGET,
+        [],
+    );
     assert.equal(
         JSON.stringify(merged),
-        JSON.stringify(expected),
+        JSON.stringify(DEFAULT_TARGET),
     );
     assert.end();
 });
 
 test("Test mergeList - null target", function(assert) {
-    const source = [
-        "four",
-        "five",
-        "six",
-    ];
-    const merged = util.mergeList(null, source);
-    const expected = source;
+    const merged = util.mergeList(
+        null,
+        DEFAULT_SOURCE,
+    );
     assert.equal(
         JSON.stringify(merged),
-        JSON.stringify(expected),
+        JSON.stringify(DEFAULT_SOURCE),
     );
     assert.end();
 });
 
 test("Test mergeList - empty target", function(assert) {
-    const source = [
-        "four",
-        "five",
-        "six",
-    ];
-    const merged = util.mergeList([], source);
-    const expected = source;
+    const merged = util.mergeList(
+        [],
+        DEFAULT_SOURCE,
+    );
     assert.equal(
         JSON.stringify(merged),
-        JSON.stringify(expected),
+        JSON.stringify(DEFAULT_SOURCE),
     );
     assert.end();
 });
 
 test("Test mergeList - null source and target", function(assert) {
-    const merged = util.mergeList(null, null);
+    const merged = util.mergeList(
+        null,
+        null,
+    );
+    assert.equal(
+        JSON.stringify(merged),
+        JSON.stringify([]),
+    );
+    assert.end();
+});
+
+test("Test mergeList - empty source and target", function(assert) {
+    const merged = util.mergeList(
+        [],
+        [],
+    );
     assert.equal(
         JSON.stringify(merged),
         JSON.stringify([]),
@@ -70,15 +88,13 @@ test("Test mergeList - null source and target", function(assert) {
 });
 
 test("Test mergeList - nothing common", function(assert) {
-    const source = [
-        "four",
-        "five",
-        "six",
-    ];
-    const merged = util.mergeList(DEFAULT_TARGET, source);
+    const merged = util.mergeList(
+        DEFAULT_TARGET,
+        DEFAULT_SOURCE,
+    );
     const expected = [
         ...DEFAULT_TARGET,
-        ...source,
+        ...DEFAULT_SOURCE,
     ];
     assert.equal(
         JSON.stringify(merged),
@@ -90,16 +106,15 @@ test("Test mergeList - nothing common", function(assert) {
 test("Test mergeList - common at beginning", function(assert) {
     const source = [
         "one",
-        "four",
-        "five",
-        "six",
+        ...DEFAULT_SOURCE,
     ];
-    const merged = util.mergeList(DEFAULT_TARGET, source);
+    const merged = util.mergeList(
+        DEFAULT_TARGET,
+        source,
+    );
     const expected = [
         ...DEFAULT_TARGET,
-        "four",
-        "five",
-        "six",
+        ...DEFAULT_SOURCE,
     ];
     assert.equal(
         JSON.stringify(merged),
@@ -110,17 +125,16 @@ test("Test mergeList - common at beginning", function(assert) {
 
 test("Test mergeList - common at the end", function(assert) {
     const source = [
-        "four",
-        "five",
-        "six",
+        ...DEFAULT_SOURCE,
         "one",
     ];
-    const merged = util.mergeList(DEFAULT_TARGET, source);
+    const merged = util.mergeList(
+        DEFAULT_TARGET,
+        source,
+    );
     const expected = [
         ...DEFAULT_TARGET,
-        "four",
-        "five",
-        "six",
+        ...DEFAULT_SOURCE,
     ];
     assert.equal(
         JSON.stringify(merged),
@@ -130,16 +144,15 @@ test("Test mergeList - common at the end", function(assert) {
 });
 
 test("Test mergeList - common in the middle", function(assert) {
-    const source = [
-        "four",
-        "four",
-        "five",
-        "six",
-    ];
-    const merged = util.mergeList(DEFAULT_TARGET, source);
+    const source = [...DEFAULT_SOURCE];
+    source.splice(2, 0, "one");
+    const merged = util.mergeList(
+        DEFAULT_TARGET,
+        source,
+    );
     const expected = [
         ...DEFAULT_TARGET,
-        ...source,
+        ...DEFAULT_SOURCE,
     ];
     assert.equal(
         JSON.stringify(merged),
@@ -154,11 +167,13 @@ test("Test mergeList - different order", function(assert) {
         "two",
         "one",
     ];
-    const merged = util.mergeList(DEFAULT_TARGET, source);
-    const expected = DEFAULT_TARGET;
+    const merged = util.mergeList(
+        DEFAULT_TARGET,
+        source,
+    );
     assert.equal(
         JSON.stringify(merged),
-        JSON.stringify(expected),
+        JSON.stringify(DEFAULT_TARGET),
     );
     assert.end();
 });
