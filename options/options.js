@@ -81,7 +81,7 @@ function enableAutosave() {
         input.addEventListener("input", delayedSaveOptions);
     }
     for (const input of document.querySelectorAll("input[type=radio], input[type=checkbox]")) {
-        input.addEventListener("change", delayedSaveOptions);
+        input.addEventListener("change", saveOptions);
     }
 }
 
@@ -143,7 +143,7 @@ function maybeHighlightError(list, listElementId, errorElementId) {
 
 function delayedSaveOptions(event) {
     clearTimeout(timeout);
-    timeout = setTimeout(saveOptions, 1000, event);
+    timeout = setTimeout(saveOptions, 500, event);
 }
 
 function saveOptions(event) {
