@@ -269,7 +269,13 @@ function initSyncLists() {
                     const localValue = localResult[optionName];
                     const remoteValue = remoteResult[optionName];
                     const newValue = util.mergeList(localValue, remoteValue);
-                    browser.storage.local.set({[optionName]: newValue});
+
+                    if (JSON.stringify(localValue) != JSON.stringify(newValue)) {
+                        browser.storage.local.set({[optionName]: newValue});
+                    }
+                    if (JSON.stringify(remoteValue) != JSON.stringify(newValue)) {
+                        browser.storage.sync.set({[optionName]: newValue});
+                    }
                 });
             }
         );
