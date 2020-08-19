@@ -31,7 +31,7 @@
     },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
-        "message": "Пропускает промежуточные страницы, которые используют некоторые сайты, до перенаправления на нужную страницу."
+        "message": "Пропускает промежуточные страницы, используемые некоторыми сайтами, до перенаправления на нужную."
     },
     "extensionName": {
         "description": "Name of the extension in the add-on manager.",
@@ -39,7 +39,7 @@
     },
     "optionsModeNoSkipUrlsList": {
         "description": "The choice that sets the extension into no-skip-urls-list mode.",
-        "message": "Пропускать все перенаправления, за исключением URL, находящихся в черном списке."
+        "message": "Пропускать все перенаправления, кроме URL, совпадающих с любой из строк в списке no-skip-urls."
     },
     "optionsModeOff": {
         "description": "The choice that disables the extension.",
@@ -47,15 +47,15 @@
     },
     "optionsModeSkipUrlsList": {
         "description": "The choice that sets the extension into skip-urls-list mode.",
-        "message": "Пропускать перенаправления только URL, находящихся в белом списке."
+        "message": "Пропускать перенаправления только для URL, совпадающих с любой из строк в списке skip-urls."
     },
     "optionsNoSkipParametersListContent": {
         "description": "Label of the text area to edit the no-skip-parameters-list.",
-        "message": "No-skip-parameters-list (you may use regular expressions)"
+        "message": "Список параметров no-skip (можно использовать регулярные выражения)"
     },
     "optionsNoSkipUrlsListContent": {
         "description": "Label of the text area to edit the no-skip-urls-list.",
-        "message": "Черный список (вы можете использовать регулярные выражения)"
+        "message": "Список no-skip-urls (можно использовать регулярные выражения)"
     },
     "optionsNotificationsDuration": {
         "description": "Label of the input field to specify how long notifications are shown.",
@@ -75,7 +75,7 @@
     },
     "optionsSectionSync": {
         "description": "Title of the options section allowing to control Sync.",
-        "message": "Sync"
+        "message": "Синхронизация"
     },
     "optionsSkipRedirectsToSameDomain": {
         "description": "Label of the checkbox that toggles skipping to the same public domain.",
@@ -83,15 +83,15 @@
     },
     "optionsSkipUrlsListContent": {
         "description": "Label of the text area to edit the skip-urls-list.",
-        "message": "Белый список (каждая строка должна соответствовать этому <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">шаблону</a>)"
+        "message": "Список skip-urls (каждая строка должна соответствовать <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">этому шаблону</a>)"
     },
     "optionsSyncExplanation": {
         "description": "Details about how Sync works.",
-        "message": "Sync uses your browser's sync account and you need to enable sync for extensions/add-ons in your browser's preferences before enabling it here. The browser controls when data is actually synced and modifications on different devices might get lost if they happen over a short period."
+        "message": "Синхронизация использует аккаунт синхронизации вашего браузера, и вам необходимо включить синхронизацию для расширений/дополнений в настройках вашего браузера, прежде чем включать ее здесь. Браузер управляет синхронизацией данных, и изменения на разных устройствах могут быть потеряны, если они происходят в течение короткого промежутка времени."
     },
     "optionsSyncListsEnable": {
         "description": "Label of the checkbox to toggle Sync.",
-        "message": "Sync lists"
+        "message": "Списки синхронизации"
     },
     "optionsTitle": {
         "description": "Title of the options view.",
