@@ -27,11 +27,11 @@
     },
     "contextMenuLabel": {
         "description": "Label of the context menu entry to copy last URL.",
-        "message": "Копировать последний пропущенный URL"
+        "message": "Скопировать последний пропущенный URL"
     },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
-        "message": "Пропускает промежуточные страницы, которые используют некоторые сайты, до перенаправления на нужную страницу."
+        "message": "Пропускает промежуточные страницы, используемые некоторыми сайтами, до перенаправления на нужную."
     },
     "extensionName": {
         "description": "Name of the extension in the add-on manager.",
@@ -47,7 +47,7 @@
     },
     "optionsModeSkipUrlsList": {
         "description": "The choice that sets the extension into skip-urls-list mode.",
-        "message": "Пропускать перенаправления, только списка 'Пропускаемые URL'."
+        "message": "Пропускать перенаправления только из списка 'Пропускаемые URL'."
     },
     "optionsNoSkipParametersListContent": {
         "description": "Label of the text area to edit the no-skip-parameters-list.",
