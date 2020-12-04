@@ -55,6 +55,7 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/logon",
     "/logout",
     "/oauth",
+    "/openid",
     "/preferences",
     "/profile",
     "/register",
