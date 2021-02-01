@@ -41,6 +41,7 @@ const DEFAULT_NO_SKIP_PARAMETERS_LIST = [
     "referer",
     "referrer",
     "source",
+    "mortyurl",
 ];
 
 const DEFAULT_NO_SKIP_URLS_LIST = [
