@@ -218,14 +218,14 @@ browser.storage.onChanged.addListener(
     }
 );
 
-browser.contextMenus.create({
+browser.contextMenus?.create({
     id: CONTEXT_MENU_ID,
     title: browser.i18n.getMessage("contextMenuLabel"),
     contexts: ["browser_action"],
     enabled: false,
 });
 
-browser.contextMenus.onClicked.addListener(
+browser.contextMenus?.onClicked.addListener(
     (info, _tab) => {
         if (info.menuItemId === CONTEXT_MENU_ID) {
             copyLastSourceURLToClipboard();
@@ -369,7 +369,7 @@ function maybeRedirect(requestDetails) {
 
 function prepareContextMenu(from) {
     if (lastSourceURL === undefined) {
-        browser.contextMenus.update(CONTEXT_MENU_ID, {enabled: true});
+        browser.contextMenus?.update(CONTEXT_MENU_ID, {enabled: true});
     }
     lastSourceURL = from;
 }
