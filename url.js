@@ -42,9 +42,9 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
     // the decoded string is needed
     const base64CheckRegexp = new RegExp("^(?:" + possibleBase64PrefixesDecoded.join("|") + ")", "i");
 
-    const pathRegexpPlainProtocol   = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" +                    "(" + possibleColonPrefixesString         + ".*$"       + ")", "i");
-    const pathRegexpEncodedProtocol = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" +                    "(" + possibleEncodedColonPrefixesString  + "[^?&;#]*"  + ")", "i");
-    const pathRegexpBase64Protocol  = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" + base64JunkPrefix + "(" + possibleBase64PrefixesString        + validBase64 + ")", "i");
+    const pathRegexpPlainProtocol   = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" +                            "(" + possibleColonPrefixesString         + ".*$"       + ")", "i");
+    const pathRegexpEncodedProtocol = new RegExp("https?://.*?" + "(?:[^/][/]|\\?)" +                            "(" + possibleEncodedColonPrefixesString  + "[^?&;#]*"  + ")", "i");
+    const pathRegexpBase64Protocol  = new RegExp("https?://.*?" + "(?:[^/][/]|[^#][#]|\\?)" + base64JunkPrefix + "(" + possibleBase64PrefixesString        + validBase64 + ")", "i");
 
     // %
     const percentRegExp = new RegExp("%25", "i");
