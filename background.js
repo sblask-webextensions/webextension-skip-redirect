@@ -69,6 +69,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/subscribe",
     "/unauthenticated",
     "/verification",
+    "/search",
+    "web.archive.org",
 ];
 
 let currentMode = undefined;
