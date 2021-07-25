@@ -60,6 +60,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/profile",
     "/register",
     "/saml",
+    "/searchbyimage",
+    "/search",
     "/signin",
     "/signoff",
     "/signon",
