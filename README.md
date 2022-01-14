@@ -6,9 +6,9 @@ Some web pages use intermediary pages before redirecting to a final page. This
 webextension tries to extract the final url from the intermediary url and goes
 there straight away if successful. As an example, try this url:
 
- - www.google.com/chrome/?or-maybe-rather-firefox=http%3A%2F%2Fwww.mozilla.org/
+ - https://www.google.com/chrome/?or-maybe-rather-firefox=https%3A%2F%2Fwww.mozilla.org/
 
-Please give feedback(see below) if you find websites where this fails or where
+Please give feedback (see below) if you find websites where this fails or where
 you get redirected in a weird way when this add-on is enabled but not when it's
 disabled.
 
