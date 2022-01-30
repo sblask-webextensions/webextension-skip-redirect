@@ -1,0 +1,122 @@
+{
+    "browserActionLabelDefault": {
+        "description": "Label of the button before the extension has loaded completely.",
+        "message": "Skip Redirect"
+    },
+    "browserActionLabelOff": {
+        "description": "Label of the button when the extension is disabled.",
+        "message": "Skip Redirect devre dışı, etkinleştirmek için tıklayın"
+    },
+    "browserActionLabelOn": {
+        "description": "Label of the button when the extension is enabled.",
+        "message": "Skip Redirect etkin, devre dışı bırakmak için tıklayın"
+    },
+    "browserActionLabelOnSkipped": {
+        "description": "Label of the button when the extension is enabled and there was a redirect.",
+        "message": "Skip Redirect etkin, devre dışı bırakmak için tıklayın\n\nSon yönlendirme:\n\n$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "contextMenuLabel": {
+        "description": "Label of the context menu entry to copy last URL.",
+        "message": "Son atlanan URL'yi kopyala"
+    },
+    "extensionDescription": {
+        "description": "Description of the extension in the add-on manager.",
+        "message": "Son sayfaya yönlendirmeden önce bazı sayfaların kullandığı aracı sayfaları atlayın."
+    },
+    "extensionName": {
+        "description": "Name of the extension in the add-on manager.",
+        "message": "Skip Redirect"
+    },
+    "optionsModeNoSkipUrlsList": {
+        "description": "The choice that sets the extension into no-skip-urls-list mode.",
+        "message": "Atlanmayan URL'ler listesindeki satırlardan herhangi biriyle eşleşen URL'ler dışındaki tüm yönlendirmeleri atla."
+    },
+    "optionsModeOff": {
+        "description": "The choice that disables the extension.",
+        "message": "Kapalı"
+    },
+    "optionsModeSkipUrlsList": {
+        "description": "The choice that sets the extension into skip-urls-list mode.",
+        "message": "Yalnızca atlanan URL'ler listesindeki satırlardan herhangi biriyle eşleşen URL'ler için yönlendirmeleri atla."
+    },
+    "optionsNoSkipParametersListContent": {
+        "description": "Label of the text area to edit the no-skip-parameters-list.",
+        "message": "Atlanmayan parametreler listesi (düzenli ifadeler kullanabilirsiniz)"
+    },
+    "optionsNoSkipUrlsListContent": {
+        "description": "Label of the text area to edit the no-skip-urls-list.",
+        "message": "Atlanmayan URL'ler listesi (düzenli ifadeler kullanabilirsiniz)"
+    },
+    "optionsNotificationsDuration": {
+        "description": "Label of the input field to specify how long notifications are shown.",
+        "message": "Bildirimleri bu kadar saniye boyunca göster (1 ile 10 arasında):"
+    },
+    "optionsNotificationsEnable": {
+        "description": "Label of the checkbox to toggle notifications.",
+        "message": "Bildirimleri etkinleştir"
+    },
+    "optionsSectionMode": {
+        "description": "Title of the options section allowing to toggle between no-skip-urls-list and skip-urls-list or disable the extension.",
+        "message": "Mod"
+    },
+    "optionsSectionNotifications": {
+        "description": "Title of the options section allowing to control notifications.",
+        "message": "Bildirimler"
+    },
+    "optionsSectionSync": {
+        "description": "Title of the options section allowing to control Sync.",
+        "message": "Eşzamanla"
+    },
+    "optionsSkipRedirectsToSameDomain": {
+        "description": "Label of the checkbox that toggles skipping to the same public domain.",
+        "message": "Aynı genel etki alanı adına sahip URL'ler için yönlendirmeleri atla"
+    },
+    "optionsSkipUrlsListContent": {
+        "description": "Label of the text area to edit the skip-urls-list.",
+        "message": "Atlanan URL'ler listesi (her satırın bu <a href=\"https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Match_patterns\">kalıbı</a> takip etmesi gerekir)"
+    },
+    "optionsSyncExplanation": {
+        "description": "Details about how Sync works.",
+        "message": "Eşzamanlama, tarayıcınızın eşzamanlama hesabını kullanır ve burada etkinleştirmeden önce tarayıcınızın tercihlerinde uzantılar/eklentiler için eşzamanlamayı etkinleştirmeniz gerekir. Verilerin gerçekte ne zaman eşzamanlandığını tarayıcı denetler ve kısa bir süre içinde gerçekleşirse farklı aygıtlarda yapılan değişiklikler kaybolabilir."
+    },
+    "optionsSyncListsEnable": {
+        "description": "Label of the checkbox to toggle Sync.",
+        "message": "Listeleri eşzamanla"
+    },
+    "optionsTitle": {
+        "description": "Title of the options view.",
+        "message": "Seçenekler"
+    },
+    "redirectSkippedBrowserActionBadge": {
+        "description": "Text of the badge shown on the button after a redirect was skipped.",
+        "message": "Atla"
+    },
+    "redirectSkippedNotificationMessage": {
+        "description": "Content of the notification about skipped redirect.",
+        "message": "$sourceUrl$\n➔\n$targetUrl$",
+        "placeholders": {
+            "sourceUrl": {
+                "content": "$1",
+                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
+            },
+            "targetUrl": {
+                "content": "$2",
+                "example": "https://mozilla.org"
+            }
+        }
+    },
+    "redirectSkippedNotificationTitle": {
+        "description": "Title of the notification about skipped redirect.",
+        "message": "Yönlendirme Atlandı"
+    }
+}
