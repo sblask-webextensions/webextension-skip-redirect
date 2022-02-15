@@ -1,0 +1,25 @@
+name: Build
+
+on:
+  push:
+  schedule:
+    - cron: 0 0 * * 0  # weekly
+
+jobs:
+  Build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-20.04
+        node-version:
+          - 16.x
+    steps:
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run test
+      - run: npm run lint
