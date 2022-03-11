@@ -56,7 +56,7 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
         // the first alternative in the group is for the case that there are several ?
         // in the url and thus encoding is incomplete - it just picks everything from
         // there to the end or the next ?
-        const simple = new RegExp("https?://.*" +                                  "=" + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]*[?][^?]*|[^?&;#]*)" + ")", "i");
+        const simple = new RegExp("https?://.*" +                                  "=" + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]+[?][^?]+|[^?&;#]+)" + ")", "i");
         if (!parameterExceptions || parameterExceptions.length == 0) {
             return simple;
         }
@@ -64,7 +64,7 @@ const url = (function(root) { //  eslint-disable-line no-unused-vars
         // use try/catch to catch problems with given exceptions and to keep
         // (partially) working on older browsers
         try {
-            return new RegExp("https?://.*" + `(?<!${parameterExceptions.join("|")})=` + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]*[?][^?]*|[^?&;#]*)" + ")", "i");
+            return new RegExp("https?://.*" + `(?<!${parameterExceptions.join("|")})=` + "(" + possiblePlainPrefixesString  + "(?:[^?&;#]+[?][^?]+|[^?&;#]+)" + ")", "i");
         } catch(_exception) {
             return simple;
         }
