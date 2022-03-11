@@ -25,7 +25,11 @@
             }
         }
     },
-    "contextMenuLabel": {
+    "contextMenuLinkLabel": {
+        "description": "Label of the context menu entry to copy the target URL of the link under the cursor.",
+        "message": "Copy target URL"
+    },
+    "contextMenuToolbarLabel": {
         "description": "Label of the context menu entry to copy last URL.",
         "message": "Son atlanan URL'yi kopyala"
     },

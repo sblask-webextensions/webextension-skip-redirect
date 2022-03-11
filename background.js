@@ -24,7 +24,9 @@ const LIST_OPTIONS = [
     OPTION_SKIP_URLS_LIST,
 ];
 
-const CONTEXT_MENU_ID = "copy-last-source-url";
+const TOOLBAR_CONTEXT_MENU_ID = "copy-last-source-url";
+const LINK_CONTEXT_MENU_ID = "copy-target-url";
+
 const NOTIFICATION_ID = "notify-skip";
 
 const ICON = "icon.svg";
@@ -220,25 +222,41 @@ browser.storage.onChanged.addListener(
 );
 
 browser.contextMenus?.create({
-    id: CONTEXT_MENU_ID,
-    title: browser.i18n.getMessage("contextMenuLabel"),
+    id: TOOLBAR_CONTEXT_MENU_ID,
+    title: browser.i18n.getMessage("contextMenuToolbarLabel"),
     contexts: ["browser_action"],
     enabled: false,
 });
 
 browser.contextMenus?.onClicked.addListener(
     (info, _tab) => {
-        if (info.menuItemId === CONTEXT_MENU_ID) {
-            copyLastSourceURLToClipboard();
+        if (info.menuItemId === TOOLBAR_CONTEXT_MENU_ID) {
+            copyToClipboard(lastSourceURL);
         }
     }
 );
 
-function copyLastSourceURLToClipboard() {
+browser.contextMenus?.create({
+    id: LINK_CONTEXT_MENU_ID,
+    title: browser.i18n.getMessage("contextMenuLinkLabel"),
+    contexts: ["link"],
+    enabled: true,
+});
+
+browser.contextMenus?.onClicked.addListener(
+    (info, _tab) => {
+        if (info.menuItemId === LINK_CONTEXT_MENU_ID) {
+            const redirectTarget = url.getRedirectTarget(info.linkUrl, noSkipUrlsList, noSkipParametersList);
+            copyToClipboard(redirectTarget);
+        }
+    }
+);
+
+function copyToClipboard(text) {
     chainPromises([
         ()        => { return browser.tabs.executeScript({ code: "typeof copyToClipboard === 'function';" }); },
         (results) => { return injectScriptIfNecessary(results && results[0]); },
-        ()        => { return browser.tabs.executeScript({ code: `copyToClipboard("${lastSourceURL}")` }); },
+        ()        => { return browser.tabs.executeScript({ code: `copyToClipboard("${text}")` }); },
     ]);
 }
 
@@ -360,7 +378,7 @@ function maybeRedirect(requestDetails) {
         }
     }
 
-    prepareContextMenu(requestDetails.url);
+    prepareToolbarContextMenu(requestDetails.url);
     notifySkip(requestDetails.url, redirectTarget);
 
     return {
@@ -368,9 +386,9 @@ function maybeRedirect(requestDetails) {
     };
 }
 
-function prepareContextMenu(from) {
+function prepareToolbarContextMenu(from) {
     if (lastSourceURL === undefined) {
-        browser.contextMenus?.update(CONTEXT_MENU_ID, {enabled: true});
+        browser.contextMenus?.update(TOOLBAR_CONTEXT_MENU_ID, {enabled: true});
     }
     lastSourceURL = from;
 }

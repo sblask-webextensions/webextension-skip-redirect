@@ -25,7 +25,11 @@
             }
         }
     },
-    "contextMenuLabel": {
+    "contextMenuLinkLabel": {
+        "description": "Label of the context menu entry to copy the target URL of the link under the cursor.",
+        "message": "Copier le lien sans redirection"
+    },
+    "contextMenuToolbarLabel": {
         "description": "Label of the context menu entry to copy last URL.",
         "message": "Copier le lien de la dernière redirection"
     },
