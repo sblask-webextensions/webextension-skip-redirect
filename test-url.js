@@ -24,7 +24,7 @@ test("URL in query path - http URLs url-encoded and not", function(assert) {
     assert.end();
 });
 
-test("URL in query path - http URLs url-encoded and not - lowercase", function(assert) {
+test("URL in query path - http URLs url-encoded and not - lowercase encoding (e.g. %2f instead of %2F)", function(assert) {
     const urlExceptions = [];
     const parameterExceptions = [];
     assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/"  + "http://" +             someTargetUrl).toLowerCase(), urlExceptions, parameterExceptions),              "http://"  + someTargetUrl);
@@ -78,7 +78,7 @@ test("URL in query parameter - http URLs url-encoded and not", function(assert) 
     assert.end();
 });
 
-test("URL in query parameter - http URLs url-encoded and not - lowercase", function(assert) {
+test("URL in query parameter - http URLs url-encoded and not - lowercase encoding (e.g. %2f instead of %2F)", function(assert) {
     const urlExceptions = [];
     const parameterExceptions = [];
     assert.equal(url.getRedirectTarget(("http://" + "www.some.website.com" + "/" + "?target=" + "http://" +             someTargetUrl).toLowerCase(), urlExceptions, parameterExceptions),                                   "http://" + someTargetUrl);
