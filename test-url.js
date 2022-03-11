@@ -90,6 +90,24 @@ test("URL in query parameter - http URLs url-encoded and not - lowercase encodin
     assert.end();
 });
 
+test("Protocol with colon in query parameter is ignored", function(assert) {
+    const urlExceptions = [];
+    const parameterExceptions = [];
+
+    const noRedirectUrls = [
+        "http://" + "www.some.website.com" + "/" + "?target=" + "http",
+        "http://" + "www.some.website.com" + "/" + "?target=" + "http:",
+        "http://" + "www.some.website.com" + "/" + "?target=" + "https",
+        "http://" + "www.some.website.com" + "/" + "?target=" + "https:",
+    ];
+
+    for (const urlString of noRedirectUrls) {
+        assert.equal(url.getRedirectTarget(urlString, urlExceptions, parameterExceptions), urlString);
+    }
+
+    assert.end();
+});
+
 test("URL in query parameter - http URLs with some parts being url-encoded and others not", function(assert) {
     const urlExceptions = [];
     const parameterExceptions = [];
