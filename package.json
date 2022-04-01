@@ -4,7 +4,7 @@
         "eslint": "8.9.x",
         "tape": "5.5.x",
         "tape-benchmark": "0.0.0",
-        "web-ext": "6.7.x"
+        "web-ext": "6.8.x"
     },
     "license": "MIT",
     "name": "skipredirect",
