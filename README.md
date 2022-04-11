@@ -2,9 +2,12 @@
 
 Skip Redirect
 =====================
+
+Skip Redirect is a Web Extension for Firefox, available here: https://addons.mozilla.org/firefox/addon/skip-redirect/
+
 Some web pages use intermediary pages before redirecting to a final page. This
-webextension tries to extract the final url from the intermediary url and goes
-there straight away if successful. As an example, try this url:
+webextension tries to extract the final URL from the intermediary URL and goes
+there straight away if successful. As an example, try this URL:
 
  - https://www.google.com/chrome/?or-maybe-rather-firefox=https%3A%2F%2Fwww.mozilla.org/
 
@@ -23,7 +26,7 @@ avoid this kind of problem altogether. In skip-urls-list mode, all URLs for
 which redirects should be skipped need to be added to the skip-urls-list
 manually.
 
-Some websites use multiple url parameters like this:
+Some websites use multiple URL parameters like this:
 
 `www.example.com/page-we-want-to-skip?first=www.want-to-go-here.com&second=www.do-not-care-about-this-url.com`
 
