@@ -1,7 +1,7 @@
 {
     "author": "Sebastian Blask",
     "devDependencies": {
-        "eslint": "8.9.x",
+        "eslint": "8.14.x",
         "tape": "5.5.x",
         "tape-benchmark": "0.0.0",
         "web-ext": "6.7.x"
