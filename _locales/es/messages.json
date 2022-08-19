@@ -11,28 +11,6 @@
         "description": "Label of the button when the extension is enabled.",
         "message": "Skip Redirect activado"
     },
-    "browserActionLabelOnSkipped": {
-        "description": "Label of the button when the extension is enabled and there was a redirect.",
-        "message": "Skip Redirect está activado\n\nÚltima redirección:\n\n$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "contextMenuLinkLabel": {
-        "description": "Label of the context menu entry to copy the target URL of the link under the cursor.",
-        "message": "Copiar URL"
-    },
-    "contextMenuToolbarLabel": {
-        "description": "Label of the context menu entry to copy last URL.",
-        "message": "Copiar última URL omitida"
-    },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
         "message": "Omite páginas intermedias que algunas páginas utilizan antes de redirigir a una página final."
@@ -61,21 +39,9 @@
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "Lista no-omitir-urls (puede utilizar expresiones regulares)"
     },
-    "optionsNotificationsDuration": {
-        "description": "Label of the input field to specify how long notifications are shown.",
-        "message": "Mostrar notificaciones durante estos segundos (entre 1 y 10):"
-    },
-    "optionsNotificationsEnable": {
-        "description": "Label of the checkbox to toggle notifications.",
-        "message": "Activar ventana emergente"
-    },
     "optionsSectionMode": {
         "description": "Title of the options section allowing to toggle between no-skip-urls-list and skip-urls-list or disable the extension.",
         "message": "Modo"
-    },
-    "optionsSectionNotifications": {
-        "description": "Title of the options section allowing to control notifications.",
-        "message": "Notificaciones"
     },
     "optionsSectionSync": {
         "description": "Title of the options section allowing to control Sync.",
@@ -104,23 +70,5 @@
     "redirectSkippedBrowserActionBadge": {
         "description": "Text of the badge shown on the button after a redirect was skipped.",
         "message": "skip"
-    },
-    "redirectSkippedNotificationMessage": {
-        "description": "Content of the notification about skipped redirect.",
-        "message": "$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "redirectSkippedNotificationTitle": {
-        "description": "Title of the notification about skipped redirect.",
-        "message": "Redirección omitida"
     }
 }

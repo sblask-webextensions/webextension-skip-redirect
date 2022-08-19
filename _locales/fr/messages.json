@@ -11,28 +11,6 @@
         "description": "Label of the button when the extension is enabled.",
         "message": "Passe-redirection activé — Cliquer pour le désactiver"
     },
-    "browserActionLabelOnSkipped": {
-        "description": "Label of the button when the extension is enabled and there was a redirect.",
-        "message": "Passe-redirection actif\n\nDernière redirection :\n\n$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "contextMenuLinkLabel": {
-        "description": "Label of the context menu entry to copy the target URL of the link under the cursor.",
-        "message": "Copier le lien sans redirection"
-    },
-    "contextMenuToolbarLabel": {
-        "description": "Label of the context menu entry to copy last URL.",
-        "message": "Copier le lien de la dernière redirection"
-    },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
         "message": "Certains sites web vous détournent parfois sur une page intermédiaire avant de vous conduire à la page que vous souhaitez réellement consulter. Passe-redirection tente de supprimer cette redirection pour atteindre directement la bonne page."
@@ -61,21 +39,9 @@
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "Liste d’exclusion (expressions rationnelles acceptées)"
     },
-    "optionsNotificationsDuration": {
-        "description": "Label of the input field to specify how long notifications are shown.",
-        "message": "Durée d’affichage des notifications (entre 1 et 10 secondes) :"
-    },
-    "optionsNotificationsEnable": {
-        "description": "Label of the checkbox to toggle notifications.",
-        "message": "Activer les notifications"
-    },
     "optionsSectionMode": {
         "description": "Title of the options section allowing to toggle between no-skip-urls-list and skip-urls-list or disable the extension.",
         "message": "Mode"
-    },
-    "optionsSectionNotifications": {
-        "description": "Title of the options section allowing to control notifications.",
-        "message": "Notification"
     },
     "optionsSectionSync": {
         "description": "Title of the options section allowing to control Sync.",
@@ -104,23 +70,5 @@
     "redirectSkippedBrowserActionBadge": {
         "description": "Text of the badge shown on the button after a redirect was skipped.",
         "message": "SUP"
-    },
-    "redirectSkippedNotificationMessage": {
-        "description": "Content of the notification about skipped redirect.",
-        "message": "$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "redirectSkippedNotificationTitle": {
-        "description": "Title of the notification about skipped redirect.",
-        "message": "Redirection supprimée"
     }
 }

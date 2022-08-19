@@ -9,8 +9,7 @@ const OPTION_NO_SKIP_URLS_LIST = "blacklist";
 const OPTION_SKIP_URLS_LIST = "whitelist";
 const OPTION_SYNC_LISTS_ENABLED = "syncListsEnabled";
 
-const OPTION_NOTIFICATION_POPUP_ENABLED = "notificationPopupEnabled";
-const OPTION_NOTIFICATION_DURATION = "notificationDuration";
+const OPTION_INDICATOR_ENABLED = "indicatorEnabled";
 
 const OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
 
@@ -26,9 +25,12 @@ const ELEMENT_SYNC_LISTS_ENABLED = "sync-lists-enabled";
 const ELEMENT_NO_SKIP_PARAMETERS_LIST_ERROR = "no-skip-parameters-list-error";
 const ELEMENT_NO_SKIP_URLS_LIST_ERROR = "no-skip-urls-list-error";
 
-const ELEMENT_NOTIFICATION_DURATION = "notification-duration";
-const ELEMENT_NOTIFICATION_POPUP_ENABLED = "notification-popup-enabled";
+const ELEMENT_INDICATOR_ENABLED = "indicator-enabled";
 const ELEMENT_SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
+
+
+if (typeof browser == "undefined")
+    browser = chrome;
 
 
 let timeout;
@@ -37,8 +39,7 @@ let timeout;
 function restoreOptions() {
     browser.storage.local.get([
         OPTION_MODE,
-        OPTION_NOTIFICATION_DURATION,
-        OPTION_NOTIFICATION_POPUP_ENABLED,
+        OPTION_INDICATOR_ENABLED,
         OPTION_NO_SKIP_PARAMETERS_LIST,
         OPTION_NO_SKIP_URLS_LIST,
         OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN,
@@ -54,11 +55,10 @@ function restoreOptions() {
             maybeHighlightError(noSkipParametersList, ELEMENT_NO_SKIP_PARAMETERS_LIST, ELEMENT_NO_SKIP_PARAMETERS_LIST_ERROR);
             setTextValue(ELEMENT_NO_SKIP_PARAMETERS_LIST, noSkipParametersList.join("\n"));
 
-            setBooleanValue(ELEMENT_NOTIFICATION_POPUP_ENABLED, result[OPTION_NOTIFICATION_POPUP_ENABLED]);
+            setBooleanValue(ELEMENT_INDICATOR_ENABLED, result[OPTION_INDICATOR_ENABLED]);
             setBooleanValue(ELEMENT_SKIP_REDIRECTS_TO_SAME_DOMAIN, result[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN]);
             setBooleanValue(ELEMENT_SYNC_LISTS_ENABLED, result[OPTION_SYNC_LISTS_ENABLED]);
 
-            setTextValue(ELEMENT_NOTIFICATION_DURATION, result[OPTION_NOTIFICATION_DURATION]);
             setTextValue(ELEMENT_SKIP_URLS_LIST, result[OPTION_SKIP_URLS_LIST].join("\n"));
 
             switch (result[OPTION_MODE]) {
@@ -168,8 +168,7 @@ function saveOptions(event) {
             ||
             document.querySelector(`#${ELEMENT_MODE_SKIP_URLS_LIST}`).checked && OPTION_MODE_SKIP_URLS_LIST,
 
-        [OPTION_NOTIFICATION_DURATION]: document.querySelector(`#${ELEMENT_NOTIFICATION_DURATION}`).value,
-        [OPTION_NOTIFICATION_POPUP_ENABLED]: document.querySelector(`#${ELEMENT_NOTIFICATION_POPUP_ENABLED}`).checked,
+        [OPTION_INDICATOR_ENABLED]: document.querySelector(`#${ELEMENT_INDICATOR_ENABLED}`).checked,
         [OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN]: document.querySelector(`#${ELEMENT_SKIP_REDIRECTS_TO_SAME_DOMAIN}`).checked,
         [OPTION_SYNC_LISTS_ENABLED]: document.querySelector(`#${ELEMENT_SYNC_LISTS_ENABLED}`).checked,
 

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "skip-redirect";
+    src: url("/icons/indicator.woff") format('woff');
+}
+.skip-redirect-indicator::after {
+    font-family: "skip-redirect";
+    content: "A";
+    opacity: 0.5;
+}
