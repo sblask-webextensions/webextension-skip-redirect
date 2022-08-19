@@ -70,6 +70,7 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/signup",
     "/sso",
     "/subscribe",
+    "/translate",
     "/unauthenticated",
     "/verification",
 ];
