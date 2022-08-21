@@ -8,11 +8,6 @@ const OPTION_INDICATOR_ENABLED = "indicatorEnabled";
 
 let indicatorEnabled = true;
 let contentLoaded = false;
-let waitingForHead = true;
-
-if (typeof browser == "undefined") {
-    browser = chrome;
-}
 
 function replaceURLsInDocument(updateMode, redirectUrls) {
 
@@ -46,8 +41,9 @@ function replaceURLsInDocument(updateMode, redirectUrls) {
                 if (redirectUrls[url] && ! element.dataset[DATA_HREF]) {
                     element.dataset[DATA_HREF] = element.href;
                     element.href = redirectUrls[url];
-                    if (indicatorEnabled)
+                    if (indicatorEnabled) {
                         element.classList.add("skip-redirect-indicator");
+                    }
                 }
 
                 if (element.dataset[DATA_HREF]) {
@@ -80,40 +76,44 @@ function replaceURLsInDocument(updateMode, redirectUrls) {
 function replaceURLs(updateMode) {
     const urls = replaceURLsInDocument(updateMode);
     if (Object.keys(urls).length) {
-        browser.runtime.sendMessage({id: "getRedirectURLs", urls: urls})
+        chrome.runtime.sendMessage({id: "getRedirectURLs", urls: urls})
             .then((redirectUrls) => {
                 const badgeCounter = replaceURLsInDocument(updateMode, redirectUrls);
-                browser.runtime.sendMessage({id: "badgeCounter", badgeCounter: badgeCounter});
+                chrome.runtime.sendMessage({id: "badgeCounter", badgeCounter: badgeCounter});
             });
     }
 }
 
-browser.storage.local.get(
+chrome.storage.local.get(
     [
         OPTION_INDICATOR_ENABLED,
     ],
     (result) => {
 
         if (result[OPTION_INDICATOR_ENABLED] === undefined) {
-            browser.storage.local.set({[OPTION_INDICATOR_ENABLED]: true});
+            chrome.storage.local.set({[OPTION_INDICATOR_ENABLED]: true});
         } else {
             indicatorEnabled = result[OPTION_INDICATOR_ENABLED];
+            replaceURLs(1, UPDATE_MODE_CHECK_ALL);
         }
+
     }
 );
 
-browser.storage.onChanged.addListener(
+chrome.storage.onChanged.addListener(
     (changes, areaName) => {
 
         if (changes[OPTION_INDICATOR_ENABLED]) {
             indicatorEnabled = changes[OPTION_INDICATOR_ENABLED].newValue;
+            if (changes[OPTION_INDICATOR_ENABLED].oldValue != indicatorEnabled) {
+                replaceURLs(UPDATE_MODE_CHECK_ALL);
+            }
         }
 
-        replaceURLs(UPDATE_MODE_CHECK_ALL);
     }
 );
 
-browser.runtime.onMessage.addListener(function (message) {
+chrome.runtime.onMessage.addListener(function (message) {
     if (message.id == "xhrRequestCompleted") {
         replaceURLs(UPDATE_MODE_CHECK_UNCHECKED);
     }
@@ -123,22 +123,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     contentLoaded = true;
 });
 
-function addStyleSheet() {
-    let link = document.createElement("link");
-  
-    link.type = "text/css";
-    link.rel = "stylesheet";
-    link.href = chrome.runtime.getURL("/icons/indicator.css");
-  
-    document.head.appendChild(link);
-}
-
 function loadingHandler() {
-    if (waitingForHead && document.body) {
-        waitingForHead = false;
-        addStyleSheet();
-    }
-    replaceURLs(UPDATE_MODE_CHECK_UNCHECKED);
+    replaceURLs(4, UPDATE_MODE_CHECK_UNCHECKED);
 
     if (! contentLoaded) {
         setTimeout(loadingHandler, 100);

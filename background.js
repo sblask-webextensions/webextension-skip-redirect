@@ -1,9 +1,3 @@
-importScripts("base64.js");
-importScripts("pslrules.js");
-importScripts("psl.js");
-importScripts("url.js");
-importScripts("util.js");
-
 /* global psl */
 /* global url */
 /* global util */
@@ -86,11 +80,7 @@ let indicatorEnabled = undefined;
 let skipRedirectsToSameDomain = false;
 let syncLists = false;
 
-if (typeof browser == "undefined") {
-    browser = chrome;
-}
-
-browser.storage.local.get(
+chrome.storage.local.get(
     [
         OPTION_MODE,
         OPTION_INDICATOR_ENABLED,
@@ -103,25 +93,25 @@ browser.storage.local.get(
     (result) => {
 
         if (result[OPTION_NO_SKIP_PARAMETERS_LIST] === undefined) {
-            browser.storage.local.set({[OPTION_NO_SKIP_PARAMETERS_LIST]: DEFAULT_NO_SKIP_PARAMETERS_LIST});
+            chrome.storage.local.set({[OPTION_NO_SKIP_PARAMETERS_LIST]: DEFAULT_NO_SKIP_PARAMETERS_LIST});
         } else {
             updateNoSkipParametersList(result[OPTION_NO_SKIP_PARAMETERS_LIST]);
         }
 
         if (result[OPTION_NO_SKIP_URLS_LIST] === undefined) {
-            browser.storage.local.set({[OPTION_NO_SKIP_URLS_LIST]: DEFAULT_NO_SKIP_URLS_LIST});
+            chrome.storage.local.set({[OPTION_NO_SKIP_URLS_LIST]: DEFAULT_NO_SKIP_URLS_LIST});
         } else {
             updateNoSkipUrlsList(result[OPTION_NO_SKIP_URLS_LIST]);
         }
 
         if (result[OPTION_SKIP_URLS_LIST] === undefined) {
-            browser.storage.local.set({[OPTION_SKIP_URLS_LIST]: []});
+            chrome.storage.local.set({[OPTION_SKIP_URLS_LIST]: []});
         } else {
             updateSkipUrlsList(result[OPTION_SKIP_URLS_LIST]);
         }
 
         if (result[OPTION_MODE] === undefined) {
-            browser.storage.local.set({[OPTION_MODE]: OPTION_MODE_NO_SKIP_URLS_LIST});
+            chrome.storage.local.set({[OPTION_MODE]: OPTION_MODE_NO_SKIP_URLS_LIST});
             currentMode = OPTION_MODE_NO_SKIP_URLS_LIST;
         } else {
             currentMode = result[OPTION_MODE];
@@ -134,26 +124,26 @@ browser.storage.local.get(
         }
 
         if (result[OPTION_INDICATOR_ENABLED] === undefined) {
-            browser.storage.local.set({[OPTION_INDICATOR_ENABLED]: true});
+            chrome.storage.local.set({[OPTION_INDICATOR_ENABLED]: true});
         } else {
             indicatorEnabled = result[OPTION_INDICATOR_ENABLED];
         }
 
     if (result[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN] === undefined) {
-            browser.storage.local.set({[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN]: false});
+            chrome.storage.local.set({[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN]: false});
         } else {
             skipRedirectsToSameDomain = result[OPTION_SKIP_REDIRECTS_TO_SAME_DOMAIN];
         }
 
         if (result[OPTION_SYNC_LISTS_ENABLED] === undefined) {
-            browser.storage.local.set({[OPTION_SYNC_LISTS_ENABLED]: false});
+            chrome.storage.local.set({[OPTION_SYNC_LISTS_ENABLED]: false});
         } else {
             syncLists = result[OPTION_SYNC_LISTS_ENABLED];
         }
     }
 );
 
-browser.storage.onChanged.addListener(
+chrome.storage.onChanged.addListener(
     (changes, areaName) => {
 
         let initTriggered = false;
@@ -209,7 +199,7 @@ browser.storage.onChanged.addListener(
     }
 );
 
-browser.runtime.onMessage.addListener(
+chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
         if (sender.tab) {
             switch(message.id) {
@@ -226,9 +216,16 @@ browser.runtime.onMessage.addListener(
     }
 );
 
-browser.webRequest.onCompleted.addListener(
+chrome.webRequest.onBeforeRequest.addListener(
     (details) => {
-        browser.tabs.sendMessage(details.tab.id, {id: "xhrRequestCompleted"})
+        updateBadge(details.tab, "")
+    },
+    { urls: ['*://*/*'], types: ["main_frame"] }
+);
+
+chrome.webRequest.onCompleted.addListener(
+    (details) => {
+        chrome.tabs.sendMessage(details.tab.id, {id: "xhrRequestCompleted"})
     },
     {urls: ['*://*/*'], types: ["xmlhttprequest"]}
 );
@@ -247,8 +244,8 @@ function updateSkipUrlsList(newSkipUrlsList) {
 
 function initSyncLists() {
     Promise.all([
-        browser.storage.local.get(LIST_OPTIONS),
-        browser.storage.sync.get(LIST_OPTIONS),
+        chrome.storage.local.get(LIST_OPTIONS),
+        chrome.storage.sync.get(LIST_OPTIONS),
     ])
         .then(
             ([localResult, remoteResult]) => {
@@ -258,10 +255,10 @@ function initSyncLists() {
                     const newValue = util.mergeList(localValue, remoteValue);
 
                     if (JSON.stringify(localValue) != JSON.stringify(newValue)) {
-                        browser.storage.local.set({[optionName]: newValue});
+                        chrome.storage.local.set({[optionName]: newValue});
                     }
                     if (JSON.stringify(remoteValue) != JSON.stringify(newValue)) {
-                        browser.storage.sync.set({[optionName]: newValue});
+                        chrome.storage.sync.set({[optionName]: newValue});
                     }
                 });
             }
@@ -274,7 +271,7 @@ function maybeSyncList(changedArea, optionName, optionValue) {
     }
 
     const toAreaName = changedArea === "local" ? "sync" : "local";
-    const toArea = browser.storage[toAreaName];
+    const toArea = chrome.storage[toAreaName];
 
     toArea.get([optionName]).then(
         (result) => {
@@ -294,23 +291,23 @@ function enableSkipping() {
         path = ICON_SKIP_URLS_LIST;
     }
 
-    updateIcon(browser.i18n.getMessage("actionLabelOn"), path);
+    updateIcon(chrome.i18n.getMessage("actionLabelOn"), path);
 }
 
 function disableSkipping() {
-    updateIcon(browser.i18n.getMessage("actionLabelOff"), ICON_OFF);
+    updateIcon(chrome.i18n.getMessage("actionLabelOff"), ICON_OFF);
 }
 
 function updateIcon(title, path) {
     if (path) {
-        browser.action.setIcon({path: {
+        chrome.action.setIcon({path: {
             16: '/icons/' + path + '/16.png',
             32: '/icons/' + path + '/32.png',
             48: '/icons/' + path + '/48.png',
             64: '/icons/' + path + '/64.png'
         }});
     }
-    browser.action.setTitle({title: title});
+    chrome.action.setTitle({title: title});
 };
 
 function getRedirectURLs(originUrls) {

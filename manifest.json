@@ -1,30 +1,26 @@
 {
 	"action": {
-	"default_title": "__MSG_extensionName__",
-	"default_popup": "options/options.html",
-	"default_icon": {
-		"16": "/icons/16.png",
-		"32": "/icons/32.png",
-		"48": "/icons/48.png",
-		"64": "/icons/64.png"
-	}
+        "default_title": "__MSG_browserActionLabelDefault__",
+        "default_popup": "options/options.html",
+        "default_icon": {
+            "16": "/icons/16.png",
+            "32": "/icons/32.png",
+            "48": "/icons/48.png",
+            "64": "/icons/64.png"
+        }
 	},
     "author": "Sebastian Blask",
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "service_worker.js"
     },
     "content_scripts": [
         {
           "matches": ["*://*/*"],
           "run_at": "document_start",
+          "css": ["/icons/indicator.css"],
           "js": ["content_script.js"]
-        }
+       }
     ],
-    "action": {
-        "browser_style": false,
-        "default_popup": "options/options.html",
-        "default_title": "__MSG_browserActionLabelDefault__"
-    },
     "description": "__MSG_extensionDescription__",
     "homepage_url": "https://github.com/sblask/webextension-skip-redirect",
     "icons": {

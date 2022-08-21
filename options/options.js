@@ -29,15 +29,11 @@ const ELEMENT_INDICATOR_ENABLED = "indicator-enabled";
 const ELEMENT_SKIP_REDIRECTS_TO_SAME_DOMAIN = "skipRedirectsToSameDomain";
 
 
-if (typeof browser == "undefined")
-    browser = chrome;
-
-
 let timeout;
 
 
 function restoreOptions() {
-    browser.storage.local.get([
+    chrome.storage.local.get([
         OPTION_MODE,
         OPTION_INDICATOR_ENABLED,
         OPTION_NO_SKIP_PARAMETERS_LIST,
@@ -88,10 +84,10 @@ function enableAutosave() {
 function loadTranslations() {
     for (const element of document.querySelectorAll("[data-i18n]")) {
         const translationKey = element.getAttribute("data-i18n");
-        if (typeof browser === "undefined" || !browser.i18n.getMessage(translationKey)) {
+        if (!chrome.i18n.getMessage(translationKey)) {
             element.textContent = element.getAttribute("data-i18n");
         } else {
-            element.innerHTML = browser.i18n.getMessage(translationKey);
+            element.innerHTML = chrome.i18n.getMessage(translationKey);
         }
     }
 }
@@ -155,7 +151,7 @@ function saveOptions(event) {
     const noSkipParametersList = document.querySelector(`#${ELEMENT_NO_SKIP_PARAMETERS_LIST}`).value.split("\n");
     maybeHighlightError(noSkipParametersList, ELEMENT_NO_SKIP_PARAMETERS_LIST, ELEMENT_NO_SKIP_PARAMETERS_LIST_ERROR);
 
-    browser.storage.local.set({
+    chrome.storage.local.set({
 
         [OPTION_NO_SKIP_URLS_LIST]: noSkipUrlsList,
         [OPTION_NO_SKIP_PARAMETERS_LIST]: noSkipParametersList,
@@ -180,4 +176,4 @@ document.addEventListener("DOMContentLoaded", enableAutosave);
 document.addEventListener("DOMContentLoaded", loadTranslations);
 document.querySelector("form").addEventListener("submit", saveOptions);
 
-browser.storage.onChanged.addListener(restoreOptions);
+chrome.storage.onChanged.addListener(restoreOptions);

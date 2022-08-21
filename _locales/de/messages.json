@@ -21,11 +21,11 @@
     },
     "optionsIndicatorEnable": {
         "description": "Label of the checkbox to toggle the indicator.",
-        "message": "Indicator aktivieren"
+        "message": "Indikator aktivieren"
     },
     "optionsIndicatorDescription": {
         "description": "The choice to show an indicator after skipped links",
-        "message": "Zeigt einen Indicator hinter übersprungenen Links"
+        "message": "Zeigt einen Indikator hinter übersprungenen Links"
     },
     "optionsModeNoSkipUrlsList": {
         "description": "The choice that sets the extension into no-skip-urls-list mode.",
