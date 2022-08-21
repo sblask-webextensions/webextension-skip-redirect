@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "skip-redirect";
+    src: url("indicator.woff") format('woff'),
+      url("chrome-extension://__MSG_@@extension_id__/icons/indicator.woff") format('woff');
+}
+.skip-redirect-indicator::after {
+    font-family: "skip-redirect";
+    content: " A";
+    opacity: 0.5;
+    font-size: 0.8em;
+}

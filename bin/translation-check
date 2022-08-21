@@ -5,7 +5,7 @@ set -o errexit -o nounset -o pipefail -o xtrace
 SCRIPT_DIRECTORY=$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )
 ROOT_DIRECTORY=$SCRIPT_DIRECTORY/..
 
-REGEXP='browser.i18n.getMessage\("\K([^"]+)|"__MSG_\K([^_]+)|data-i18n="\K([^"]+)'
+REGEXP='chrome.i18n.getMessage\("\K([^"]+)|"__MSG_\K([^_]+)|data-i18n="\K([^"]+)'
 FILES=$(find $ROOT_DIRECTORY -not -path '*node_modules*' -name '*.js*' -o -not -path '*node_modules*' -name '*.html')
 
 for language_directory in $ROOT_DIRECTORY/_locales/*

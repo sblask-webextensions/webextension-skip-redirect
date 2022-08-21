@@ -11,35 +11,21 @@
         "description": "Label of the button when the extension is enabled.",
         "message": "Skip Redirect ist an. Ein Klick öffnet die Einstellungen um es auszustellen"
     },
-    "browserActionLabelOnSkipped": {
-        "description": "Label of the button when the extension is enabled and there was a redirect.",
-        "message": "Skip Redirect ist an\n\nDie letzte Weiterleitung war:\n\n$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "contextMenuLinkLabel": {
-        "description": "Label of the context menu entry to copy the target URL of the link under the cursor.",
-        "message": "Zielwebadresse kopieren"
-    },
-    "contextMenuToolbarLabel": {
-        "description": "Label of the context menu entry to copy last URL.",
-        "message": "Letzte übersprungene Webadresse kopieren"
-    },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
-        "message": "Manche Webseiten leiten Benutzer auf eine extra Seite bevor sie auf die Seite weiterleiten die man eigentlich sehen wollte. Skip Redirect versucht diese Weiterleitung zu überspringen um direkt zur richtigen Seite zu gehen."
+        "message": "Überspringt unnötige Webseitenaufrufe, die nur den Sinn haben auf eine andere Webseite weiterzuleiten."
     },
     "extensionName": {
         "description": "Name of the extension in the add-on manager.",
         "message": "Skip Redirect"
+    },
+    "optionsIndicatorEnable": {
+        "description": "Label of the checkbox to toggle the indicator.",
+        "message": "Indikator aktivieren"
+    },
+    "optionsIndicatorDescription": {
+        "description": "The choice to show an indicator after skipped links",
+        "message": "Zeigt einen Indikator hinter übersprungenen Links"
     },
     "optionsModeNoSkipUrlsList": {
         "description": "The choice that sets the extension into no-skip-urls-list mode.",
@@ -61,21 +47,9 @@
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "No-Skip-Urls-Liste (reguläre Ausdrücke sind zugelassen)"
     },
-    "optionsNotificationsDuration": {
-        "description": "Label of the input field to specify how long notifications are shown.",
-        "message": "Zeige Benachrichtigungen für so viele Sekunden (zwischen 1 und 10):"
-    },
-    "optionsNotificationsEnable": {
-        "description": "Label of the checkbox to toggle notifications.",
-        "message": "Zeige Benachrichtigungsdialog"
-    },
     "optionsSectionMode": {
         "description": "Title of the options section allowing to toggle between no-skip-urls-list and skip-urls-list mode or disable the extension.",
         "message": "Modus"
-    },
-    "optionsSectionNotifications": {
-        "description": "Title of the options section allowing to control notifications.",
-        "message": "Benachrichtigungen"
     },
     "optionsSectionSync": {
         "description": "Title of the options section allowing to control Sync.",
@@ -104,23 +78,5 @@
     "redirectSkippedBrowserActionBadge": {
         "description": "Text of the badge shown on the button after a redirect was skipped.",
         "message": "Skip"
-    },
-    "redirectSkippedNotificationMessage": {
-        "description": "Content of the notification about skipped redirect.",
-        "message": "$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "redirectSkippedNotificationTitle": {
-        "description": "Title of the notification about skipped redirect.",
-        "message": "Eine Weiterleitung wurde übersprungen"
     }
 }

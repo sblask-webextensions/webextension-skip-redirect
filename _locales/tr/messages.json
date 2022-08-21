@@ -11,28 +11,6 @@
         "description": "Label of the button when the extension is enabled.",
         "message": "Skip Redirect etkin, devre dışı bırakmak için tıklayın"
     },
-    "browserActionLabelOnSkipped": {
-        "description": "Label of the button when the extension is enabled and there was a redirect.",
-        "message": "Skip Redirect etkin, devre dışı bırakmak için tıklayın\n\nSon yönlendirme:\n\n$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "contextMenuLinkLabel": {
-        "description": "Label of the context menu entry to copy the target URL of the link under the cursor.",
-        "message": "Copy target URL"
-    },
-    "contextMenuToolbarLabel": {
-        "description": "Label of the context menu entry to copy last URL.",
-        "message": "Son atlanan URL'yi kopyala"
-    },
     "extensionDescription": {
         "description": "Description of the extension in the add-on manager.",
         "message": "Son sayfaya yönlendirmeden önce bazı sayfaların kullandığı aracı sayfaları atlayın."
@@ -61,21 +39,9 @@
         "description": "Label of the text area to edit the no-skip-urls-list.",
         "message": "Atlanmayan URL'ler listesi (düzenli ifadeler kullanabilirsiniz)"
     },
-    "optionsNotificationsDuration": {
-        "description": "Label of the input field to specify how long notifications are shown.",
-        "message": "Bildirimleri bu kadar saniye boyunca göster (1 ile 10 arasında):"
-    },
-    "optionsNotificationsEnable": {
-        "description": "Label of the checkbox to toggle notifications.",
-        "message": "Bildirimleri etkinleştir"
-    },
     "optionsSectionMode": {
         "description": "Title of the options section allowing to toggle between no-skip-urls-list and skip-urls-list or disable the extension.",
         "message": "Mod"
-    },
-    "optionsSectionNotifications": {
-        "description": "Title of the options section allowing to control notifications.",
-        "message": "Bildirimler"
     },
     "optionsSectionSync": {
         "description": "Title of the options section allowing to control Sync.",
@@ -104,23 +70,5 @@
     "redirectSkippedBrowserActionBadge": {
         "description": "Text of the badge shown on the button after a redirect was skipped.",
         "message": "Atla"
-    },
-    "redirectSkippedNotificationMessage": {
-        "description": "Content of the notification about skipped redirect.",
-        "message": "$sourceUrl$\n➔\n$targetUrl$",
-        "placeholders": {
-            "sourceUrl": {
-                "content": "$1",
-                "example": "https://example.com/out?url=https%3A%2F%2Fmozilla.org"
-            },
-            "targetUrl": {
-                "content": "$2",
-                "example": "https://mozilla.org"
-            }
-        }
-    },
-    "redirectSkippedNotificationTitle": {
-        "description": "Title of the notification about skipped redirect.",
-        "message": "Yönlendirme Atlandı"
     }
 }

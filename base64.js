@@ -158,7 +158,7 @@
 				base64.hasOwnProperty(key) && (freeExports[key] = base64[key]);
 			}
 		}
-	} else { // in Rhino or a web browser
+	} else { // in Rhino or a web chrome
 		root.base64 = base64;
 	}
 
