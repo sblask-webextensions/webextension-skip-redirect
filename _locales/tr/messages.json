@@ -27,7 +27,7 @@
     },
     "contextMenuLinkLabel": {
         "description": "Label of the context menu entry to copy the target URL of the link under the cursor.",
-        "message": "Copy target URL"
+        "message": "Hedef URL'yi kopyala"
     },
     "contextMenuToolbarLabel": {
         "description": "Label of the context menu entry to copy last URL.",
