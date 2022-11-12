@@ -381,9 +381,7 @@ function maybeRedirect(requestDetails) {
     prepareToolbarContextMenu(requestDetails.url);
     notifySkip(requestDetails.url, redirectTarget);
 
-    return {
-        redirectUrl: redirectTarget,
-    };
+    browser.tabs.update(requestDetails.tabId, {url: redirectTarget});
 }
 
 function prepareToolbarContextMenu(from) {
