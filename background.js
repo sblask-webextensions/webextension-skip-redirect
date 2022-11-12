@@ -353,7 +353,7 @@ function disableSkipping() {
 }
 
 function maybeRedirect(requestDetails) {
-    if (requestDetails.tabId === -1 || requestDetails.method === "POST") {
+    if (requestDetails.tabId === -1 || requestDetails.method !== "GET") {
         return;
     }
 
