@@ -72,6 +72,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/subscribe",
     "/unauthenticated",
     "/verification",
+    "https://bugs.chromium.org/*",
+    "https://web.archive.org/*"
 ];
 
 let currentMode = undefined;
