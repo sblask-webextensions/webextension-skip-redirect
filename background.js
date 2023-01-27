@@ -73,7 +73,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/unauthenticated",
     "/verification",
     "https://bugs.chromium.org/*",
-    "https://web.archive.org/*"
+    "https://web.archive.org/*",
+    "https://safebrowsing.google.com/*"
 ];
 
 let currentMode = undefined;
