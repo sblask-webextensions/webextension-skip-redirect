@@ -74,7 +74,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/verification",
     "https://bugs.chromium.org/*",
     "https://web.archive.org/*",
-    "https://safebrowsing.google.com/*"
+    "https://safebrowsing.google.com/*",
+    "https://downforeveryoneorjustme.com/*"
 ];
 
 let currentMode = undefined;
