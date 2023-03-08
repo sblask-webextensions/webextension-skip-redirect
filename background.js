@@ -72,10 +72,17 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/subscribe",
     "/unauthenticated",
     "/verification",
+    "https://uc.appengine.google.com/*",
     "https://bugs.chromium.org/*",
     "https://web.archive.org/*",
     "https://safebrowsing.google.com/*",
-    "https://downforeveryoneorjustme.com/*"
+    "https://downforeveryoneorjustme.com/*",
+    "https://calendar.google.com/*",
+    "https://outlook.office.com/*",
+    "http://www.facebook.com/sharer/*",
+    "https://www.facebook.com/sharer/*",
+    "https://twitter.com/intent/*",
+    "https://www.linkedin.com/cws/*"
 ];
 
 let currentMode = undefined;
