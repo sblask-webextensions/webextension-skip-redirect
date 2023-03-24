@@ -82,7 +82,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "//web.archive.org/",
     "//www.facebook.com/sharer/",
     "//www.facebook.com/sharer/",
-    "//www.linkedin.com/cws/"
+    "//www.linkedin.com/cws/",
+    "//medium.com/"
 ];
 
 let currentMode = undefined;
