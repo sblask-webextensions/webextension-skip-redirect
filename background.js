@@ -83,7 +83,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "//www.facebook.com/sharer/",
     "//www.facebook.com/sharer/",
     "//www.linkedin.com/cws/",
-    "//medium.com/"
+    "//medium.com/",
+    "//id.atlassian.net/"
 ];
 
 let currentMode = undefined;
