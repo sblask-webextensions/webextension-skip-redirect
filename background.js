@@ -84,7 +84,8 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "//www.facebook.com/sharer/",
     "//www.linkedin.com/cws/",
     "//medium.com/",
-    "//id.atlassian.net/"
+    "//id.atlassian.net/",
+    ".browserling.com/"
 ];
 
 let currentMode = undefined;
