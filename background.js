@@ -72,6 +72,7 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/subscribe",
     "/unauthenticated",
     "/verification",
+    "detectportal.firefox.com/canonical.html"
 ];
 
 let currentMode = undefined;
