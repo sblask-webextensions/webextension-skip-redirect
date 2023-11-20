@@ -1,10 +1,11 @@
 {
     "author": "Sebastian Blask",
     "devDependencies": {
-        "eslint": "8.9.x",
-        "tape": "5.5.x",
-        "tape-benchmark": "0.0.0",
-        "web-ext": "6.7.x"
+        "@eslint/js": "^8.54.0",
+        "@stylistic/eslint-plugin-js": "^1.4.0",
+        "eslint": "^8.54.0",
+        "tape": "^5.7.2",
+        "web-ext": "^7.8.0"
     },
     "license": "MIT",
     "name": "skipredirect",
@@ -30,9 +31,7 @@
         "release": "VERSION=$(jq --raw-output '.version' manifest.json); hub release create $(for file in *$VERSION*.zip; do echo \" -a ${file} \"; done) -m $VERSION $VERSION",
         "start": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --url $(jq --raw-output '.homepage_url' manifest.json)",
         "start:german": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --pref=general.useragent.locale=de-DE --pref=intl.locale.matchOS=false --url $(jq --raw-output '.homepage_url' manifest.json)",
-        "start:nightly": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox-trunk --url $(jq --raw-output '.homepage_url' manifest.json)",
-        "test": "web-ext lint && tape $(find . -not -path '*node_modules*' -name 'test-*.js') && npm run translation-check",
-        "translation-check": "./bin/translation-check"
+        "start:nightly": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox-trunk --url $(jq --raw-output '.homepage_url' manifest.json)"
     },
     "title": "Skip Redirect",
     "version": "2.3.6"

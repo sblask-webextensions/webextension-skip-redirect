@@ -1,0 +1,42 @@
+repos:
+
+  - repo: local
+    hooks:
+
+      - id: eslint
+        name: eslint
+        entry: eslint
+        language: node
+        types_or:
+          - javascript
+        additional_dependencies:
+          - "@eslint/js@8.54.0"
+          - "@stylistic/eslint-plugin-js@1.4.0"
+          - eslint@8.54.0
+          - globals@13.23.0
+
+      - id: translation-check
+        name: translation-check
+        entry: ./bin/translation-check
+        language: system
+        always_run: true
+
+      - id: tape
+        name: tape
+        entry: tape
+        language: node
+        files: .*test.*
+        types_or:
+          - javascript
+        additional_dependencies:
+          - tape@5.7.2
+
+      - id: web-ext lint
+        name: web-ext lint
+        entry: web-ext lint
+        language: node
+        types_or:
+          - javascript
+        pass_filenames: false
+        additional_dependencies:
+          - web-ext@7.8.0

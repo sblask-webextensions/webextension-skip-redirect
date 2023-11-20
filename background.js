@@ -255,15 +255,15 @@ browser.contextMenus?.onClicked.addListener(
 
 function copyToClipboard(text) {
     chainPromises([
-        ()        => { return browser.tabs.executeScript({ code: "typeof copyToClipboard === 'function';" }); },
+        ()        => { return browser.tabs.executeScript({code: "typeof copyToClipboard === 'function';"}); },
         (results) => { return injectScriptIfNecessary(results && results[0]); },
-        ()        => { return browser.tabs.executeScript({ code: `copyToClipboard("${text}")` }); },
+        ()        => { return browser.tabs.executeScript({code: `copyToClipboard("${text}")`}); },
     ]);
 }
 
 function injectScriptIfNecessary(isCopyFunctionDefined) {
     if (!isCopyFunctionDefined) {
-        return browser.tabs.executeScript({ file: "clipboard-helper.js" });
+        return browser.tabs.executeScript({file: "clipboard-helper.js"});
     }
 }
 
