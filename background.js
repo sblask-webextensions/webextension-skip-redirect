@@ -52,6 +52,7 @@ const DEFAULT_NO_SKIP_URLS_LIST = [
     "/auth",
     "/cookie",
     "/download",
+    "/eid-client"
     "/login",
     "/logoff",
     "/logon",
