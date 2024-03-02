@@ -1,5 +1,4 @@
 {
-    "author": "Sebastian Blask",
     "devDependencies": {
         "@commitlint/cli": "^19.0.3",
         "@commitlint/config-angular": "^19.0.3",
@@ -9,32 +8,19 @@
         "tape": "^5.7.2",
         "web-ext": "^7.8.0"
     },
-    "license": "MIT",
-    "name": "skipredirect",
-    "preferences-branch": "skipredirect",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sblask/webextension-skip-redirect"
-    },
+    "name": "webextension-skip-redirect",
+    "private": true,
     "scripts": {
         "artifact-create:chrome": "web-ext build --artifacts-dir . --ignore-files bin screenshots package.json icon.fodg *.dat",
         "artifact-create:firefox": "web-ext build --artifacts-dir . --ignore-files bin screenshots package.json icon.fodg *.dat *.png browser-polyfill.js",
         "artifact-rename:chrome": "VERSION=$(jq --raw-output '.version' manifest.json); rename \"s/.zip$/-chrome.zip/\"  *$VERSION.zip",
         "artifact-rename:firefox": "VERSION=$(jq --raw-output '.version' manifest.json); rename \"s/.zip$/-firefox.zip/\" *$VERSION.zip",
         "build": "git add --all; rm *.zip; npm run modify:chrome && npm run artifact-create:chrome && npm run artifact-rename:chrome && git checkout -- . && npm run modify:firefox && npm run artifact-create:firefox && npm run artifact-rename:firefox && git checkout -- .",
-        "help": "web-ext --help",
         "icons": "for size in 16x16 32x32 48x48 64x64 128x128 440x280; do convert -background none -density 1000 -resize ${size} -extent ${size} -gravity center icon.svg icon-${size}.png; done",
-        "lint": "eslint --debug $(find . -not -path '*node_modules*' -name '*.js')",
         "modify:chrome": "jq --indent 4 '. | del(.applications) | del(.browser_action.default_icon)' manifest.json | sponge manifest.json",
         "modify:firefox": "npm run modify:manifest:firefox && npm run modify:remove-polyfill-references",
         "modify:manifest:firefox": "jq --indent 4 '. | .background.scripts |= map(select(. != \"browser-polyfill.js\")) | if has(\"icons\") then .icons |= {\"48\": \"icon.svg\"} else . end | del(.options_ui.open_in_tab)' manifest.json | sponge manifest.json",
-        "modify:remove-polyfill-references": "sed --in-place --regexp-extended '/\"(\\.\\.\\/)?browser-polyfill.js\"/d' $(find . -not -path '*node_modules*' -name '*.js' -o -name '*.html')",
-        "readme": "cat README.md | sed -r 's/\\[.+\\]\\((.+)\\)/\\1/' | sed -r '/\\[/{ N; s/\\[.+\\]\\((.+)\\)/\\n\\1/ }' | sed -r '/```/,/```/d' | vim -",
-        "release": "VERSION=$(jq --raw-output '.version' manifest.json); hub release create $(for file in *$VERSION*.zip; do echo \" -a ${file} \"; done) -m $VERSION $VERSION",
-        "start": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --url $(jq --raw-output '.homepage_url' manifest.json)",
-        "start:german": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox --pref=general.useragent.locale=de-DE --pref=intl.locale.matchOS=false --url $(jq --raw-output '.homepage_url' manifest.json)",
-        "start:nightly": "GTK_THEME=Greybird web-ext run --verbose --firefox firefox-trunk --url $(jq --raw-output '.homepage_url' manifest.json)"
+        "modify:remove-polyfill-references": "sed --in-place --regexp-extended '/\"(\\.\\.\\/)?browser-polyfill.js\"/d' $(find . -not -path '*node_modules*' -name '*.js' -o -name '*.html')"
     },
-    "title": "Skip Redirect",
     "version": "2.3.6"
 }
