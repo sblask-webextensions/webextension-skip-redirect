@@ -1,6 +1,8 @@
 {
     "author": "Sebastian Blask",
     "devDependencies": {
+        "@commitlint/cli": "^19.0.3",
+        "@commitlint/config-angular": "^19.0.3",
         "@eslint/js": "^8.54.0",
         "@stylistic/eslint-plugin-js": "^1.4.0",
         "eslint": "^8.54.0",
