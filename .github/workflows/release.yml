@@ -1,0 +1,39 @@
+name: release
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - manifest-v3
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  pre-commit:
+    uses:
+      ./.github/workflows/pre-commit.yml
+  release:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+      - name: pushed commits count
+        id: pushed_commits_count
+        env:
+          pushed_commits: ${{ toJson(github.event.commits) }}
+        run: |
+          echo "pushed_commits_count=$(echo "$pushed_commits" | jq '. | length')" >> "$GITHUB_OUTPUT"
+      - run: npm install
+      - run: npx commitlint --verbose --from HEAD~${{ github.event_name == 'pull_request' && github.event.pull_request.commits || steps.pushed_commits_count.outputs.pushed_commits_count }} --to HEAD
+      - run: npx semantic-release ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}

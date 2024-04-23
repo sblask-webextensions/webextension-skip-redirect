@@ -1,0 +1,15 @@
+{
+    "branches": [
+        "main",
+        {
+            "name": "manifest-v3",
+            "prerelease": true
+        }
+    ],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/npm",
+        "@semantic-release/release-notes-generator"
+    ],
+    "tagFormat": "${ version }"
+}

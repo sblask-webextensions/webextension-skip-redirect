@@ -3,8 +3,10 @@
         "@commitlint/cli": "^19.0.3",
         "@commitlint/config-angular": "^19.0.3",
         "@eslint/js": "^8.54.0",
+        "@semantic-release/exec": "github:semantic-release/exec",
         "@stylistic/eslint-plugin-js": "^1.4.0",
         "eslint": "^8.54.0",
+        "semantic-release": "^23.0.2",
         "tape": "^5.7.2",
         "web-ext": "^7.8.0"
     },
