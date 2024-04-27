@@ -46,6 +46,7 @@ const DEFAULT_NO_SKIP_PARAMETERS_LIST = [
 ];
 
 const DEFAULT_NO_SKIP_URLS_LIST = [
+    "web.archive.org/",
     "/abp",
     "/account",
     "/adfs",
