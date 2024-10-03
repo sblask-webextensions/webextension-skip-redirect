@@ -2,6 +2,9 @@
 
 Skip Redirect
 =====================
+[![Mozilla Add-ons](https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png)](https://addons.mozilla.org/en-US/firefox/addon/skip-redirect/)
+[![Chrome Web Store](https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png)](https://chrome.google.com/webstore/detail/skip-redirect/jaoafjdoijdconemdmodhbfpianehlon)
+
 Some web pages use intermediary pages before redirecting to a final page. This
 webextension tries to extract the final url from the intermediary url and goes
 there straight away if successful. As an example, try this url:
