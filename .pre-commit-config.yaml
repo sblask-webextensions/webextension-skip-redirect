@@ -11,7 +11,7 @@ repos:
           - javascript
         additional_dependencies:
           - "@eslint/js@9.33.0"
-          - "@stylistic/eslint-plugin-js@1.4.0"
+          - "@stylistic/eslint-plugin-js@1.8.1"
           - eslint@9.33.0
           - globals@16.3.0
 
