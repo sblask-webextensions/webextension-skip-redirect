@@ -8,6 +8,8 @@ module.exports = [
             "base64.js",
             "browser-polyfill.js",
         ],
+    },
+    {
         languageOptions: {
             globals: {
                 ...globals.browser,
