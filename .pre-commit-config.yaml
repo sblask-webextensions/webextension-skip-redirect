@@ -29,7 +29,7 @@ repos:
         types_or:
           - javascript
         additional_dependencies:
-          - tape@5.7.2
+          - tape@5.9.0
 
       - id: web-ext lint
         name: web-ext lint
