@@ -39,7 +39,7 @@ repos:
           - javascript
         pass_filenames: false
         additional_dependencies:
-          - web-ext@7.8.0
+          - web-ext@7.12.0
 
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.7
