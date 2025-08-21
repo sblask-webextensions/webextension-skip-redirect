@@ -13,7 +13,7 @@ repos:
           - "@eslint/js@8.54.0"
           - "@stylistic/eslint-plugin-js@1.4.0"
           - eslint@8.54.0
-          - globals@13.23.0
+          - globals@13.24.0
 
       - id: translation-check
         name: translation-check
