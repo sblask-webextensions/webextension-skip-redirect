@@ -10,9 +10,9 @@ repos:
         types_or:
           - javascript
         additional_dependencies:
-          - "@eslint/js@9.39.0"
-          - "@stylistic/eslint-plugin@5.5.0"
-          - eslint@9.39.0
+          - "@eslint/js@9.39.1"
+          - "@stylistic/eslint-plugin@5.6.1"
+          - eslint@9.39.1
           - globals@16.3.0
 
       - id: translation-check
