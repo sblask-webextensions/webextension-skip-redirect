@@ -6,7 +6,7 @@
         "eslint": "9.39.2",
         "globals": "17.3.0",
         "tape": "5.9.0",
-        "web-ext": "8.9.0"
+        "web-ext": "8.10.0"
     },
     "license": "MIT",
     "name": "skipredirect",
