@@ -2,8 +2,8 @@
     "author": "Sebastian Blask",
     "devDependencies": {
         "@eslint/js": "10.0.1",
-        "@stylistic/eslint-plugin": "5.9.0",
-        "eslint": "10.0.2",
+        "@stylistic/eslint-plugin": "5.10.0",
+        "eslint": "10.1.0",
         "globals": "17.3.0",
         "tape": "5.9.0",
         "web-ext": "9.2.0"
