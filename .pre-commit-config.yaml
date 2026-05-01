@@ -12,7 +12,7 @@ repos:
         additional_dependencies:
           - "@eslint/js@10.0.1"
           - "@stylistic/eslint-plugin@5.10.0"
-          - eslint@10.1.0
+          - eslint@10.2.1
           - globals@17.3.0
 
       - id: translation-check
