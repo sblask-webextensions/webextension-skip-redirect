@@ -5,7 +5,7 @@
         "@stylistic/eslint-plugin": "5.10.0",
         "eslint": "10.9.1",
         "geckodriver": "6.1.1",
-        "globals": "17.9.0",
+        "globals": "17.11.0",
         "selenium-webdriver": "4.47.0",
         "tape": "5.10.2",
         "web-ext": "10.6.0"
