@@ -8,7 +8,7 @@
         "globals": "17.13.0",
         "selenium-webdriver": "4.51.0",
         "tape": "5.10.3",
-        "web-ext": "10.7.0"
+        "web-ext": "10.8.0"
     },
     "license": "MIT",
     "name": "skipredirect",
