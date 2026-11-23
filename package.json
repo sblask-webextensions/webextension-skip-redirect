@@ -2,7 +2,7 @@
     "author": "Sebastian Blask",
     "devDependencies": {
         "@eslint/js": "10.0.1",
-        "@stylistic/eslint-plugin": "5.10.0",
+        "@stylistic/eslint-plugin": "6.0.1",
         "eslint": "10.13.0",
         "geckodriver": "8.0.0",
         "globals": "17.13.0",
