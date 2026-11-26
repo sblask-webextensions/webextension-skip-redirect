@@ -30,7 +30,7 @@ repos:
         types_or:
           - javascript
         additional_dependencies:
-          - tape@5.10.3
+          - tape@5.11.0
 
   - repo: https://github.com/rhysd/actionlint
     rev: v1.7.12
